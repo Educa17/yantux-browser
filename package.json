@@ -1,0 +1,46 @@
+{
+  "name": "yantux",
+  "version": "2.2.0",
+  "description": "YANTUX - navegador web pessoal",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": {
+    "name": "YANTUX",
+    "email": "pybrowser@example.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.yantux.browser",
+    "productName": "YANTUX",
+    "directories": {
+      "output": "dist"
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Network",
+      "icon": "build"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "artifactName": "YANTUX-2.2.deb"
+  },
+  "homepage": "https://github.com/pybrowser/pybrowser",
+  "dependencies": {
+    "@ghostery/adblocker-electron": "^2.18.2",
+    "cross-fetch": "^4.1.0"
+  }
+}

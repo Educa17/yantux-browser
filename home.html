@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home Yantux</title>
+<link rel="icon" type="image/png" href="build/icon.png">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #202124;
+  color: #e8eaed;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(138,180,248,.045), transparent 42%),
+    #202124;
+}
+
+.home {
+  width: min(980px, 88%);
+  text-align: center;
+  animation: homeIn .45s ease;
+}
+
+@keyframes homeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes clockIn {
+  from {
+    opacity: 0;
+    transform: scale(.92) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shortcutIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.clock {
+  animation:
+    clockIn var(--animation-speed, .45s)
+    cubic-bezier(.2,.8,.2,1);
+
+  font-size: var(--clock-size, 92px);
+  font-weight: var(--clock-weight, 600);
+  letter-spacing: -4px;
+  color: var(--accent, #8ab4f8);
+
+  transition:
+    font-size .25s ease,
+    font-weight .25s ease,
+    transform .3s ease,
+    text-shadow .3s ease;
+}
+
+.clock.clock-minimal {
+  letter-spacing: -2px;
+  font-weight: 400;
+}
+
+.clock.clock-elegant {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -3px;
+  font-weight: 400;
+}
+
+.clock.clock-neon {
+  letter-spacing: -3px;
+  text-shadow:
+    0 0 8px var(--accent, #8ab4f8),
+    0 0 24px var(--accent, #8ab4f8);
+}
+
+.date {
+  margin-top: 4px;
+  margin-bottom: 30px;
+  color: #9aa0a6;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.search {
+  width: min(680px, 100%);
+  height: 54px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0 16px;
+
+  background: #292a2d;
+  border: 1px solid #3c4043;
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.18);
+
+  transition:
+    border-color .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.search:focus-within {
+  background: #2d2e31;
+
+  border-color: var(--accent, #8ab4f8);
+
+  box-shadow:
+    0 0 0 2px rgba(138,180,248,.10),
+    0 5px 18px rgba(0,0,0,.22);
+}
+
+.search-icon {
+  color: #9aa0a6;
+  opacity: .85;
+  font-size: 21px;
+}
+
+.search input {
+  flex: 1;
+
+  height: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #e8eaed;
+
+  font-size: 16px;
+}
+
+.search input::placeholder {
+  color: #8b9096;
+}
+
+.search select {
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #9aa0a6;
+
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 14px;
+  max-width: 720px;
+  margin: 28px 0 0;
+}
+
+.shortcut {
+  position: relative;
+  width: 88px;
+  min-height: 82px;
+  padding: 10px 6px 8px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  animation: shortcutIn var(--animation-speed, .45s) ease both;
+  transition:
+    transform .16s ease,
+    background .16s ease,
+    border-color .16s ease,
+    box-shadow .16s ease;
+}
+
+.shortcut:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+}
+
+.shortcut-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: #d6d9df;
+}
+
+.shortcut-icon img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.shortcut-icon svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.shortcut-name {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  color: #c7c9cc;
+}
+
+.shortcut:hover .shortcut-icon {
+  transform: translateY(-1px) scale(1.04);
+}
+
+.add {
+  opacity: .6;
+}
+
+.add:hover {
+  opacity: 1;
+}
+
+.add .shortcut-icon {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.footer {
+  margin-top: 30px;
+
+  color: #70757a;
+  opacity: .7;
+
+  font-size: 11px;
+}
+
+body.clock-position-top .home {
+  transform: translateY(-28vh);
+}
+
+body.clock-position-bottom .home {
+  transform: translateY(28vh);
+}
+
+body.clock-position-left .home {
+  text-align: left;
+  margin-right: auto;
+  margin-left: 5%;
+}
+
+body.clock-position-right .home {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 5%;
+}
+
+body.clock-position-left .search,
+body.clock-position-right .search {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+body.py-no-animations .home,
+body.py-no-animations .shortcut,
+body.py-no-animations .clock {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (max-width: 650px) {
+  .shortcuts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .shortcut {
+    min-height: 86px;
+  }
+
+  .clock {
+    letter-spacing: -3px;
+  }
+}
+
+
+
+/* VIVALDI SPEED DIAL */
+#shortcuts.shortcut-preset-vivaldi {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 22px !important;
+  width: min(100%, 1050px);
+  margin: 30px auto;
+  align-items: stretch;
+}
+
+#shortcuts.shortcut-preset-vivaldi .shortcut {
+  width: 100% !important;
+  min-height: 150px;
+  padding: 18px 12px;
+  box-sizing: border-box;
+  border-radius: 18px;
+  background: rgba(30, 34, 43, .68);
+  border: 1px solid rgba(255,255,255,.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  backdrop-filter: blur(14px);
+  transition: transform .18s ease, background .18s ease,
+              border-color .18s ease, box-shadow .18s ease;
+}
+
+#shortcuts.shortcut-preset-vivaldi .shortcut:hover {
+  transform: translateY(-4px);
+  background: rgba(50, 58, 72, .85);
+  border-color: var(--accent, #8ab4f8);
+  box-shadow: 0 10px 28px rgba(0,0,0,.24);
+}
+
+#shortcuts.shortcut-preset-vivaldi .shortcut-icon,
+#shortcuts.shortcut-preset-vivaldi .shortcut-icon img {
+  width: 76px !important;
+  height: 76px !important;
+  border-radius: 18px;
+  object-fit: contain;
+}
+
+#shortcuts.shortcut-preset-vivaldi .shortcut-name {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+#shortcuts.shortcut-preset-vivaldi .shortcut.add .shortcut-icon {
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  #shortcuts.shortcut-preset-vivaldi {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  #shortcuts.shortcut-preset-vivaldi .shortcut {
+    min-height: 120px;
+  }
+
+  #shortcuts.shortcut-preset-vivaldi .shortcut-icon,
+  #shortcuts.shortcut-preset-vivaldi .shortcut-icon img {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+
+/* YANTUX SHORTCUT PRESETS */
+#shortcuts {
+  gap: var(--shortcut-gap, 14px) !important;
+}
+#shortcuts .shortcut {
+  width: var(--shortcut-width, 88px) !important;
+  min-width: 0;
+  transition: transform .16s ease, background .16s ease,
+    border-color .16s ease, box-shadow .16s ease;
+}
+#shortcuts .shortcut-icon,
+#shortcuts .shortcut-icon img {
+  width: var(--shortcut-icon-size, 32px);
+  height: var(--shortcut-icon-size, 32px);
+}
+#shortcuts.shortcut-preset-modern .shortcut {
+  border-radius: 12px;
+  background: rgba(255,255,255,.045);
+}
+#shortcuts.shortcut-preset-compact .shortcut {
+  min-height: 58px;
+  padding: 5px 3px;
+  border-radius: 7px;
+  gap: 3px;
+}
+#shortcuts.shortcut-preset-glass .shortcut {
+  background: rgba(30,35,45,.32);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+}
+#shortcuts.shortcut-preset-minimal .shortcut {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+#shortcuts.shortcut-hide-labels .shortcut-name {
+  display: none !important;
+}
+#shortcuts .shortcut:hover {
+  border-color: var(--accent, #8ab4f8);
+}
+
+
+/* YANTUX Home — Opera/Vivaldi inspirado, flat e cinza */
+.home {
+  width: min(1080px, 90%) !important;
+  max-height: 92vh;
+  overflow-y: auto;
+  text-align: left !important;
+  scrollbar-width: thin;
+  scrollbar-color: #444 transparent;
+}
+
+.clock {
+  color: #e5e5e5 !important;
+  font-weight: 400 !important;
+  letter-spacing: -3px !important;
+}
+
+.date {
+  color: #929292 !important;
+  margin-bottom: 34px !important;
+}
+
+.search {
+  width: min(720px, 100%) !important;
+  height: 52px !important;
+  margin: 0 !important;
+  background: #222 !important;
+  border: 1px solid #383838 !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+}
+
+.search:focus-within {
+  background: #252525 !important;
+  border-color: #666 !important;
+  box-shadow: none !important;
+}
+
+.search-icon,
+.search input,
+.search select {
+  color: #c7c7c7 !important;
+}
+
+.search input::placeholder {
+  color: #777 !important;
+}
+
+.shortcuts {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  margin-top: 24px !important;
+}
+
+.shortcut {
+  width: auto !important;
+  min-height: 88px !important;
+  padding: 12px 8px !important;
+  background: #222 !important;
+  border: 1px solid #303030 !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  transform: none !important;
+  animation: none !important;
+  transition: background .15s, border-color .15s !important;
+}
+
+.shortcut:hover {
+  background: #2b2b2b !important;
+  border-color: #505050 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.shortcut-icon {
+  border-radius: 5px !important;
+  box-shadow: none !important;
+}
+
+.shortcut-name {
+  color: #c5c5c5 !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+.shortcut.add {
+  background: transparent !important;
+  border: 1px dashed #444 !important;
+}
+
+.shortcut.add:hover {
+  background: #242424 !important;
+  border-color: #777 !important;
+}
+
+@media (max-width: 600px) {
+  .home {
+    width: 92% !important;
+  }
+
+  .shortcuts {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+
+/* YANTUX Customizer */
+#yantux-open {
+  position: fixed; right: 18px; bottom: 18px; z-index: 99990;
+  padding: 10px 14px; color: var(--accent, #aaa);
+  background: #202124; border: 1px solid #454545;
+  border-radius: 7px; cursor: pointer; font: 13px sans-serif;
+}
+#yantux-customizer, #yantux-customizer * { box-sizing: border-box; }
+#yantux-customizer {
+  position: fixed; inset: 0 0 0 auto; z-index: 99999;
+  width: min(430px, 100vw); height: 100dvh; overflow-y: auto;
+  padding: 20px; color: #e5e5e5; background: #191a1d;
+  border-left: 1px solid #383838; box-shadow: -12px 0 40px #0005;
+  font: 13px system-ui, sans-serif; text-align: left;
+}
+#yantux-customizer[hidden] { display: none !important; }
+#yantux-customizer h2 { font-size: 19px; margin: 0; }
+#yantux-customizer h3 {
+  margin: 22px 0 10px; font-size: 12px; color: #aaa;
+  font-weight: 600; text-transform: uppercase; letter-spacing: .7px;
+}
+#yantux-customizer label { display: block; margin: 10px 0 5px; color: #c7c7c7; }
+#yantux-customizer input:not([type="checkbox"]):not([type="color"]),
+#yantux-customizer select, #yantux-customizer textarea {
+  width: 100%; min-width: 0; padding: 9px; color: #eee;
+  background: #252629; border: 1px solid #414247; border-radius: 5px;
+}
+#yantux-customizer input[type="range"] { width: 100%; accent-color: #aaa; }
+#yantux-customizer input[type="color"] {
+  width: 100%; height: 35px; background: #252629;
+  border: 1px solid #414247; border-radius: 5px;
+}
+#yantux-customizer button {
+  padding: 9px 11px; color: #eee; background: #292a2e;
+  border: 1px solid #444; border-radius: 5px; cursor: pointer;
+}
+#yantux-customizer button:hover { background: #35363a; }
+#yantux-customizer .yc-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 9px;
+}
+#yantux-customizer .yc-actions {
+  display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px;
+}
+#yantux-customizer .yc-check {
+  display: flex; align-items: center; gap: 8px; margin: 12px 0;
+}
+#yantux-customizer .yc-check input { accent-color: #aaa; }
+#yantux-customizer .yc-top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; position: sticky; top: -20px; padding: 15px 0;
+  background: #191a1d; border-bottom: 1px solid #333;
+}
+#yantux-customizer .yc-note { color: #888; font-size: 11px; line-height: 1.5; }
+body.yc-glass .shortcut, body.yc-glass .search {
+  backdrop-filter: blur(16px); background-color: #24242499 !important;
+}
+body.yc-no-motion *, body.yc-no-motion *::before, body.yc-no-motion *::after {
+  animation: none !important; transition: none !important; scroll-behavior: auto !important;
+}
+body.yc-hide-clock #clock, body.yc-hide-clock #date { display: none !important; }
+body.yc-hide-search #search-form { display: none !important; }
+body.yc-hide-shortcuts #shortcuts { display: none !important; }
+
+</style>
+
+
+<style id="yantux-extras-css">
+#clock.yc-android-clock {
+  font-size: clamp(76px, 13vw, 180px) !important;
+  line-height: .82 !important;
+  letter-spacing: -.075em !important;
+  font-weight: 800 !important;
+  white-space: pre-line;
+  text-align: center;
+}
+#clock.yc-android-clock.yc-clock-3d {
+  color: var(--yc-text, #f5f5f5);
+  text-shadow: 1px 1px 0 #888, 2px 2px 0 #666,
+    3px 3px 0 #444, 4px 5px 12px #0009;
+}
+.yc-draggable { touch-action: none; }
+body.yc-drag-enabled .yc-draggable { cursor: grab; }
+body.yc-drag-enabled .yc-draggable:active { cursor: grabbing; }
+#yantux-music {
+  box-sizing: border-box;
+  width: min(360px, calc(100vw - 32px));
+  padding: 14px;
+  margin: 20px auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--yc-text, #eee);
+  background: var(--yc-card, #292a2d);
+  border: 1px solid var(--yc-border, #454545);
+  border-radius: 18px;
+  backdrop-filter: blur(18px);
+}
+#yantux-music[hidden] { display: none !important; }
+.ym-cover {
+  width: 76px; height: 76px; flex: 0 0 76px;
+  display: grid; place-items: center; border-radius: 12px;
+  background: linear-gradient(135deg, #444, #151515);
+  font-size: 34px;
+}
+.ym-info { min-width: 0; flex: 1; }
+.ym-info strong, .ym-info span {
+  display: block; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ym-info span { opacity: .75; font-size: 12px; margin-top: 3px; }
+.ym-info input[type=file] { width: 100%; max-width: 220px; font-size: 11px; margin: 8px 0 0; }
+#ym-progress { width: 100%; }
+.ym-controls { display: flex; align-items: center; gap: 8px; }
+.ym-controls button {
+  border: 0; border-radius: 9px; padding: 5px 8px;
+  color: inherit; background: var(--yc-border, #454545); cursor: pointer;
+}
+#ym-time { margin-left: auto; font-size: 11px; white-space: nowrap; }
+</style>
+
+
+<style id="yantux-mini-music-css">
+#yantux-music-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #ffffff22;
+  border-radius: 50%;
+  color: inherit;
+  background: #ffffff0b;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: .62;
+  cursor: pointer;
+  transition: opacity .2s, transform .2s;
+}
+#yantux-music-toggle:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+#yantux-music-toggle svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+#yantux-music {
+  position: fixed !important;
+  right: 20px !important;
+  bottom: 72px !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 9997 !important;
+  width: min(280px, calc(100vw - 32px)) !important;
+  padding: 10px !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  border: 1px solid #ffffff20 !important;
+  border-radius: 14px !important;
+  background: #16161655 !important;
+  box-shadow: 0 8px 30px #0002;
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+}
+#yantux-music .ym-cover {
+  width: 58px !important;
+  height: 58px !important;
+  flex-basis: 58px !important;
+  overflow: hidden;
+}
+#yantux-music .ym-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#yantux-music .ym-info input[type=file],
+#yantux-music #ym-progress,
+#yantux-music .ym-controls {
+  display: none !important;
+}
+#yantux-music .ym-info strong { font-size: 12px; }
+#yantux-music .ym-info span { font-size: 11px; }
+#yantux-music[hidden] { display: none !important; }
+</style>
+
+
+<style id="yc-sidebar-complete-css">
+#yc-sidebar-complete { border-top:1px solid #8885; margin-top:16px; padding-top:12px; }
+#yc-sidebar-complete label:not(.yc-check) { display:block; margin:12px 0; font-size:13px; }
+#yc-sidebar-complete output { float:right; opacity:.7; }
+#yc-sidebar-complete input[type=range] { display:block; width:100%; margin-top:6px; }
+#yc-sidebar-complete input[type=color] { display:block; width:100%; height:30px; margin-top:5px; }
+#yc-sidebar-complete #yc-sb-status { font-size:12px; opacity:.75; }
+
+
+/* YC SIDEBAR LIVE OVERRIDES */
+#py-sidebar {
+  box-sizing: border-box !important;
+  background-color: var(--yc-sb-bg, rgba(23,25,35,.82)) !important;
+}
+#py-sidebar:not(.sidebar-panel-open) {
+  width: var(--yc-sb-width, 48px) !important;
+  min-width: var(--yc-sb-width, 48px) !important;
+  max-width: var(--yc-sb-width, 48px) !important;
+  height: var(--yc-sb-height, 100vh) !important;
+  border-radius: var(--yc-sb-radius, 12px) !important;
+  border: var(--yc-sb-border, 1px solid #ffffff25) !important;
+  box-shadow: var(--yc-sb-shadow, 0 8px 28px #0004) !important;
+  backdrop-filter: var(--yc-sb-blur, blur(16px)) !important;
+  -webkit-backdrop-filter: var(--yc-sb-blur, blur(16px)) !important;
+}
+#py-sidebar .py-sidebar-actions,
+#py-sidebar .py-sidebar-bottom {
+  gap: var(--yc-sb-gap, 8px) !important;
+}
+#py-sidebar .py-sidebar-actions button,
+#py-sidebar .py-sidebar-bottom button,
+#py-sidebar #py-pinned-sites > * {
+  border-radius: var(--yc-sb-radius, 12px) !important;
+}
+#py-sidebar svg,
+#py-sidebar .py-pinned-site img {
+  width: var(--yc-sb-icon-size, 20px) !important;
+  height: var(--yc-sb-icon-size, 20px) !important;
+  color: var(--yc-sb-icon-color, #dce1f2) !important;
+}
+#py-sidebar button,
+#py-sidebar a {
+  color: var(--yc-sb-icon-color, #dce1f2) !important;
+}
+#browser {
+  grid-template-columns: var(--yc-sb-grid-width, 48px) minmax(0, 1fr) !important;
+}
+#browser:has(#py-sidebar.sidebar-panel-open) {
+  grid-template-columns: 40px minmax(0, 1fr) !important;
+}
+#py-sidebar.sidebar-panel-open {
+  width: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+}
+
+</style>
+
+
+<style id="yantux-home-brand-css">
+.yantux-home-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 18px;
+  color: inherit;
+  font-size: 22px;
+  font-weight: 600;
+}
+.yantux-home-brand img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex: 0 0 32px;
+}
+</style>
+
+  <link rel="icon" type="image/png" href="build/icon.png">
+</head>
+
+<body>
+
+<div class="home">
+
+  <div id="clock" class="clock">00:00</div>
+  <div id="date" class="date">Carregando...</div>
+  <section id="yantux-music" aria-label="Reprodutor de música" hidden>
+    <div class="ym-cover" id="ym-cover">♫</div>
+    <div class="ym-info">
+      <strong id="ym-title">Nenhuma música selecionada</strong>
+      <span id="ym-artist">Escolha um arquivo de áudio</span>
+      <input id="ym-file" type="file" accept="audio/*" multiple>
+      <input id="ym-progress" type="range" min="0" max="1000" value="0" aria-label="Progresso">
+      <div class="ym-controls">
+        <button id="ym-prev" type="button" aria-label="Anterior">⏮</button>
+        <button id="ym-play" type="button" aria-label="Reproduzir ou pausar">▶</button>
+        <button id="ym-next" type="button" aria-label="Próxima">⏭</button>
+        <span id="ym-time">0:00 / 0:00</span>
+      </div>
+    </div>
+  </section>
+
+
+  <form id="search-form" class="search">
+
+    <span class="search-icon">⌕</span>
+
+    <input
+      id="search-input"
+      type="text"
+      placeholder="Pesquisar ou digitar endereço..."
+      autocomplete="off"
+      autofocus
+    >
+
+    <select id="engine">
+      <option value="google">Google</option>
+      <option value="duckduckgo">DuckDuckGo</option>
+      <option value="bing">Bing</option>
+      <option value="brave">Brave</option>
+    </select>
+
+  </form>
+
+  <div id="shortcuts" class="shortcuts">
+
+  <div class="shortcut" data-url="https://www.google.com">
+    <div class="shortcut-icon">
+      <img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.google.com" alt="">
+    </div>
+    <div class="shortcut-name">Google</div>
+  </div>
+
+  <div class="shortcut" data-url="https://www.youtube.com">
+    <div class="shortcut-icon">
+      <img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.youtube.com" alt="">
+    </div>
+    <div class="shortcut-name">YouTube</div>
+  </div>
+
+  <div class="shortcut" data-url="https://github.com">
+    <div class="shortcut-icon">
+      <img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://github.com" alt="">
+    </div>
+    <div class="shortcut-name">GitHub</div>
+  </div>
+
+  <div class="shortcut" data-url="https://www.reddit.com">
+    <div class="shortcut-icon">
+      <img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.reddit.com" alt="">
+    </div>
+    <div class="shortcut-name">Reddit</div>
+  </div>
+
+  <div class="shortcut add" id="add-shortcut">
+    <div class="shortcut-icon">+</div>
+    <div class="shortcut-name">Adicionar</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="yantux-home-brand"><img src="build/icon.png" alt="Yantux"><span>Home Yantux</span></div>
+  </div>
+
+</div>
+
+
+<button id="yantux-open" type="button">⚙ Personalizar</button>
+
+<button id="yantux-music-toggle" type="button"
+  aria-label="Mostrar música" aria-expanded="false" title="Música">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 3v12.1a3.5 3.5 0 1 1-2-3.16V6l10-2v11.1a3.5 3.5 0 1 1-2-3.16V3l-6 1.2V3z"/>
+  </svg>
+</button>
+
+<aside id="yantux-customizer" hidden aria-label="Personalização da página inicial">
+  <div class="yc-top">
+    <h2>YANTUX Studio</h2>
+    <button id="yc-close" type="button" aria-label="Fechar">Fechar ✕</button>
+  </div>
+  <p class="yc-note">As alterações são aplicadas na página inicial e salvas neste perfil local.</p>
+
+  <h3>Tema completo</h3>
+  <label for="yc-theme">Predefinição</label>
+  <select id="yc-theme">
+    <option value="grafite">Grafite</option>
+    <option value="nord">Nord</option>
+    <option value="dracula">Dracula</option>
+    <option value="oled">OLED</option>
+    <option value="macos">macOS escuro</option>
+    <option value="custom">Personalizado</option>
+  </select>
+
+  <h3>Cores</h3>
+  <div class="yc-row">
+    <div><label for="yc-bg">Fundo</label><input id="yc-bg" type="color" value="#202124"></div>
+    <div><label for="yc-card">Cartões</label><input id="yc-card" type="color" value="#292a2d"></div>
+    <div><label for="yc-text">Texto</label><input id="yc-text" type="color" value="#e8eaed"></div>
+    <div><label for="yc-accent">Destaque</label><input id="yc-accent" type="color" value="#aaaaaa"></div>
+    <div><label for="yc-border">Bordas</label><input id="yc-border" type="color" value="#454545"></div>
+    <div><label for="yc-opacity">Opacidade dos cartões</label><input id="yc-opacity" type="range" min="20" max="100" value="100"></div>
+  </div>
+
+  <h3>Papel de parede</h3>
+  <label for="yc-wallpaper">Caminho ou URL de imagem/GIF</label>
+  <input id="yc-wallpaper" placeholder="https://... ou caminho de arquivo">
+  <div class="yc-row">
+    <div><label for="yc-position">Posição</label>
+      <select id="yc-position"><option>center</option><option>top</option><option>bottom</option><option>left</option><option>right</option></select>
+    </div>
+    <div><label for="yc-dim">Escurecimento</label><input id="yc-dim" type="range" min="0" max="85" value="38"></div>
+  </div>
+  <label for="yc-blur">Desfoque do fundo</label>
+  <input id="yc-blur" type="range" min="0" max="20" value="0">
+
+  <h3>Relógio e data</h3>
+  <label for="yc-clock-size">Tamanho do relógio</label>
+  <input id="yc-clock-size" type="range" min="32" max="150" value="92">
+  <label for="yc-clock-style">Estilo</label>
+  <select id="yc-clock-style">
+    <option value="normal">Normal</option><option value="minimal">Minimalista</option>
+    <option value="elegant">Elegante</option><option value="neon">Neon</option>
+  </select>
+  <label class="yc-check"><input id="yc-seconds" type="checkbox"> Mostrar segundos</label>
+  <label class="yc-check"><input id="yc-hide-clock" type="checkbox"> Ocultar relógio e data</label>
+  <label class="yc-check"><input id="yc-android-clock" type="checkbox"> Relógio gigante estilo Android</label>
+  <label class="yc-check"><input id="yc-clock-3d" type="checkbox"> Efeito 3D no relógio</label>
+  <label class="yc-check"><input id="yc-drag-mode" type="checkbox"> Permitir arrastar elementos</label>
+  <button id="yc-reset-positions" type="button">Restaurar posições</button>
+  <h3>Widget de música</h3>
+  <label class="yc-check"><input id="yc-music-enabled" type="checkbox"> Mostrar widget de música</label>
+
+
+  <h3>Pesquisa</h3>
+  <div class="yc-row">
+    <div><label for="yc-search-width">Largura (px)</label><input id="yc-search-width" type="number" min="250" max="1200" value="680"></div>
+    <div><label for="yc-search-height">Altura (px)</label><input id="yc-search-height" type="number" min="38" max="90" value="54"></div>
+  </div>
+  <label class="yc-check"><input id="yc-hide-search" type="checkbox"> Ocultar barra de pesquisa</label>
+
+  <h3>Atalhos</h3>
+  <div class="yc-row">
+    <div><label for="yc-shortcut-size">Tamanho do cartão</label><input id="yc-shortcut-size" type="range" min="64" max="160" value="88"></div>
+    <div><label for="yc-icon-size">Tamanho do ícone</label><input id="yc-icon-size" type="range" min="20" max="56" value="32"></div>
+  </div>
+  <label for="yc-columns">Colunas</label>
+  <select id="yc-columns"><option value="auto">Automático</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+  <label for="yc-gap">Espaçamento</label><input id="yc-gap" type="range" min="4" max="32" value="14">
+  <label class="yc-check"><input id="yc-hide-shortcuts" type="checkbox"> Ocultar atalhos</label>
+
+  <h3>Efeitos</h3>
+  <label class="yc-check"><input id="yc-glass" type="checkbox"> Efeito de vidro</label>
+  <label class="yc-check"><input id="yc-no-motion" type="checkbox"> Desativar animações</label>
+
+  <h3>Perfis e CSS</h3>
+  <label for="yc-profile">Nome do perfil</label><input id="yc-profile" value="Meu tema">
+  <div class="yc-actions">
+    <button id="yc-save-profile" type="button">Salvar perfil</button>
+    <button id="yc-export" type="button">Exportar</button>
+    <button id="yc-import" type="button">Importar</button>
+    <button id="yc-undo" type="button">Desfazer</button>
+    <button id="yc-reset" type="button">Restaurar padrão</button>
+  </div>
+  <label for="yc-css">CSS personalizado</label>
+  <textarea id="yc-css" rows="5" placeholder="/* Suas regras CSS */"></textarea>
+  <div class="yc-actions"><button id="yc-apply-css" type="button">Aplicar CSS</button></div>
+  <p class="yc-note">Por segurança, o CSS personalizado é aplicado somente à página inicial. Evite regras que ocultem os controles deste painel.</p>
+  <input id="yc-import-file" type="file" accept="application/json,.json" hidden>
+
+<section id="yc-sidebar-complete">
+  <h3>Sidebar esquerda</h3>
+  <p>Personalize a aparência da barra lateral.</p>
+
+  <label>Largura: <output id="yc-sb-width-out">48 px</output>
+    <input id="yc-sb-width" type="range" min="32" max="100" value="48">
+  </label>
+  <label>Altura: <output id="yc-sb-height-out">100%</output>
+    <input id="yc-sb-height" type="range" min="40" max="100" value="100">
+  </label>
+  <label>Opacidade: <output id="yc-sb-opacity-out">82%</output>
+    <input id="yc-sb-opacity" type="range" min="10" max="100" value="82">
+  </label>
+  <label>Desfoque: <output id="yc-sb-blur-out">16 px</output>
+    <input id="yc-sb-blur" type="range" min="0" max="30" value="16">
+  </label>
+  <label>Cor de fundo
+    <input id="yc-sb-color" type="color" value="#171923">
+  </label>
+  <label>Cor dos ícones
+    <input id="yc-sb-icon-color" type="color" value="#dce1f2">
+  </label>
+  <label>Arredondamento: <output id="yc-sb-radius-out">12 px</output>
+    <input id="yc-sb-radius" type="range" min="0" max="30" value="12">
+  </label>
+  <label>Espaçamento: <output id="yc-sb-gap-out">8 px</output>
+    <input id="yc-sb-gap" type="range" min="0" max="20" value="8">
+  </label>
+  <label>Tamanho dos ícones: <output id="yc-sb-icon-size-out">20 px</output>
+    <input id="yc-sb-icon-size" type="range" min="12" max="32" value="20">
+  </label>
+  <label class="yc-check"><input id="yc-sb-border" type="checkbox" checked> Borda sutil</label>
+  <label class="yc-check"><input id="yc-sb-shadow" type="checkbox" checked> Sombra</label>
+  <label class="yc-check"><input id="yc-sb-hover" type="checkbox" checked> Efeito ao passar o mouse</label>
+  <button id="yc-sb-reset" type="button">Restaurar padrão</button>
+  <p id="yc-sb-status" role="status"></p>
+</section>
+
+</aside>
+
+<script>
+
+
+function applyShortcutSettings(options = {}) {
+  const root = document.documentElement;
+  const shortcuts = document.getElementById('shortcuts');
+  if (!shortcuts) return;
+
+  const presets = ['modern', 'compact', 'glass', 'minimal', 'vivaldi'];
+  const preset = presets.includes(options.preset) ? options.preset : 'modern';
+  const size = Math.max(64, Math.min(160, Number(options.size) || 88));
+  const gap = Math.max(4, Math.min(32, Number(options.gap) || 14));
+  const iconSize = Math.max(20, Math.min(56, Number(options.iconSize) || 32));
+  const labels = options.labels !== false;
+  const rawColumns = String(options.columns ?? 'auto');
+  const columns = rawColumns === 'auto' ? 'auto' :
+    Math.max(3, Math.min(6, Number(rawColumns) || 4));
+
+  shortcuts.classList.remove(
+    'shortcut-preset-modern', 'shortcut-preset-compact',
+    'shortcut-preset-glass', 'shortcut-preset-minimal',
+    'shortcut-hide-labels'
+  );
+  shortcuts.classList.add('shortcut-preset-' + preset);
+  if (!labels) shortcuts.classList.add('shortcut-hide-labels');
+
+  root.style.setProperty('--shortcut-width', size + 'px');
+  root.style.setProperty('--shortcut-gap', gap + 'px');
+  root.style.setProperty('--shortcut-icon-size', iconSize + 'px');
+
+  shortcuts.style.gap = gap + 'px';
+
+  if (columns === 'auto') {
+    shortcuts.style.display = 'flex';
+    shortcuts.style.flexWrap = 'wrap';
+    shortcuts.style.gridTemplateColumns = '';
+    shortcuts.style.maxWidth = '720px';
+  } else {
+    shortcuts.style.display = 'grid';
+    shortcuts.style.flexWrap = 'initial';
+    shortcuts.style.gridTemplateColumns =
+      'repeat(' + columns + ', minmax(0, ' + size + 'px))';
+    shortcuts.style.maxWidth =
+      (columns * size + (columns - 1) * gap) + 'px';
+  }
+
+  shortcuts.querySelectorAll('.shortcut').forEach(shortcut => {
+    shortcut.style.width = size + 'px';
+    const icon = shortcut.querySelector('.shortcut-icon');
+    if (icon) {
+      icon.style.width = iconSize + 'px';
+      icon.style.height = iconSize + 'px';
+    }
+    const img = shortcut.querySelector('.shortcut-icon img');
+    if (img) {
+      img.style.width = iconSize + 'px';
+      img.style.height = iconSize + 'px';
+    }
+  });
+}
+
+const accent =
+  localStorage.getItem('pybrowser-personalizacao');
+
+try {
+  const settings = JSON.parse(accent || '{}');
+
+  if (settings.accent) {
+    document.documentElement.style.setProperty(
+      '--accent',
+      settings.accent
+    );
+  }
+
+  if (settings.wallpaper) {
+    document.body.style.backgroundImage =
+      `url("${settings.wallpaper}")`;
+
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center';
+  }
+} catch {}
+
+function updateClock() {
+
+  const now = new Date();
+
+  const settings = (() => {
+    try {
+      return JSON.parse(
+        localStorage.getItem('pybrowser-personalizacao') || '{}'
+      );
+    } catch {
+      return {};
+    }
+  })();
+
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('pt-BR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: settings.clockSeconds ? '2-digit' : undefined
+    });
+
+  document.getElementById('date').textContent =
+    now.toLocaleDateString('pt-BR', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+}
+
+function applyClockSettings() {
+
+  let settings = {};
+
+  try {
+    settings = JSON.parse(
+      localStorage.getItem('pybrowser-personalizacao') || '{}'
+    );
+  } catch {}
+
+  const clock = document.getElementById('clock');
+  if (!clock) return;
+
+  const root = document.documentElement;
+  const body = document.body;
+
+  root.style.setProperty(
+    '--clock-size',
+    (settings.clockSize || 92) + 'px'
+  );
+
+  root.style.setProperty(
+    '--clock-weight',
+    settings.clockWeight || 700
+  );
+
+  root.style.setProperty(
+    '--animation-speed',
+    (settings.animationSpeed || 0.45) + 's'
+  );
+
+  clock.classList.remove(
+    'clock-minimal',
+    'clock-elegant',
+    'clock-neon'
+  );
+
+  if (settings.clockStyle === 'minimal') {
+    clock.classList.add('clock-minimal');
+  }
+
+  if (settings.clockStyle === 'elegant') {
+    clock.classList.add('clock-elegant');
+  }
+
+  if (settings.clockStyle === 'neon') {
+    clock.classList.add('clock-neon');
+  }
+
+  body.classList.remove(
+    'clock-position-top',
+    'clock-position-bottom',
+    'clock-position-left',
+    'clock-position-right'
+  );
+
+  if (settings.clockPosition &&
+      settings.clockPosition !== 'center') {
+    body.classList.add(
+      'clock-position-' + settings.clockPosition
+    );
+  }
+
+  body.classList.toggle(
+    'py-no-animations',
+    settings.homeAnimations === false
+  );
+}
+
+applyClockSettings();
+
+// Atualiza a aparência automaticamente quando as configurações mudarem
+let pyLastSettings = '';
+
+function watchPyBrowserSettings() {
+  try {
+    const raw = localStorage.getItem('pybrowser-personalizacao') || '{}';
+
+    if (raw === pyLastSettings) return;
+    pyLastSettings = raw;
+
+    const settings = JSON.parse(raw);
+    const root = document.documentElement;
+    const body = document.body;
+
+    if (settings.accent) {
+      root.style.setProperty('--accent', settings.accent);
+    }
+
+    if (settings.wallpaper) {
+      body.style.backgroundImage =
+        'linear-gradient(rgba(10,10,12,.38), rgba(10,10,12,.38)), url("' +
+        settings.wallpaper.replace(/"/g, '\\"') +
+        '")';
+      body.style.backgroundSize = 'cover';
+      body.style.backgroundPosition = 'center';
+      body.style.backgroundAttachment = 'fixed';
+    } else {
+      body.style.backgroundImage = '';
+    }
+
+    if (typeof applyClockSettings === 'function') {
+      applyClockSettings();
+      updateClock();
+    }
+  } catch {}
+}
+
+setInterval(watchPyBrowserSettings, 250);
+watchPyBrowserSettings();
+
+updateClock();
+setInterval(updateClock, 1000);
+
+const engines = {
+  google: 'https://www.google.com/search?q=',
+  duckduckgo: 'https://duckduckgo.com/?q=',
+  bing: 'https://www.bing.com/search?q=',
+  brave: 'https://search.brave.com/search?q='
+};
+
+document.getElementById('search-form')
+  .addEventListener('submit', e => {
+
+    e.preventDefault();
+
+    const input =
+      document.getElementById('search-input');
+
+    const engine =
+      document.getElementById('engine').value;
+
+    const value = input.value.trim();
+
+    if (!value) return;
+
+    let url;
+
+    if (/^https?:\/\//i.test(value)) {
+      url = value;
+    } else if (
+      value.includes('.') &&
+      !value.includes(' ')
+    ) {
+      url = 'https://' + value;
+    } else {
+      url = engines[engine] +
+        encodeURIComponent(value);
+    }
+
+    window.location.href = url;
+  });
+
+function openShortcut(url) {
+  if (!url) return;
+
+  if (!/^https?:\/\//i.test(url)) {
+    url = 'https://' + url;
+  }
+
+  window.location.href = url;
+}
+
+document.querySelectorAll('.shortcut[data-url]')
+  .forEach(shortcut => {
+    shortcut.addEventListener('click', () => {
+      openShortcut(shortcut.dataset.url);
+    });
+  });
+
+
+let draggedShortcut = null;
+
+function setupShortcutDrag() {
+  const container = document.getElementById('shortcuts');
+  if (!container || container.dataset.dragSetup === '1') return;
+
+  container.dataset.dragSetup = '1';
+
+  container.addEventListener('dragstart', event => {
+    const shortcut = event.target.closest('.shortcut:not(.add)');
+    if (!shortcut) return;
+
+    draggedShortcut = shortcut;
+    shortcut.classList.add('dragging');
+
+    if (event.dataTransfer) {
+      event.dataTransfer.effectAllowed = 'move';
+    }
+  });
+
+  container.addEventListener('dragover', event => {
+    event.preventDefault();
+
+    const target = event.target.closest('.shortcut:not(.add)');
+
+    if (!draggedShortcut || !target || target === draggedShortcut) {
+      return;
+    }
+
+    const rect = target.getBoundingClientRect();
+    const before = event.clientX < rect.left + rect.width / 2;
+
+    if (before) {
+      container.insertBefore(draggedShortcut, target);
+    } else {
+      container.insertBefore(draggedShortcut, target.nextSibling);
+    }
+  });
+
+  container.addEventListener('dragend', () => {
+    if (!draggedShortcut) return;
+
+    draggedShortcut.classList.remove('dragging');
+    draggedShortcut = null;
+
+    saveShortcutOrder();
+  });
+}
+
+function saveShortcutOrder() {
+  const shortcuts = [...document.querySelectorAll('#shortcuts .shortcut:not(.add)')];
+
+  localStorage.setItem(
+    'pybrowser-shortcut-order',
+    JSON.stringify(
+      shortcuts.map(shortcut => ({
+        url: shortcut.dataset.url,
+        name: shortcut.querySelector('.shortcut-name')?.textContent || ''
+      }))
+    )
+  );
+}
+
+function createSavedShortcut(url, name) {
+  const shortcut = document.createElement('div');
+  shortcut.className = 'shortcut';
+  shortcut.dataset.url = url;
+
+  const icon = document.createElement('div');
+  icon.className = 'shortcut-icon';
+
+  const img = document.createElement('img');
+  img.src = 'https://www.google.com/s2/favicons?sz=64&domain_url='
+    + encodeURIComponent(url);
+  img.alt = '';
+  icon.appendChild(img);
+
+  const label = document.createElement('div');
+  label.className = 'shortcut-name';
+  label.textContent = name;
+
+  shortcut.append(icon, label);
+  shortcut.addEventListener('click', () => openShortcut(url));
+  shortcut.draggable = true;
+  return shortcut;
+}
+
+function loadSavedShortcuts() {
+  const container = document.getElementById('shortcuts');
+  if (!container) return;
+
+  let saved;
+  try {
+    saved = JSON.parse(
+      localStorage.getItem('pybrowser-shortcut-order') || '[]'
+    );
+  } catch {
+    return;
+  }
+
+  if (!Array.isArray(saved)) return;
+
+  const addButton = document.getElementById('add-shortcut');
+  const defaults = [...container.querySelectorAll('.shortcut[data-url]')];
+
+  // Preserva os atalhos padrão e reconstrói a ordem salva.
+  const known = new Map(
+    defaults.map(el => [
+      el.dataset.url,
+      {
+        url: el.dataset.url,
+        name: el.querySelector('.shortcut-name')?.textContent || ''
+      }
+    ])
+  );
+
+  for (const item of saved) {
+    if (!item || typeof item.url !== 'string' ||
+        !/^https?:\/\//i.test(item.url)) continue;
+    if (!known.has(item.url)) {
+      known.set(item.url, {
+        url: item.url,
+        name: String(item.name || item.url)
+      });
+    } else if (item.name) {
+      known.get(item.url).name = String(item.name);
+    }
+  }
+
+  const ordered = [];
+  const used = new Set();
+
+  for (const item of saved) {
+    if (item && known.has(item.url) && !used.has(item.url)) {
+      ordered.push(known.get(item.url));
+      used.add(item.url);
+    }
+  }
+
+  for (const item of known.values()) {
+    if (!used.has(item.url)) ordered.push(item);
+  }
+
+  for (const el of defaults) el.remove();
+
+  for (const item of ordered) {
+    const el = createSavedShortcut(item.url, item.name);
+    container.insertBefore(el, addButton);
+  }
+
+  setupShortcutDrag();
+}
+
+loadSavedShortcuts();
+
+const addShortcut =
+  document.getElementById('add-shortcut');
+
+
+addShortcut.addEventListener('click', () => {
+  if (document.getElementById('add-site-dialog')) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'add-site-dialog';
+  overlay.style.cssText = `
+    position:fixed; inset:0; z-index:99999;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px; background:rgba(0,0,0,.65);
+    backdrop-filter:blur(8px);
+  `;
+
+  overlay.innerHTML = `
+    <form style="
+      width:min(340px,100%); padding:22px;
+      box-sizing:border-box; border-radius:14px;
+      background:#202126; color:#fff;
+      border:1px solid #444; font:14px sans-serif;
+    ">
+      <h3 style="margin:0 0 18px">Adicionar site</h3>
+      <label style="display:block;margin-bottom:6px">Nome</label>
+      <input name="siteName" placeholder="Ex.: YouTube" required
+        style="width:100%;box-sizing:border-box;padding:11px;
+        margin-bottom:14px;border-radius:7px;border:1px solid #555;
+        background:#303137;color:white">
+      <label style="display:block;margin-bottom:6px">Endereço (URL)</label>
+      <input name="siteUrl" placeholder="https://exemplo.com" required
+        style="width:100%;box-sizing:border-box;padding:11px;
+        margin-bottom:20px;border-radius:7px;border:1px solid #555;
+        background:#303137;color:white">
+      <div style="display:flex;justify-content:flex-end;gap:8px">
+        <button type="button" data-cancel
+          style="padding:9px 14px;border:1px solid #555;
+          border-radius:7px;background:transparent;color:white">
+          Cancelar
+        </button>
+        <button type="submit"
+          style="padding:9px 14px;border:0;border-radius:7px;
+          background:#4778d0;color:white">Adicionar</button>
+      </div>
+    </form>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const form = overlay.querySelector('form');
+  form.elements.siteName.focus();
+
+  overlay.querySelector('[data-cancel]').addEventListener('click', () => {
+    overlay.remove();
+  });
+
+  overlay.addEventListener('click', event => {
+    if (event.target === overlay) overlay.remove();
+  });
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+
+    let url = form.elements.siteUrl.value.trim();
+    const name = form.elements.siteName.value.trim();
+
+    if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+
+    try {
+      const parsed = new URL(url);
+      if (!['http:', 'https:'].includes(parsed.protocol)) return;
+    } catch {
+      form.elements.siteUrl.focus();
+      return;
+    }
+
+    const shortcut = createSavedShortcut(url, name);
+
+    document.getElementById('shortcuts')
+      .insertBefore(shortcut, addShortcut);
+
+    setupShortcutDrag();
+    saveShortcutOrder();
+    overlay.remove();
+  });
+});
+
+
+
+</script>
+
+
+<script id="yantux-customizer-js">
+(() => {
+  const $ = id => document.getElementById(id);
+  const KEY = 'pybrowser-personalizacao';
+  const defaults = {
+    theme:'grafite', bg:'#202124', card:'#292a2d', text:'#e8eaed',
+    accent:'#aaaaaa', border:'#454545', opacity:100, wallpaper:'',
+    position:'center', dim:38, blur:0, clockSize:92, clockStyle:'normal',
+    clockSeconds:false, hideClock:false, searchWidth:680, searchHeight:54,
+    hideSearch:false, shortcutSize:88, iconSize:32, columns:'auto', gap:14,
+    hideShortcuts:false, glass:false, noMotion:false, customCSS:''
+  };
+  let settings = {...defaults};
+  let previous = null;
+
+  try {
+    settings = {...defaults, ...JSON.parse(localStorage.getItem(KEY) || '{}')};
+  } catch {}
+
+  const themes = {
+    grafite:{bg:'#202124',card:'#292a2d',text:'#e8eaed',accent:'#aaaaaa',border:'#454545'},
+    nord:{bg:'#2e3440',card:'#3b4252',text:'#eceff4',accent:'#88c0d0',border:'#4c566a'},
+    dracula:{bg:'#282a36',card:'#343746',text:'#f8f8f2',accent:'#bd93f9',border:'#6272a4'},
+    oled:{bg:'#000000',card:'#101010',text:'#f2f2f2',accent:'#bdbdbd',border:'#333333'},
+    macos:{bg:'#202124',card:'#303136',text:'#f5f5f7',accent:'#0a84ff',border:'#55565a'}
+  };
+
+  const ids = {
+    theme:'theme', bg:'bg', card:'card', text:'text', accent:'accent',
+    border:'border', opacity:'opacity', wallpaper:'wallpaper', position:'position',
+    dim:'dim', blur:'blur', clockSize:'clock-size', clockStyle:'clock-style',
+    clockSeconds:'seconds', hideClock:'hide-clock', searchWidth:'search-width',
+    searchHeight:'search-height', hideSearch:'hide-search',
+    shortcutSize:'shortcut-size', iconSize:'icon-size', columns:'columns',
+    gap:'gap', hideShortcuts:'hide-shortcuts', glass:'glass',
+    noMotion:'no-motion', customCSS:'css'
+  };
+
+  function readControls() {
+    for (const [key,id] of Object.entries(ids)) {
+      const el = $('yc-' + id);
+      if (!el) continue;
+      settings[key] = el.type === 'checkbox' ? el.checked : el.value;
+      if (el.type === 'range' || el.type === 'number') settings[key] = Number(el.value);
+    }
+  }
+
+  function fillControls() {
+    for (const [key,id] of Object.entries(ids)) {
+      const el = $('yc-' + id);
+      if (!el || settings[key] === undefined) continue;
+      if (el.type === 'checkbox') el.checked = Boolean(settings[key]);
+      else el.value = settings[key];
+    }
+  }
+
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(settings)); }
+    catch (e) { console.warn('Não foi possível salvar as preferências:', e); }
+  }
+
+  function apply() {
+    const root = document.documentElement;
+    const body = document.body;
+    const color = v => /^#[0-9a-f]{6}$/i.test(String(v)) ? v : '#202124';
+
+    root.style.setProperty('--accent', color(settings.accent));
+    root.style.setProperty('--yc-text', color(settings.text));
+    root.style.setProperty('--yc-card', color(settings.card));
+    root.style.setProperty('--yc-border', color(settings.border));
+    root.style.setProperty('--yc-opacity', Math.max(20,Math.min(100,Number(settings.opacity)||100))/100);
+    root.style.setProperty('--clock-size', Math.max(32,Math.min(150,Number(settings.clockSize)||92))+'px');
+
+    body.style.backgroundColor = color(settings.bg);
+    body.style.color = color(settings.text);
+    body.style.backgroundImage = settings.wallpaper
+      ? `linear-gradient(rgba(0,0,0,${Math.max(0,Math.min(85,Number(settings.dim)||0))/100}),rgba(0,0,0,${Math.max(0,Math.min(85,Number(settings.dim)||0))/100})),url("${String(settings.wallpaper).replace(/["\\]/g,'')}")`
+      : '';
+    body.style.backgroundSize = settings.wallpaper ? 'cover' : '';
+    body.style.backgroundPosition = settings.wallpaper ? settings.position : '';
+    body.style.backgroundAttachment = settings.wallpaper ? 'fixed' : '';
+
+    document.querySelectorAll('.search,.shortcut').forEach(el => {
+      el.style.backgroundColor = color(settings.card);
+      el.style.borderColor = color(settings.border);
+      el.style.color = color(settings.text);
+      el.style.opacity = String(Math.max(20,Math.min(100,Number(settings.opacity)||100))/100);
+    });
+
+    const search = $('search-form');
+    if (search) {
+      search.style.width = Math.max(250,Math.min(1200,Number(settings.searchWidth)||680))+'px';
+      search.style.maxWidth = '100%';
+      search.style.height = Math.max(38,Math.min(90,Number(settings.searchHeight)||54))+'px';
+      search.style.display = settings.hideSearch ? 'none' : '';
+    }
+
+    if (typeof applyShortcutSettings === 'function') {
+      applyShortcutSettings({
+        size:Number(settings.shortcutSize), iconSize:Number(settings.iconSize),
+        gap:Number(settings.gap), columns:settings.columns
+      });
+    }
+
+    const clock = $('clock');
+    if (clock) {
+      clock.classList.remove('clock-minimal','clock-elegant','clock-neon');
+      if (settings.clockStyle === 'minimal') clock.classList.add('clock-minimal');
+      if (settings.clockStyle === 'elegant') clock.classList.add('clock-elegant');
+      if (settings.clockStyle === 'neon') clock.classList.add('clock-neon');
+      clock.style.display = settings.hideClock ? 'none' : '';
+    }
+    const date = $('date');
+    if (date) date.style.display = settings.hideClock ? 'none' : '';
+
+    body.classList.toggle('yc-glass', Boolean(settings.glass));
+    body.classList.toggle('yc-no-motion', Boolean(settings.noMotion));
+    body.classList.toggle('yc-hide-clock', Boolean(settings.hideClock));
+    body.classList.toggle('yc-hide-search', Boolean(settings.hideSearch));
+    body.classList.toggle('yc-hide-shortcuts', Boolean(settings.hideShortcuts));
+
+    const styleId = 'yantux-custom-css';
+    let style = $(styleId);
+    if (!style) {
+      style = document.createElement('style');
+      style.id = styleId;
+      document.head.appendChild(style);
+    }
+    style.textContent = String(settings.customCSS || '');
+    if (typeof updateClock === 'function') updateClock();
+  }
+
+  function updateTheme() {
+    const theme = themes[settings.theme];
+    if (theme) Object.assign(settings,theme);
+    fillControls();
+  }
+
+  $('yantux-open').addEventListener('click', () => {
+    $('yantux-customizer').hidden = false;
+  });
+  $('yc-close').addEventListener('click', () => {
+    $('yantux-customizer').hidden = true;
+    save();
+  });
+
+  $('yc-theme').addEventListener('change', () => {
+    settings.theme = $('yc-theme').value;
+    if (settings.theme !== 'custom') updateTheme();
+    apply(); save();
+  });
+
+  for (const id of Object.values(ids)) {
+    const el = $('yc-' + id);
+    if (!el) continue;
+    el.addEventListener('input', () => {
+      readControls();
+      if (id !== 'theme') settings.theme = 'custom';
+      if ($('yc-theme')) $('yc-theme').value = settings.theme;
+      apply(); save();
+    });
+    el.addEventListener('change', () => {
+      readControls(); apply(); save();
+    });
+  }
+
+  $('yc-save-profile').addEventListener('click', () => {
+    readControls();
+    const name = $('yc-profile').value.trim() || 'Meu tema';
+    const profiles = (() => {
+      try { return JSON.parse(localStorage.getItem('yantux-perfis') || '{}'); }
+      catch { return {}; }
+    })();
+    profiles[name] = {...settings};
+    try {
+      localStorage.setItem('yantux-perfis', JSON.stringify(profiles));
+      alert('Perfil "' + name + '" salvo. Ele será incluído na exportação.');
+    } catch { alert('Não foi possível salvar o perfil.'); }
+  });
+
+  $('yc-export').addEventListener('click', () => {
+    readControls();
+    const data = JSON.stringify({
+      version:1, active:settings,
+      profiles:(() => { try { return JSON.parse(localStorage.getItem('yantux-perfis')||'{}'); } catch { return {}; } })()
+    },null,2);
+    const url = URL.createObjectURL(new Blob([data],{type:'application/json'}));
+    const a = document.createElement('a');
+    a.href = url; a.download = 'yantux-perfis.json'; a.click();
+    setTimeout(() => URL.revokeObjectURL(url),1000);
+  });
+
+  $('yc-import').addEventListener('click', () => $('yc-import-file').click());
+  $('yc-import-file').addEventListener('change', async e => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    try {
+      const data = JSON.parse(await file.text());
+      const imported = data.active || data;
+      if (!imported || typeof imported !== 'object' || Array.isArray(imported)) throw Error();
+      settings = {...defaults,...imported};
+      if (data.profiles && typeof data.profiles === 'object') {
+        localStorage.setItem('yantux-perfis',JSON.stringify(data.profiles));
+      }
+      fillControls(); apply(); save();
+      alert('Configurações importadas.');
+    } catch { alert('Arquivo JSON inválido.'); }
+    e.target.value = '';
+  });
+
+  $('yc-undo').addEventListener('click', () => {
+    if (!previous) { alert('Nenhuma alteração anterior registrada nesta sessão.'); return; }
+    settings = {...previous}; fillControls(); apply(); save(); previous = null;
+  });
+
+  $('yc-reset').addEventListener('click', () => {
+    if (!confirm('Restaurar a aparência padrão? Seus atalhos salvos não serão apagados.')) return;
+    settings = {...defaults};
+    fillControls(); apply(); save();
+  });
+
+  $('yc-apply-css').addEventListener('click', () => {
+    readControls();
+    try {
+      const probe = document.createElement('style');
+      probe.textContent = settings.customCSS;
+      document.head.appendChild(probe);
+      probe.remove();
+      apply(); save();
+      alert('CSS aplicado à página inicial.');
+    } catch { alert('Não foi possível aplicar o CSS.'); }
+  });
+
+  // Guarda a configuração anterior antes de cada alteração para permitir desfazer.
+  for (const id of Object.values(ids)) {
+    const el = $('yc-' + id);
+    if (el) el.addEventListener('focus', () => { previous = {...settings}; }, true);
+  }
+
+  fillControls();
+  apply();
+})();
+</script>
+
+
+<script id="yantux-extras-js">
+(() => {
+  const $ = id => document.getElementById(id);
+  const KEY = 'pybrowser-personalizacao';
+  let cfg = {};
+  try { cfg = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch {}
+  cfg = {...cfg, ...(cfg.yantuxExtras || {})};
+
+  const ids = {
+    androidClock:'yc-android-clock',
+    clock3d:'yc-clock-3d',
+    dragMode:'yc-drag-mode',
+    musicEnabled:'yc-music-enabled'
+  };
+  for (const [key,id] of Object.entries(ids)) {
+    const el = $(id);
+    if (el) el.checked = Boolean(cfg[key]);
+  }
+
+  const targets = ['clock','date','search-form','shortcuts','yantux-music'];
+  const posKey = 'yantux-element-positions';
+  let positions = {};
+  try { positions = JSON.parse(localStorage.getItem(posKey) || '{}'); } catch {}
+
+  function saveCfg() {
+    try {
+      const old = JSON.parse(localStorage.getItem(KEY) || '{}');
+      old.yantuxExtras = {
+        androidClock:$('yc-android-clock').checked,
+        clock3d:$('yc-clock-3d').checked,
+        dragMode:$('yc-drag-mode').checked,
+        musicEnabled:$('yc-music-enabled').checked
+      };
+      localStorage.setItem(KEY, JSON.stringify(old));
+    } catch (e) { console.warn('Não foi possível salvar extras:', e); }
+  }
+
+  function applyExtras() {
+    const clock = $('clock');
+    clock.classList.toggle('yc-android-clock', $('yc-android-clock').checked);
+    clock.classList.toggle('yc-clock-3d', $('yc-clock-3d').checked);
+    document.body.classList.toggle('yc-drag-enabled', $('yc-drag-mode').checked);
+    $('yantux-music').hidden = !$('yc-music-enabled').checked;
+    targets.forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      el.classList.add('yc-draggable');
+      el.style.touchAction = 'none';
+      const pos = positions[id];
+      if (pos && Number.isFinite(pos.x) && Number.isFinite(pos.y)) {
+        el.style.position = 'fixed';
+        el.style.left = pos.x + 'px';
+        el.style.top = pos.y + 'px';
+        el.style.right = 'auto';
+        el.style.bottom = 'auto';
+        el.style.transform = 'none';
+        el.style.zIndex = id === 'yantux-music' ? '20' : '10';
+      }
+    });
+  }
+
+  for (const id of Object.values(ids)) {
+    $(id)?.addEventListener('change', () => { applyExtras(); saveCfg(); });
+  }
+
+  $('yc-reset-positions')?.addEventListener('click', () => {
+    if (!confirm('Restaurar a posição original dos elementos?')) return;
+    positions = {};
+    localStorage.removeItem(posKey);
+    targets.forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      for (const prop of ['position','left','top','right','bottom','transform','zIndex'])
+        el.style.removeProperty(prop.replace(/[A-Z]/g, m => '-' + m.toLowerCase()));
+    });
+    applyExtras();
+  });
+
+  for (const id of targets) {
+    const el = $(id);
+    if (!el) continue;
+    let drag = null;
+    el.addEventListener('pointerdown', e => {
+      if (!$('yc-drag-mode').checked || e.button !== 0) return;
+      if (e.target.closest('input,button,select,a,textarea')) return;
+      const rect = el.getBoundingClientRect();
+      drag = {dx:e.clientX-rect.left, dy:e.clientY-rect.top};
+      el.setPointerCapture?.(e.pointerId);
+      e.preventDefault();
+    });
+    el.addEventListener('pointermove', e => {
+      if (!drag) return;
+      const x = Math.max(0, Math.min(innerWidth-el.offsetWidth, e.clientX-drag.dx));
+      const y = Math.max(0, Math.min(innerHeight-el.offsetHeight, e.clientY-drag.dy));
+      Object.assign(el.style, {position:'fixed',left:x+'px',top:y+'px',
+        right:'auto',bottom:'auto',transform:'none',zIndex:'20'});
+      positions[id] = {x,y};
+    });
+    const stop = () => {
+      if (!drag) return;
+      drag = null;
+      try { localStorage.setItem(posKey, JSON.stringify(positions)); } catch {}
+    };
+    el.addEventListener('pointerup', stop);
+    el.addEventListener('pointercancel', stop);
+  }
+
+  // Reprodutor de arquivos de áudio escolhidos pelo próprio usuário.
+  const audio = new Audio();
+  let playlist = [], index = 0;
+  const fmt = n => {
+    if (!Number.isFinite(n)) return '0:00';
+    return Math.floor(n/60) + ':' + String(Math.floor(n%60)).padStart(2,'0');
+  };
+  function loadTrack(i, play=false) {
+    if (!playlist.length) return;
+    index = (i + playlist.length) % playlist.length;
+    const file = playlist[index];
+    if (audio.src) URL.revokeObjectURL(audio.src);
+    audio.src = URL.createObjectURL(file);
+    $('ym-title').textContent = file.name.replace(/\.[^.]+$/, '');
+    $('ym-cover').textContent = '♫';
+    $('ym-cover').querySelector('img')?.remove();
+    if (window.createImageBitmap && file.type.startsWith('image/')) {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      $('ym-cover').replaceChildren(img);
+    }
+    $('ym-artist').textContent = 'Arquivo local · ' + (index+1) + '/' + playlist.length;
+    $('ym-play').textContent = '▶';
+    if (play) audio.play().then(() => $('ym-play').textContent='⏸').catch(()=>{});
+  }
+
+  $('yantux-music-toggle')?.addEventListener('click', () => {
+    const panel = $('yantux-music');
+    panel.hidden = !panel.hidden;
+    $('yantux-music-toggle').setAttribute('aria-expanded', String(!panel.hidden));
+  });
+
+  $('ym-file').addEventListener('change', e => {
+    playlist = [...(e.target.files || [])];
+    index = 0;
+    if (playlist.length) loadTrack(0);
+  });
+  $('ym-play').addEventListener('click', async () => {
+    if (!playlist.length) { $('ym-file').click(); return; }
+    if (audio.paused) {
+      try { await audio.play(); $('ym-play').textContent='⏸'; } catch {}
+    } else { audio.pause(); $('ym-play').textContent='▶'; }
+  });
+  $('ym-prev').addEventListener('click', () => loadTrack(index-1, true));
+  $('ym-next').addEventListener('click', () => loadTrack(index+1, true));
+  audio.addEventListener('ended', () => loadTrack(index+1, true));
+  audio.addEventListener('timeupdate', () => {
+    $('ym-progress').value = audio.duration ? audio.currentTime/audio.duration*1000 : 0;
+    $('ym-time').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  });
+  $('ym-progress').addEventListener('input', e => {
+    if (audio.duration) audio.currentTime = Number(e.target.value)/1000*audio.duration;
+  });
+
+  applyExtras();
+})();
+</script>
+
+
+<script id="yc-sidebar-complete-js">
+(() => {
+  const $ = id => document.getElementById(id);
+  const key = 'yantux-sidebar-style';
+  const defaults = {
+    width:48, height:100, opacity:82, blur:16,
+    color:'#171923', iconColor:'#dce1f2', radius:12,
+    gap:8, iconSize:20, border:true, shadow:true, hover:true
+  };
+  const fields = {
+    width:'width', height:'height', opacity:'opacity', blur:'blur',
+    color:'color', iconColor:'icon-color', radius:'radius',
+    gap:'gap', iconSize:'icon-size', border:'border',
+    shadow:'shadow', hover:'hover'
+  };
+  let observer;
+  let lastSidebar = null;
+
+  function read() {
+    try {
+      return {...defaults, ...JSON.parse(localStorage.getItem(key) || '{}')};
+    } catch {
+      return {...defaults};
+    }
+  }
+
+  function sidebar() {
+    return document.getElementById('py-sidebar');
+  }
+
+  function valuesFromControls() {
+    const v = {};
+    for (const [name, id] of Object.entries(fields)) {
+      const el = $('yc-sb-' + id);
+      if (!el) continue;
+      v[name] = el.type === 'checkbox' ? el.checked :
+        el.type === 'color' ? el.value : Number(el.value);
+    }
+    return v;
+  }
+
+  function updateLabels() {
+    const units = {
+      width:' px', height:'%', opacity:'%', blur:' px',
+      radius:' px', gap:' px', iconSize:' px'
+    };
+    for (const name of Object.keys(units)) {
+      const el = $('yc-sb-' + fields[name]);
+      const out = $('yc-sb-' + name + '-out');
+      if (el && out) out.textContent = el.value + units[name];
+    }
+  }
+
+  function apply(save = true) {
+    const v = valuesFromControls();
+    if (save) localStorage.setItem(key, JSON.stringify(v));
+
+    const el = sidebar();
+    if (!el) {
+      $('yc-sb-status').textContent = 'Configurações salvas; serão aplicadas à barra lateral.';
+      return;
+    }
+    const root = document.documentElement;
+    const rgb = (v.color.match(/[a-f\d]{2}/gi) || ['17','19','23'])
+      .map(x => parseInt(x, 16));
+    root.style.setProperty('--yc-sb-width', v.width + 'px');
+    root.style.setProperty('--yc-sb-grid-width', v.width + 'px');
+    root.style.setProperty('--yc-sb-height', v.height + 'vh');
+    root.style.setProperty('--yc-sb-bg', `rgba(${rgb.join(',')},${v.opacity / 100})`);
+    root.style.setProperty('--yc-sb-blur', `blur(${v.blur}px)`);
+    root.style.setProperty('--yc-sb-radius', v.radius + 'px');
+    root.style.setProperty('--yc-sb-gap', v.gap + 'px');
+    root.style.setProperty('--yc-sb-icon-size', v.iconSize + 'px');
+    root.style.setProperty('--yc-sb-icon-color', v.iconColor);
+    root.style.setProperty('--yc-sb-border', v.border ? '1px solid #ffffff25' : 'none');
+    root.style.setProperty('--yc-sb-shadow', v.shadow ? '0 8px 28px #0004' : 'none');
+
+
+    // O elemento pode ser reposicionado pelo layout; reforçamos apenas
+    // propriedades visuais e dimensões, sem substituir sua lógica original.
+    el.style.setProperty('width', v.width + 'px', 'important');
+    el.style.setProperty('min-width', v.width + 'px', 'important');
+    el.style.setProperty('max-width', v.width + 'px', 'important');
+    el.style.setProperty('height', v.height + 'vh', 'important');
+    el.style.setProperty('background-color',
+      `rgba(${rgb.join(',')},${v.opacity / 100})`, 'important');
+    el.style.setProperty('backdrop-filter', `blur(${v.blur}px)`, 'important');
+    el.style.setProperty('-webkit-backdrop-filter', `blur(${v.blur}px)`, 'important');
+    el.style.setProperty('border-radius', v.radius + 'px', 'important');
+    el.style.setProperty('color', v.iconColor, 'important');
+    el.style.setProperty('gap', v.gap + 'px', 'important');
+    el.style.setProperty('border',
+      v.border ? '1px solid #ffffff25' : 'none', 'important');
+    el.style.setProperty('box-shadow',
+      v.shadow ? '0 8px 28px #0004' : 'none', 'important');
+
+    el.querySelectorAll('svg').forEach(svg => {
+      svg.style.setProperty('width', v.iconSize + 'px', 'important');
+      svg.style.setProperty('height', v.iconSize + 'px', 'important');
+      svg.style.setProperty('color', v.iconColor, 'important');
+    });
+
+    el.querySelectorAll('button,a').forEach(btn => {
+      btn.style.setProperty('color', v.iconColor, 'important');
+      btn.style.setProperty('border-radius', Math.min(v.radius, 16) + 'px', 'important');
+    });
+
+    let style = $('yc-sidebar-hover-style');
+    if (style) style.remove();
+    if (v.hover) {
+      style = document.createElement('style');
+      style.id = 'yc-sidebar-hover-style';
+      style.textContent =
+        '#py-sidebar button:hover,#py-sidebar a:hover {' +
+        'filter:brightness(1.2);transform:scale(1.03);' +
+        'transition:transform .15s,filter .15s;}';
+      document.head.appendChild(style);
+    }
+
+    lastSidebar = el;
+    $('yc-sb-status').textContent = 'Configurações aplicadas e salvas.';
+  }
+
+  function load() {
+    const v = read();
+    for (const [name, id] of Object.entries(fields)) {
+      const el = $('yc-sb-' + id);
+      if (!el) continue;
+      if (el.type === 'checkbox') el.checked = !!v[name];
+      else el.value = v[name];
+    }
+    updateLabels();
+    apply(false);
+  }
+
+  const panel = $('yc-sidebar-complete');
+  if (!panel) return;
+
+  panel.querySelectorAll('input').forEach(el => {
+    el.addEventListener('input', () => {
+      updateLabels();
+      apply(true);
+    });
+    el.addEventListener('change', () => {
+      updateLabels();
+      apply(true);
+    });
+  });
+
+  $('yc-sb-reset')?.addEventListener('click', () => {
+    localStorage.removeItem(key);
+    for (const [name, id] of Object.entries(fields)) {
+      const el = $('yc-sb-' + id);
+      if (!el) continue;
+      if (el.type === 'checkbox') el.checked = defaults[name];
+      else el.value = defaults[name];
+    }
+    updateLabels();
+    apply(true);
+  });
+
+  load();
+
+  // Reaplica quando a sidebar é inserida ou seu conteúdo é recriado.
+  observer = new MutationObserver(() => {
+    const current = sidebar();
+    if (current && current !== lastSidebar) apply(false);
+  });
+  observer.observe(document.documentElement, {childList:true, subtree:true});
+
+  // Também permite que o Studio aplique novamente após mudanças no layout.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) apply(false);
+  });
+})();
+</script>
+
+</body>
+</html>

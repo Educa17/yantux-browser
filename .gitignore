@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+*backup*
+*.bak*
+*.antes-*
+*.before-*
+.env
+*.log
+electron-builder

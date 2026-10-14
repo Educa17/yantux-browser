@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yantux Control</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:20px;background:#111318;color:#e8eaf0;font:14px sans-serif}
+h1{font-size:23px;margin:0 0 6px}
+p{color:#a5adbb}
+.card{background:#1c2029;border:1px solid #303644;border-radius:12px;padding:16px;margin-top:14px}
+.label{color:#a5adbb;font-size:12px}
+.value{font-size:27px;font-weight:700;margin:8px 0}
+.track{height:7px;background:#343a48;border-radius:8px;overflow:hidden}
+.fill{height:100%;width:0;background:#8b9cff;transition:width .4s}
+button{width:100%;padding:12px;margin-top:8px;border:1px solid #394152;border-radius:9px;background:#252b37;color:#fff;cursor:pointer}
+button.active{background:#38466b;border-color:#8b9cff}
+.note{font-size:12px;line-height:1.5}
+</style>
+</head>
+<body>
+<h1>Yantux Control</h1>
+<p>Monitoramento e desempenho</p>
+
+<div class="card">
+<div class="label">CPU do processo principal</div>
+<div class="value" id="cpu">—</div>
+<div class="track"><div class="fill" id="cpu-bar"></div></div>
+<p class="note">Estimativa de uso do processo principal do Yantux.</p>
+</div>
+
+<div class="card">
+<div class="label">Memória do processo principal</div>
+<div class="value" id="ram">—</div>
+<div class="track"><div class="fill" id="ram-bar"></div></div>
+<p class="note" id="ram-detail">Memória usada pelo processo, não a RAM total do sistema.</p>
+</div>
+
+<div class="card">
+<strong>Perfil de desempenho</strong>
+<button data-profile="economico">Economia de recursos</button>
+<button data-profile="equilibrado">Equilibrado</button>
+<button data-profile="desempenho">Alto desempenho</button>
+<p class="note" id="profile-note">Escolha um perfil. Por enquanto, a seleção é apenas visual.</p>
+</div>
+
+<script>
+async function updateMemory(){
+  if(!window.pybrowser?.getYantuxControlMemory)return;
+  try{
+    const m=await window.pybrowser.getYantuxControlMemory();
+    const used=m.rss||0;
+    const heap=m.heapUsed||0;
+    document.getElementById('ram').textContent=(used/1048576).toFixed(0)+' MB';
+    document.getElementById('ram-detail').textContent=
+      'RSS: memória residente. Heap JavaScript: '+(heap/1048576).toFixed(0)+' MB.';
+    document.getElementById('ram-bar').style.width=
+      Math.min(100,used/(1024*1024*1024)*100)+'%';
+  }catch(e){document.getElementById('ram').textContent='Indisponível'}
+}
+document.querySelectorAll('[data-profile]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('[data-profile]').forEach(b=>b.classList.remove('active'));
+    button.classList.add('active');
+    document.getElementById('profile-note').textContent=
+      'Perfil selecionado: '+button.textContent+'. Os limites reais ainda não estão implementados.';
+  });
+});
+updateMemory();
+setInterval(updateMemory,2000);
+</script>
+</body>
+</html>
