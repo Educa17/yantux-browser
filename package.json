@@ -10,10 +10,15 @@
   },
   "keywords": [],
   "author": {
-    "name": "YANTUX",
-    "email": "pybrowser@example.com"
+    "name": "Educa17",
+    "email": "SEU_EMAIL"
   },
   "license": "ISC",
+  "homepage": "https://github.com/Educa17/yantux-browser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Educa17/yantux-browser.git"
+  },
   "devDependencies": {
     "electron": "^44.7.0",
     "electron-builder": "^26.15.3"
@@ -22,23 +27,26 @@
     "appId": "com.yantux.browser",
     "productName": "YANTUX",
     "directories": {
+      "buildResources": "assets",
       "output": "dist"
     },
+    "files": [
+      "*.js",
+      "*.html",
+      "*.css",
+      "assets/**",
+      "!*backup*",
+      "!*.bak*"
+    ],
+    "artifactName": "${productName}-${version}-${os}.${ext}",
     "linux": {
-      "target": [
-        "deb"
-      ],
-      "category": "Network",
-      "icon": "build"
+      "target": ["deb", "rpm", "AppImage"],
+      "category": "Network"
     },
     "win": {
-      "target": [
-        "nsis"
-      ]
-    },
-    "artifactName": "YANTUX-2.2.deb"
+      "target": ["nsis"]
+    }
   },
-  "homepage": "https://github.com/pybrowser/pybrowser",
   "dependencies": {
     "@ghostery/adblocker-electron": "^2.18.2",
     "cross-fetch": "^4.1.0"

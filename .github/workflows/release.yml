@@ -1,0 +1,36 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - name: Build Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rpm fakeroot
+          npx electron-builder --linux deb rpm AppImage --publish never
+      - name: Build Windows
+        if: runner.os == 'Windows'
+        run: npx electron-builder --win nsis --publish never
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.deb
+            dist/*.rpm
+            dist/*.AppImage
+            dist/*.exe
