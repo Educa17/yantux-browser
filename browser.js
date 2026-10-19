@@ -1,3 +1,60 @@
+
+function applySidebarIconsTopRight(enabled) {
+  const sidebar = document.getElementById('py-sidebar');
+  if (!sidebar) return;
+
+  const actions = sidebar.querySelector('.py-sidebar-actions');
+  const bottom = sidebar.querySelector('.py-sidebar-bottom');
+  if (!actions || !bottom) return;
+
+  let style = document.getElementById('py-sidebar-icons-top-right-style');
+
+  if (!enabled) {
+    if (style) style.remove();
+    actions.style.removeProperty('position');
+    actions.style.removeProperty('top');
+    actions.style.removeProperty('right');
+    actions.style.removeProperty('left');
+    actions.style.removeProperty('flex-direction');
+    actions.style.removeProperty('width');
+    bottom.style.removeProperty('position');
+    bottom.style.removeProperty('top');
+    bottom.style.removeProperty('right');
+    bottom.style.removeProperty('left');
+    bottom.style.removeProperty('flex-direction');
+    bottom.style.removeProperty('width');
+    return;
+  }
+
+  if (!style) {
+    style = document.createElement('style');
+    style.id = 'py-sidebar-icons-top-right-style';
+    style.textContent = `
+      #py-sidebar .py-sidebar-actions,
+      #py-sidebar .py-sidebar-bottom {
+        position: fixed !important;
+        left: auto !important;
+        right: 12px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        width: max-content !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 6px !important;
+        z-index: 99999 !important;
+        background: rgba(20, 22, 30, .92);
+        border-radius: 10px;
+      }
+      #py-sidebar .py-sidebar-actions { top: 10px !important; }
+      #py-sidebar .py-sidebar-bottom { top: 64px !important; }
+      #py-sidebar .py-sidebar-actions button,
+      #py-sidebar .py-sidebar-bottom button { margin: 0 !important; }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
 console.log('[TRACE] browser.js iniciou');
 console.log('[PYBROWSER] browser.js carregado');
 const tabList = document.getElementById('tab-list');
@@ -346,6 +403,8 @@ async function applyHomeAppearance(webview) {
         } else {
           body.style.backgroundImage = '';
         }
+
+        body.classList.toggle('light', settings.theme === 'light');
 
         body.classList.toggle(
           'py-transparent',
@@ -938,8 +997,7 @@ function renderHistory() {
     const remove = document.createElement('button');
     remove.type = 'button';
     remove.className = 'library-icon-button';
-    remove.title = 'Remover do histórico';
-    remove.setAttribute('aria-label', 'Remover do histórico');
+    remove.title = 'Remover do histórico';    remove.setAttribute('aria-label', 'Remover do histórico');
     remove.textContent = '×';
     remove.addEventListener('click', event => {
       event.stopPropagation();
@@ -1329,9 +1387,8 @@ createTab();
     radius: 10,
     wallpaper: '',
     language: 'pt-BR',
-    verticalTabs: false,
-    tabsSide: 'left',
-    tabWidth: 260,
+
+    tabWidth: 180,
     clockStyle: 'digital',
     clockSize: 92,
     clockSeconds: false,
@@ -1368,17 +1425,20 @@ createTab();
       .then(saved => {
         if (!saved || typeof saved !== 'object') return;
 
+        let local = {};
+        try {
+          local = JSON.parse(localStorage.getItem(KEY) || '{}');
+        } catch (_) {}
+
         settings = {
           ...defaults,
+          ...local,
           ...saved
         };
 
-        localStorage.setItem(
-          KEY,
-          JSON.stringify(settings)
-        );
-
+        localStorage.setItem(KEY, JSON.stringify(settings));
         apply();
+        updateControls();
       })
       .catch(() => {});
   }
@@ -1416,24 +1476,14 @@ createTab();
 
     root.style.setProperty('--py-accent', settings.accent);
     root.style.setProperty('--py-radius', `${settings.radius}px`);
-    root.style.setProperty('--py-tab-width', `${settings.tabWidth}px`);
+    settings.tabWidth = 180;
+    root.style.setProperty('--py-tab-width', '180px');
 
     body.classList.toggle(
       'py-transparent-ui',
       settings.transparent
     );
-
-    body.classList.toggle(
-      'py-vertical-tabs',
-      settings.verticalTabs
-    );
-
-    body.classList.toggle(
-      'py-tabs-right',
-      settings.tabsSide === 'right'
-    );
-
-    if (settings.wallpaper) {
+if (settings.wallpaper) {
       body.style.backgroundImage =
         `url("${settings.wallpaper}")`;
 
@@ -1469,6 +1519,7 @@ createTab();
               const body = document.body;
 
               root.style.setProperty('--accent', ${JSON.stringify(accent)});
+              body.classList.toggle('light', ${JSON.stringify(settings.theme === 'light')});
 
               if (${JSON.stringify(wallpaper)}) {
                 body.style.backgroundImage =
@@ -1507,8 +1558,6 @@ createTab();
     const transparent = document.querySelector('#py-transparent');
     const radius = document.querySelector('#py-radius');
     const language = document.querySelector('#py-language');
-    const vertical = document.querySelector('#py-vertical-tabs'); console.log('[PY-DEBUG] VERTICAL:', !!vertical);
-    const side = document.querySelector('#py-tabs-side');
     const width = document.querySelector('#py-tab-width');
     const preview = document.querySelector('#py-wallpaper-preview');
     const shortcutPreset = document.querySelector('#py-shortcut-preset');
@@ -1529,9 +1578,7 @@ createTab();
     if (transparent) transparent.checked = settings.transparent;
     if (radius) radius.value = settings.radius;
     if (language) language.value = settings.language;
-    if (vertical) vertical.checked = settings.verticalTabs;
-    if (side) side.value = settings.tabsSide;
-    if (width) width.value = settings.tabWidth;
+    if (width) width.value = 180;
 
     if (preview && settings.wallpaper) {
       preview.style.backgroundImage =
@@ -1544,8 +1591,6 @@ createTab();
     const transparent = document.querySelector('#py-transparent');
     const radius = document.querySelector('#py-radius');
     const language = document.querySelector('#py-language');
-    const vertical = document.querySelector('#py-vertical-tabs');
-    const side = document.querySelector('#py-tabs-side');
     const width = document.querySelector('#py-tab-width');
     const clockStyle = document.querySelector('#py-clock-style');
     const clockSize = document.querySelector('#py-clock-size');
@@ -1609,22 +1654,6 @@ createTab();
 
         // Mantém o idioma escolhido salvo.
         // A tradução completa será ligada na próxima etapa.
-        apply();
-      });
-    }
-
-    if (vertical) {
-      vertical.addEventListener('change', e => {
-        settings.verticalTabs = e.target.checked;
-        save();
-        apply();
-      });
-    }
-
-    if (side) {
-      side.addEventListener('change', e => {
-        settings.tabsSide = e.target.value;
-        save();
         apply();
       });
     }
@@ -1835,6 +1864,12 @@ function openPinnedSitePanel(url, name = 'Site') {
   const webview = document.createElement('webview');
 
   webview.className = 'py-sidebar-webview';
+  if (/yantux-control\.html/.test(url)) {
+    webview.setAttribute('preload', new URL('control-preload.js', window.location.href).href);
+    webview.addEventListener('ipc-message', e => {
+      if (e.channel === 'yantux-profile') yxApplyProfile(e.args[0]);
+    });
+  }
   webview.src = url;
   webview.setAttribute('allowpopups', '');
   webview.setAttribute('disablewebsecurity', '');
@@ -1961,8 +1996,7 @@ function pyAskSiteUrl(callback) {
 
     if (event.key === 'Escape') {
       cancel.click();
-    }
-  });
+    }  });
 }
 
 function setupPySidebar() {
@@ -2001,7 +2035,7 @@ function setupPySidebar() {
   }
 
   function favicon(url) {
-    return 'https://www.google.com/s2/favicons?sz=64&domain_url=' +
+    return 'https://www.google.com/s2/favicons?sz=128&domain_url=' +
       encodeURIComponent(url);
   }
 
@@ -2025,7 +2059,7 @@ function setupPySidebar() {
       img.onerror = () => {
         img.onerror = null;
         img.src =
-          'https://www.google.com/s2/favicons?sz=64&domain_url=' +
+          'https://www.google.com/s2/favicons?sz=128&domain_url=' +
           encodeURIComponent(site.url);
       };
 
@@ -2043,13 +2077,7 @@ function setupPySidebar() {
 
       button.addEventListener('contextmenu', event => {
         event.preventDefault();
-
-        const sites = loadSites().filter(
-          item => item.url !== site.url
-        );
-
-        saveSites(sites);
-        renderSites();
+        event.stopPropagation();
       });
 
       pinned.appendChild(button);
@@ -2238,42 +2266,7 @@ document.getElementById('toolbar-zoom-in')?.addEventListener('click', () => chan
 document.getElementById('toolbar-zoom-out')?.addEventListener('click', () => changeZoom(-0.1));
 
 
-/* PYBROWSER — BOTÃO PARA ALTERNAR ABAS VERTICAIS */
-(() => {
-  const button = document.getElementById('py-tabs-toggle');
-  if (!button || button.dataset.ready === 'true') return;
-  button.dataset.ready = 'true';
 
-  const updateButton = () => {
-    const checkbox = document.getElementById('py-vertical-tabs');
-    const enabled = checkbox ? checkbox.checked : document.body.classList.contains('py-vertical-tabs');
-    button.classList.toggle('is-active', enabled);
-    button.title = enabled ? 'Desativar abas verticais' : 'Ativar abas verticais';
-    button.setAttribute('aria-pressed', String(enabled));
-  };
-
-  button.addEventListener('click', () => {
-    const checkbox = document.getElementById('py-vertical-tabs');
-    const side = document.getElementById('py-tabs-side');
-
-    if (side && side.value !== 'right') {
-      side.value = 'right';
-      side.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-
-    if (checkbox) {
-      checkbox.checked = !checkbox.checked;
-      checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-    } else {
-      document.body.classList.toggle('py-vertical-tabs');
-    }
-
-    updateButton();
-  });
-
-  document.getElementById('py-vertical-tabs')?.addEventListener('change', updateButton);
-  updateButton();
-})();
 
 
 setTimeout(() => {
@@ -2298,3 +2291,134 @@ setTimeout(() => {
     } : null
   });
 }, 3000);
+
+/* ===== ATALHOS DO NAVEGADOR (eventos vindos do main.js) ===== */
+(() => {
+  const closedTabs = [];
+
+  // guarda a URL de toda aba fechada (atalho ou botao X) para Ctrl+Shift+T
+  const originalCloseTab = closeTab;
+  closeTab = function (id) {
+    try {
+      const t = tabs.find(x => x.id === id);
+      const u = t && t.webview && t.webview.getURL();
+      if (u && !u.includes('home.html')) {
+        closedTabs.push(u);
+        if (closedTabs.length > 20) closedTabs.shift();
+      }
+    } catch (_) {}
+    return originalCloseTab(id);
+  };
+
+  function goToTab(index) {
+    if (!tabs.length) return;
+    const n = tabs.length;
+    const target = tabs[((index % n) + n) % n];
+    if (target) activateTab(target.id);
+  }
+
+  window.addEventListener('yantux-shortcut', e => {
+    const a = e.detail;
+    const cur = tabs.indexOf(activeTab);
+
+    if (a === 'new-tab') createTab();
+    else if (a === 'close-tab') { if (activeTab) closeTab(activeTab.id); }
+    else if (a === 'reopen-tab') { const u = closedTabs.pop(); if (u) createTab(u); }
+    else if (a === 'next-tab') goToTab(cur + 1);
+    else if (a === 'prev-tab') goToTab(cur - 1);
+    else if (a === 'focus-address') {
+      const el = document.getElementById('address');
+      if (el) { el.focus(); el.select(); }
+    }
+    else if (a === 'reload') { try { activeTab && activeTab.webview.reload(); } catch (_) {} }
+    else if (a === 'zoom-in') changeZoom(0.1);
+    else if (a === 'zoom-out') changeZoom(-0.1);
+    else if (a === 'zoom-reset') {
+      const cz = (activeTab && activeTab.webview.getZoomFactor && activeTab.webview.getZoomFactor()) || 1;
+      changeZoom(1 - cz);
+    }
+    else if (/^tab-[1-9]$/.test(a)) {
+      const n = Number(a.slice(4));
+      goToTab(n === 9 ? tabs.length - 1 : n - 1);
+    }
+  });
+})();
+
+/* ===== PERFIS DE DESEMPENHO (Yantux Control) ===== */
+function yxEcoHome(wv) {
+  try {
+    if (!wv.getURL().includes('home.html')) return;
+    const on = document.body.classList.contains('yx-eco');
+    wv.executeJavaScript(
+      "(()=>{let s=document.getElementById('yx-eco-style');" +
+      "if(" + on + "){if(!s){s=document.createElement('style');s.id='yx-eco-style';" +
+      "s.textContent='*,*::before,*::after{animation:none!important;transition:none!important;backdrop-filter:none!important}';" +
+      "document.head.appendChild(s)}}else if(s){s.remove()}})()"
+    ).catch(() => {});
+  } catch (_) {}
+}
+
+function yxApplyProfile(name) {
+  if (!['economico', 'equilibrado', 'desempenho'].includes(name)) return;
+  try { localStorage.setItem('yantux-profile-host', name); } catch (_) {}
+  document.body.classList.toggle('yx-eco', name === 'economico');
+  document.body.classList.toggle('yx-perf', name === 'desempenho');
+  document.querySelectorAll('webview').forEach(yxEcoHome);
+}
+
+// abas novas da home tambem recebem o perfil
+document.addEventListener('dom-ready', e => {
+  if (e.target && e.target.tagName === 'WEBVIEW') yxEcoHome(e.target);
+}, true);
+
+yxApplyProfile(localStorage.getItem('yantux-profile-host') || 'equilibrado');
+
+/* ===== sincroniza o tema do app com o sistema de cores das paginas ===== */
+(() => {
+  const api = window.pybrowser;
+  if (!api || typeof api.themeSet !== 'function') return;
+  let last = null;
+  const sync = () => {
+    const t = document.body.classList.contains('light') ? 'light' : 'dark';
+    if (t !== last) { last = t; api.themeSet(t); }
+  };
+  new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  sync();
+})();
+
+
+(async () => {
+  try {
+    const settings = await window.pybrowser.getSettings();
+    applySidebarIconsTopRight(!!settings.sidebarIconsTopRight);
+  } catch (e) {
+    console.warn('[PY-SIDEBAR] Não foi possível carregar a preferência:', e);
+  }
+})();
+
+
+
+window.pybrowser?.getSettings?.().then(settings => {
+  applySidebarIconsTopRight(!!settings?.sidebarIconsTopRight);
+}).catch(console.error);
+
+window.pybrowser?.onSidebarIconsTopRight?.((enabled) => {
+  applySidebarIconsTopRight(Boolean(enabled));
+});
+
+
+// Posição dos ícones da barra lateral, controlada pelo Studio.
+(async () => {
+  try {
+    const settings = await window.pybrowser.getSettings();
+    applySidebarIconsTopRight(Boolean(settings?.sidebarIconsTopRight));
+  } catch (error) {
+    console.warn('Não foi possível carregar a posição dos ícones:', error);
+  }
+})();
+
+window.pybrowser?.onSidebarIconsTopRight?.((enabled) => {
+  applySidebarIconsTopRight(Boolean(enabled));
+});
+
+
