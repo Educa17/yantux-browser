@@ -997,7 +997,6 @@ body.light .tab.active {
 
   flex: 1;
 }
-
 .page-item-title {
   color: #e7e9ec;
 
@@ -1997,7 +1996,6 @@ body.light #toolbar {
 
   border: 0;
   border-radius: 9px;
-
   background: transparent;
 
   cursor: pointer;
@@ -2997,8 +2995,7 @@ body.light #toolbar {
 .nav-buttons button:hover,
 #menu:hover {
   background: #373b43;
-  color: #ffffff;
-}
+  color: #ffffff;}
 
 .nav-buttons button:active,
 #menu:active {
@@ -3999,7 +3996,6 @@ body.light #tabs .tab.active {
   }
 }
 
-
 /* Yantux: animação real de abertura e fechamento do painel */
 #py-sidebar #py-sidebar-panel {
   display: flex !important;
@@ -4040,3 +4036,1504 @@ body.light #tabs .tab.active {
     transition: none !important;
   }
 }
+
+/* ===== MODO CLARO CONSOLIDADO (manter no fim do arquivo) ===== */
+body.light {
+  --l-bg: #f0f1f3;
+  --l-bar: #e7e9ed;
+  --l-tabs: #e1e4e9;
+  --l-border: #cfd3da;
+  --l-text: #202124;
+  --l-dim: #4d5561;
+  --l-hover: #d4d9e1;
+  background: var(--l-bg) !important;
+  color: var(--l-text) !important;
+}
+body.light #tabs {
+  background: var(--l-tabs) !important;
+  border-bottom-color: var(--l-border) !important;
+}
+body.light #toolbar {
+  background: var(--l-bar) !important;
+  border-color: var(--l-border) !important;
+}
+body.light #address-container {
+  background: #fff !important;
+  border-color: var(--l-border) !important;
+  color: var(--l-text) !important;
+}
+body.light #address-container input {
+  background: transparent !important;
+  color: var(--l-text) !important;
+}
+body.light #tabs .tab {
+  background: rgba(0, 0, 0, .04) !important;
+  color: var(--l-dim) !important;
+}
+body.light #tabs .tab.active {
+  background: #fff !important;
+  color: var(--l-text) !important;
+  border-color: rgba(0, 0, 0, .12) !important;
+}
+body.light #toolbar button,
+body.light .nav-buttons button,
+body.light #menu {
+  color: var(--l-dim) !important;
+}
+body.light #toolbar button:hover,
+body.light .nav-buttons button:hover,
+body.light #menu:hover {
+  background: var(--l-hover) !important;
+  color: #20242b !important;
+}
+body.light #py-sidebar {
+  background: var(--l-bar) !important;
+  color: var(--l-text) !important;
+  border-color: var(--l-border) !important;
+}
+
+/* ===== MODO CLARO: SUPERFICIES RESTANTES ===== */
+body.light #browser,
+body.light .browser-page,
+body.light #settings-page {
+  background: var(--l-bg) !important;
+  color: var(--l-text) !important;
+}
+body.light #settings-sidebar {
+  background: var(--l-tabs) !important;
+  border-color: var(--l-border) !important;
+}
+body.light #py-sidebar,
+body.light #py-sidebar-panel,
+body.light #py-sidebar.sidebar-panel-open #py-sidebar-panel {
+  background: var(--l-bar) !important;
+  color: var(--l-text) !important;
+}
+
+/* cartoes, menus e paineis */
+body.light #menu-popup,
+body.light #settings-panel,
+body.light .settings-card,
+body.light .extension-item {
+  background: #fff !important;
+  color: var(--l-text) !important;
+  border-color: var(--l-border) !important;
+}
+
+/* botoes e icones */
+body.light .zoom-controls button,
+body.light .extension-actions button,
+body.light .extension-remove,
+body.light .browser-page-header button,
+body.light .page-item-icon,
+body.light .settings-brand-icon,
+body.light .secondary-button,
+body.light .settings-section-page[data-section-page="appearance"] .settings-button {
+  background: var(--l-hover) !important;
+  color: var(--l-text) !important;
+}
+body.light .danger-button {
+  background: #fbe9ea !important;
+  color: #a12a32 !important;
+}
+
+/* hovers e itens ativos */
+body.light #menu-popup > button:hover,
+body.light .browser-page-header button:hover,
+body.light .download-item:hover,
+body.light .settings-nav:hover,
+body.light #close-settings-page:hover,
+body.light #new-tab:hover,
+body.light .tab:hover,
+body.light .settings-section-page[data-section-page="appearance"] .settings-button:hover {
+  background: var(--l-hover) !important;
+}
+body.light .settings-nav.active {
+  background: #fff !important;
+  color: var(--l-text) !important;
+}
+
+/* campos de formulario */
+body.light .settings-section select,
+body.light .large-select,
+body.light .settings-section-page[data-section-page="appearance"] .py-advanced-card select,
+body.light .settings-section-page[data-section-page="appearance"] .py-advanced-card input[type="color"] {
+  background: #fff !important;
+  color: var(--l-text) !important;
+  border-color: var(--l-border) !important;
+}
+
+/* escolha de tema */
+body.light .theme-choice,
+body.light .settings-section-page[data-section-page="appearance"] .theme-choice {
+  background: #fff !important;
+  color: var(--l-text) !important;
+  border-color: var(--l-border) !important;
+}
+/* ===== MODO CLARO: TEXTOS (gerado) ===== */
+body.light .tab.active { color: var(--l-text) !important; }
+body.light #new-tab { color: var(--l-dim) !important; }
+body.light #address { color: var(--l-text) !important; }
+body.light #menu-popup > button { color: var(--l-text) !important; }
+body.light .menu-icon { color: var(--l-dim) !important; }
+body.light #zoom-value { color: var(--l-dim) !important; }
+body.light .extension-actions button { color: var(--l-text) !important; }
+body.light .extension-remove { color: var(--l-dim) !important; }
+body.light .settings-section input,
+body.light .settings-section select { color: var(--l-text) !important; }
+body.light .browser-page-header button { color: var(--l-text) !important; }
+body.light .page-item-title { color: var(--l-text) !important; }
+body.light #settings-page { color: var(--l-text) !important; }
+body.light .settings-brand-icon { color: var(--l-dim) !important; }
+body.light .settings-nav:hover { color: var(--l-text) !important; }
+body.light .field input,
+body.light .large-select { color: var(--l-text) !important; }
+body.light .toggle-row strong { color: var(--l-dim) !important; }
+body.light .theme-choice { color: var(--l-dim) !important; }
+body.light .radio-row { color: var(--l-dim) !important; }
+body.light .secondary-button { color: var(--l-text) !important; }
+body.light .danger-button { color: var(--l-text) !important; }
+body.light #py-sidebar .py-sidebar-actions button { color: var(--l-dim) !important; }
+body.light #py-sidebar #py-adblock-toggle,
+body.light #py-sidebar #py-sidebar-toggle { color: var(--l-dim) !important; }
+body.light #py-sidebar-panel-title { color: var(--l-dim) !important; }
+body.light .browser-page-close { color: var(--l-dim) !important; }
+body.light .settings-section-page[data-section-page="appearance"] .settings-card h2 { color: var(--l-text) !important; }
+body.light .settings-section-page[data-section-page="appearance"] .theme-choice { color: var(--l-dim) !important; }
+body.light .settings-section-page[data-section-page="appearance"] .radio-row strong { color: var(--l-text) !important; }
+body.light .settings-section-page[data-section-page="appearance"] .settings-row strong { color: var(--l-text) !important; }
+body.light .settings-section-page[data-section-page="appearance"] .py-advanced-card select { color: var(--l-text) !important; }
+body.light .settings-section-page[data-section-page="appearance"] .settings-button { color: var(--l-text) !important; }
+body.light .nav-buttons button,
+body.light #menu { color: var(--l-dim) !important; }
+body.light #toolbar button { color: var(--l-dim) !important; }
+body.light #history-page.library-page,
+body.light #downloads-page.library-page { color: var(--l-text) !important; }
+body.light .library-heading h1 { color: var(--l-text) !important; }
+body.light .library-clear { color: var(--l-dim) !important; }
+body.light .library-clear:hover { color: var(--l-text) !important; }
+body.light .library-search > span { color: var(--l-text) !important; }
+body.light .library-item-title { color: var(--l-text) !important; }
+body.light .download-row { color: var(--l-dim) !important; }
+body.light .download-topline { color: var(--l-dim) !important; }
+body.light #history-page .library-day { color: var(--l-dim) !important; }
+body.light #history-page .library-favicon-fallback { color: var(--l-dim) !important; }
+body.light #history-page .library-item-title { color: var(--l-text) !important; }
+body.light #history-page .history-row:hover .library-item-title { color: var(--l-dim) !important; }
+body.light #history-page .library-icon-button:hover { color: var(--l-text) !important; }
+body.light #history-page .library-empty-icon { color: var(--l-dim) !important; }
+body.light #history-page .library-empty h2 { color: var(--l-text) !important; }
+body.light #tab-list .tab-title { color: var(--l-dim) !important; }
+body.light #tab-list .tab.active .tab-title { color: var(--l-text) !important; }
+body.light #new-tab:hover { color: var(--l-text) !important; }
+
+/* perfil Economia: sem animacoes, transicoes e blur */
+body.yx-eco *, body.yx-eco *::before, body.yx-eco *::after {
+  animation: none !important;
+  transition: none !important;
+  backdrop-filter: none !important;
+}
+
+/* ===== BARRA DE PESQUISA COM TAMANHO FIXO ===== */
+:root { --addr-width: 760px; }
+
+#address-container {
+  flex: 0 1 var(--addr-width) !important;
+  width: var(--addr-width) !important;
+  min-width: 160px !important;
+  max-width: 100% !important;
+  margin-inline: 0 auto !important;
+}
+#address-container #address {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* barra de pesquisa: largura fixa, mas nunca passa de 60% da janela */
+#address-container {
+  width: min(var(--addr-width), 50vw) !important;
+  flex: 0 1 min(var(--addr-width), 50vw) !important;
+  margin-inline: 0 auto !important;
+}
+#address-container { margin-left: 12px !important; }
+
+/* ===== BARRA DE PESQUISA: ocupa o espaco livre com folga de 48px ===== */
+:root {
+  --addr-gap: 48px;
+  --addr-max: 1400px;
+}
+#address-container {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  min-width: 160px !important;
+  max-width: var(--addr-max) !important;
+  margin: 0 var(--addr-gap) 0 12px !important;
+}
+#address-container #address {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* ===== ESCONDER: botoes que abrem/fecham a barra lateral ===== */
+#py-sidebar-toolbar,
+#py-sidebar-close { display: none !important; }
+
+/* ===== ESCONDER: botoes de zoom (toolbar e menu) ===== */
+#toolbar-zoom,
+.zoom-controls { display: none !important; }
+
+/* ===== MENU: fixo no canto direito + icone de 3 barras ===== */
+#menu {
+  margin-left: auto !important;
+  margin-right: 8px !important;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0 !important;
+}
+#menu > * { display: none !important; }
+#menu::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 14px;
+  background:
+    linear-gradient(currentColor, currentColor) 0 0 / 100% 2px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 50% / 100% 2px no-repeat,
+    linear-gradient(currentColor, currentColor) 0 100% / 100% 2px no-repeat;
+}
+
+/* ===== BARRA LATERAL: separadores minimos ===== */
+.py-sidebar-sep {
+  flex: 0 0 1px;
+  height: 1px;
+  margin: 8px 8px;
+  background: rgba(255, 255, 255, .10);
+}
+body.light .py-sidebar-sep { background: rgba(0, 0, 0, .10); }
+
+#py-sidebar-add svg { display: block; }
+
+/* ===== PAINEL DA BARRA LATERAL: cabecalho redesenhado ===== */
+#py-sidebar-panel #py-sidebar-panel-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  padding: 0 8px 0 16px !important;
+  background: rgba(255, 255, 255, .035) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .25) !important;
+}
+#py-sidebar-panel #py-sidebar-panel-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  min-width: 0 !important;
+  flex: 1 1 auto !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em !important;
+  color: #e8eaed !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+#py-sidebar-panel #py-sidebar-panel-title::before {
+  content: "";
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent, #8ab4f8);
+  box-shadow: 0 0 10px var(--accent, #8ab4f8);
+}
+
+#py-sidebar-panel #py-sidebar-panel-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  flex: 0 0 auto !important;
+}
+#py-sidebar-panel #py-sidebar-panel-actions button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: #aab0bb !important;
+  font-size: 0 !important;
+  cursor: pointer !important;
+  transition: background .15s, color .15s !important;
+}
+#py-sidebar-panel #py-sidebar-panel-actions button:hover {
+  background: rgba(255, 255, 255, .09) !important;
+  color: #fff !important;
+}
+#py-sidebar-panel #py-sidebar-panel-close:hover {
+  background: rgba(248, 113, 113, .16) !important;
+  color: #f87171 !important;
+}
+#py-sidebar-panel .yx-ico {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* tema claro */
+body.light #py-sidebar-panel #py-sidebar-panel-header {
+  background: var(--l-bar) !important;
+  border-bottom-color: var(--l-border) !important;
+  box-shadow: none !important;
+}
+body.light #py-sidebar-panel #py-sidebar-panel-title { color: var(--l-text) !important; }
+body.light #py-sidebar-panel #py-sidebar-panel-actions button { color: var(--l-dim) !important; }
+body.light #py-sidebar-panel #py-sidebar-panel-actions button:hover {
+  background: var(--l-hover) !important;
+  color: var(--l-text) !important;
+}
+body.light #py-sidebar-panel #py-sidebar-panel-close:hover {
+  background: #fbe9ea !important;
+  color: #c0392b !important;
+}
+
+/* ===== GERENCIADOR DE EXTENSOES ===== */
+.yx-ext-install { display: flex; gap: 8px; margin: 12px 0 4px; }
+.yx-ext-install input {
+  flex: 1; min-width: 0; padding: 9px 11px; border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05);
+  color: inherit; font: inherit; font-size: 13px; outline: none;
+}
+.yx-ext-install input:focus { border-color: var(--accent, #8ab4f8); }
+.yx-ext-install button {
+  flex: 0 0 auto; padding: 0 14px; border: 0; border-radius: 9px;
+  background: var(--accent, #8ab4f8); color: #101114; font-weight: 600; cursor: pointer;
+}
+.yx-ext-install button:disabled { opacity: .5; cursor: default; }
+.yx-ext-status { min-height: 18px; margin: 4px 2px 8px; font-size: 12px; color: #9aa0a6; }
+.yx-ext-status.ok { color: #4ade80; }
+.yx-ext-status.err { color: #f87171; }
+.yx-ext-row {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px; margin-top: 8px;
+  border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+}
+.yx-ext-avatar {
+  flex: 0 0 34px; width: 34px; height: 34px; border-radius: 9px; display: flex;
+  align-items: center; justify-content: center; font-weight: 700;
+  background: rgba(138,180,248,.18); color: var(--accent, #8ab4f8);
+}
+.yx-ext-info { flex: 1; min-width: 0; }
+.yx-ext-name { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.yx-ext-meta { font-size: 11px; color: #9aa0a6; }
+.yx-ext-del {
+  flex: 0 0 auto; border: 0; border-radius: 8px; padding: 6px 10px;
+  background: transparent; color: #aab0bb; cursor: pointer; font-size: 12px;
+}
+.yx-ext-del:hover { background: rgba(248,113,113,.16); color: #f87171; }
+.yx-ext-del.confirm { background: #f87171; color: #fff; }
+.yx-ext-empty { text-align: center; color: #9aa0a6; font-size: 13px; padding: 22px 8px; }
+
+body.light .yx-ext-install input { background: #fff; border-color: var(--l-border); color: var(--l-text); }
+body.light .yx-ext-row { background: #fff; border-color: var(--l-border); }
+body.light .yx-ext-meta, body.light .yx-ext-status, body.light .yx-ext-empty { color: var(--l-dim); }
+body.light .yx-ext-del { color: var(--l-dim); }
+
+/* ===== WALLPAPER ANIMADO: cartao nas configuracoes ===== */
+.yx-wp-card h3 { margin: 0 0 4px; font-size: 15px; }
+.yx-wp-desc { margin: 0 0 10px; font-size: 12px; color: #9aa0a6; }
+.yx-wp-current { font-size: 13px; margin-bottom: 10px; word-break: break-all; }
+.yx-wp-actions { display: flex; gap: 8px; margin-bottom: 12px; }
+.yx-wp-actions button:disabled { opacity: .45; cursor: default; }
+.yx-wp-dim { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.yx-wp-dim input { flex: 1; }
+.yx-wp-dimval { width: 36px; text-align: right; color: #9aa0a6; }
+.yx-wp-msg { min-height: 16px; margin-top: 8px; font-size: 12px; color: #fbbf24; }
+body.light .yx-wp-desc, body.light .yx-wp-dimval { color: var(--l-dim); }
+
+/* ===== MODO CLARO: ajustes do scanner ===== */
+body.light aside#py-sidebar#py-sidebar,
+body.light aside#py-sidebar#py-sidebar.sidebar-panel-open {
+  background: var(--l-bar) !important;
+  border-color: var(--l-border) !important;
+  color: var(--l-text) !important;
+}
+body.light #py-sidebar button,
+body.light #py-sidebar small,
+body.light #py-sidebar strong,
+body.light #py-sidebar .py-sidebar-title span {
+  color: var(--l-dim) !important;
+}
+body.light #py-sidebar button:hover {
+  background: var(--l-hover) !important;
+  color: var(--l-text) !important;
+}
+
+body.light #tab-list {
+  background: var(--l-tabs) !important;
+  border-color: var(--l-border) !important;
+}
+
+body.light .library-day {
+  background: rgba(240, 241, 243, .94) !important;
+  color: var(--l-text) !important;
+}
+
+body.light .download-percent { color: #6d4fd6 !important; }
+body.light .download-status.status-completed { color: #15803d !important; }
+body.light .download-status[class*="status-fail"],
+body.light .download-status[class*="status-error"] { color: #b91c1c !important; }
+
+/* ===== MODO CLARO: ajustes 2 ===== */
+body.light #extension-panel,
+body.light #extension-panel.open {
+  background: #fff !important;
+  color: var(--l-text) !important;
+  border-color: var(--l-border) !important;
+}
+body.light #extension-panel .panel-top span,
+body.light #extension-panel .panel-top button { color: var(--l-dim) !important; }
+
+body.light #settings-page input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+body.light #settings-page textarea {
+  background: #fff !important;
+  color: var(--l-text) !important;
+  border-color: var(--l-border) !important;
+}
+body.light #settings-page :not(button) > span:not([class]) { color: var(--l-dim) !important; }
+
+/* ===== EXTENSOES: botao na toolbar + painel popover ===== */
+#yxe-btn {
+  flex: 0 0 auto; width: 34px; height: 34px; margin-left: auto; margin-right: 2px;
+  display: flex; align-items: center; justify-content: center; padding: 0;
+  border: 0; border-radius: 9px; background: transparent; color: #c9cdd5;
+  cursor: pointer; transition: background .15s, color .15s;
+}
+#yxe-btn:hover, #yxe-btn.active { background: rgba(255,255,255,.09); color: #fff; }
+#yxe-btn svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+#yxe-btn + #menu { margin-left: 0 !important; }
+body.yxe-has-btn #extensions { display: none !important; }
+body.light #yxe-btn { color: var(--l-dim); }
+body.light #yxe-btn:hover, body.light #yxe-btn.active { background: var(--l-hover); color: var(--l-text); }
+
+#extension-panel.yxe-panel {
+  --yxe-bg: #202226; --yxe-card: rgba(255,255,255,.045); --yxe-border: rgba(255,255,255,.10);
+  --yxe-text: #e8eaed; --yxe-dim: #9aa0a6;
+  display: none !important;
+  position: fixed !important; z-index: 99999 !important;
+  width: 400px !important; max-width: calc(100vw - 16px) !important; height: auto !important;
+  margin: 0 !important; padding: 0 !important;
+  background: var(--yxe-bg) !important; color: var(--yxe-text) !important;
+  border: 1px solid var(--yxe-border) !important; border-radius: 16px !important;
+  box-shadow: 0 18px 48px rgba(0,0,0,.45) !important;
+  overflow: hidden !important; visibility: visible !important;
+}
+#extension-panel.yxe-panel.open { display: flex !important; flex-direction: column !important; }
+#extension-panel.yxe-panel.open > * { animation: yxeFade .16s ease-out; }
+@keyframes yxeFade { from { opacity: 0; } to { opacity: 1; } }
+
+body.light #extension-panel.yxe-panel {
+  --yxe-bg: #fff; --yxe-card: #f3f4f7; --yxe-border: #d5d7de; --yxe-text: #202124; --yxe-dim: #5d606a;
+  box-shadow: 0 14px 40px rgba(20,24,40,.18) !important;
+}
+
+.yxe-head { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 12px 10px 18px; }
+.yxe-title { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.yxe-count { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--yxe-card); color: var(--yxe-dim); }
+.yxe-icon-btn {
+  width: 30px; height: 30px; border: 0; border-radius: 8px; background: transparent; color: var(--yxe-dim);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.yxe-icon-btn:hover { background: var(--yxe-card); color: var(--yxe-text); }
+.yxe-icon-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+.yxe-body { flex: 0 0 auto; padding: 0 14px 4px; }
+.yxe-input {
+  width: 100%; min-width: 0; padding: 9px 12px; border-radius: 10px; font: inherit; font-size: 13px; outline: none;
+  border: 1px solid var(--yxe-border); background: var(--yxe-card); color: var(--yxe-text);
+}
+.yxe-input:focus { border-color: var(--accent, #8ab4f8); }
+.yxe-actions { display: grid; grid-template-columns: 1.6fr 1fr; gap: 8px; margin: 10px 0; }
+.yxe-primary, .yxe-secondary {
+  display: flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 12px;
+  border-radius: 10px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.yxe-primary { border: 0; background: var(--accent, #8ab4f8); color: #101114; }
+.yxe-primary:hover { filter: brightness(1.08); }
+.yxe-secondary { border: 1px solid var(--yxe-border); background: transparent; color: var(--yxe-text); }
+.yxe-secondary:hover { background: var(--yxe-card); }
+.yxe-secondary:disabled { opacity: .5; cursor: default; }
+.yxe-primary svg, .yxe-secondary svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.yxe-link { display: flex; gap: 8px; }
+.yxe-link .yxe-input { flex: 1; }
+.yxe-add { flex: 0 0 auto; }
+.yxe-status { min-height: 18px; margin: 6px 2px 2px; font-size: 12px; color: var(--yxe-dim); }
+.yxe-status.ok { color: #4ade80; }
+.yxe-status.err { color: #f87171; }
+body.light .yxe-status.ok { color: #15803d; }
+body.light .yxe-status.err { color: #b91c1c; }
+
+.yxe-list { flex: 1 1 auto; min-height: 90px; overflow-y: auto; padding: 4px 14px 12px; }
+.yxe-card { display: flex; align-items: flex-start; gap: 12px; padding: 12px; margin-top: 8px; border-radius: 12px; background: var(--yxe-card); border: 1px solid var(--yxe-border); }
+.yxe-ico {
+  flex: 0 0 40px; width: 40px; height: 40px; border-radius: 10px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;
+  background: rgba(138,180,248,.16); color: var(--accent, #8ab4f8);
+}
+.yxe-ico img { width: 100%; height: 100%; object-fit: contain; }
+.yxe-info { flex: 1; min-width: 0; }
+.yxe-name { display: flex; align-items: baseline; gap: 6px; font-size: 13.5px; font-weight: 600; min-width: 0; }
+.yxe-name-t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.yxe-ver { flex: 0 0 auto; font-size: 11px; font-weight: 400; color: var(--yxe-dim); }
+.yxe-desc {
+  margin-top: 2px; font-size: 12px; line-height: 1.4; color: var(--yxe-dim);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.yxe-del { flex: 0 0 auto; border: 0; border-radius: 8px; padding: 6px 10px; background: transparent; color: var(--yxe-dim); cursor: pointer; font-size: 12px; }
+.yxe-del:hover { background: rgba(248,113,113,.16); color: #f87171; }
+.yxe-del.confirm { background: #f87171; color: #fff; }
+.yxe-empty { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 10px 14px; text-align: center; }
+.yxe-empty-ico { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: var(--yxe-card); color: var(--yxe-dim); }
+.yxe-empty-ico svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.yxe-empty-t { font-size: 14px; font-weight: 600; margin-top: 6px; }
+.yxe-empty-s { font-size: 12px; color: var(--yxe-dim); margin-bottom: 8px; }
+.yxe-none { text-align: center; padding: 18px 0; }
+.yxe-foot { flex: 0 0 auto; padding: 9px 18px 12px; font-size: 11px; color: var(--yxe-dim); border-top: 1px solid var(--yxe-border); }
+
+/* YANTUX PLUS — VISUAL RENOVADO DO GERENCIADOR DE EXTENSOES */
+#extension-panel.yxe-panel {
+  width: 390px !important;
+  max-width: calc(100vw - 24px) !important;
+  padding: 18px !important;
+  gap: 0 !important;
+  color: #e8eaf0 !important;
+  background:
+    radial-gradient(ellipse at top right, rgba(139, 92, 246, .13), transparent 48%),
+    linear-gradient(145deg, #191b24, #111319 78%) !important;
+  border: 1px solid rgba(255,255,255,.11) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.48),
+              0 0 0 1px rgba(139,92,246,.05) !important;
+  backdrop-filter: blur(24px);
+  overflow: hidden;
+}
+
+#extension-panel.yxe-panel.open > * {
+  animation: yxExtAppear .2s ease-out both;
+}
+
+#extension-panel .panel-top {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+#extension-panel .panel-top span {
+  color: #f3f4f8 !important;
+  font-size: 17px !important;
+  font-weight: 750 !important;
+  letter-spacing: -.4px;
+}
+
+#extension-panel .panel-top button {
+  border-radius: 9px;
+  transition: background .18s, color .18s, transform .18s;
+}
+
+#extension-panel .panel-top button:hover {
+  background: rgba(255,255,255,.09);
+  color: #fff !important;
+}
+
+.yx-ext-install {
+  gap: 8px !important;
+  margin: 15px 0 6px !important;
+}
+
+.yx-ext-install input {
+  min-width: 0;
+  height: 40px;
+  padding: 0 12px !important;
+  color: #eef0f7 !important;
+  background: rgba(255,255,255,.045) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 11px !important;
+  outline: none;
+  transition: border-color .18s, background .18s, box-shadow .18s;
+}
+
+.yx-ext-install input:focus {
+  background: rgba(255,255,255,.07) !important;
+  border-color: #a78bfa !important;
+  box-shadow: 0 0 0 3px rgba(167,139,250,.13);
+}
+
+.yx-ext-install input::placeholder {
+  color: #777d8d;
+}
+
+.yx-ext-install button {
+  min-height: 40px;
+  padding: 0 14px !important;
+  color: #fff !important;
+  font-weight: 650;
+  background: linear-gradient(135deg, #8b5cf6, #6d4aff) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 11px !important;
+  box-shadow: 0 4px 15px rgba(109,74,255,.2);
+  transition: filter .18s, transform .18s, box-shadow .18s;
+}
+
+.yx-ext-install button:hover {
+  filter: brightness(1.13);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 20px rgba(109,74,255,.28);
+}
+
+.yx-ext-status {
+  min-height: 18px;
+  margin: 5px 2px 10px !important;
+  font-size: 12px !important;
+}
+
+.yx-ext-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 7px 0;
+  padding: 12px !important;
+  background: linear-gradient(120deg, rgba(255,255,255,.055), rgba(255,255,255,.025)) !important;
+  border: 1px solid rgba(255,255,255,.075) !important;
+  border-radius: 13px !important;
+  transition: background .18s, border-color .18s, transform .18s;
+}
+
+.yx-ext-row:hover {
+  background: rgba(255,255,255,.075) !important;
+  border-color: rgba(167,139,250,.28) !important;
+  transform: translateY(-1px);
+}
+
+.yx-ext-avatar {
+  display: flex;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  color: #ddd6fe !important;
+  font-size: 17px !important;
+  font-weight: 750;
+  background: linear-gradient(145deg, rgba(139,92,246,.25), rgba(99,102,241,.12)) !important;
+  border: 1px solid rgba(167,139,250,.22);
+  border-radius: 12px !important;
+}
+
+.yx-ext-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.yx-ext-name {
+  color: #f1f2f8 !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  letter-spacing: -.15px;
+}
+
+.yx-ext-meta {
+  margin-top: 4px;
+  color: #9298a9 !important;
+  font-size: 11px !important;
+}
+
+.yx-ext-del {
+  padding: 7px 10px !important;
+  color: #b7bdcb !important;
+  background: rgba(255,255,255,.045) !important;
+  border: 1px solid rgba(255,255,255,.09) !important;
+  border-radius: 9px !important;
+  transition: background .18s, color .18s, border-color .18s;
+}
+
+.yx-ext-del:hover {
+  color: #ff8b9b !important;
+  background: rgba(248,113,113,.12) !important;
+  border-color: rgba(248,113,113,.3) !important;
+}
+
+.yx-ext-del.confirm {
+  color: #fff !important;
+  background: #dc465d !important;
+  border-color: #f87171 !important;
+}
+
+.yx-ext-empty {
+  padding: 34px 14px !important;
+  color: #9298a9 !important;
+  line-height: 1.6;
+}
+
+#extension-panel #webstore-button,
+#extension-panel #install-extension {
+  min-height: 39px;
+  margin-top: 8px;
+  border-radius: 11px;
+  transition: background .18s, border-color .18s, transform .18s;
+}
+
+#extension-panel #webstore-button:hover,
+#extension-panel #install-extension:hover {
+  transform: translateY(-1px);
+}
+
+#extension-list {
+  min-height: 0;
+  padding-top: 4px;
+}
+
+@keyframes yxExtAppear {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Compatibilidade com o tema claro */
+body.light #extension-panel.yxe-panel {
+  color: #252638 !important;
+  background: linear-gradient(145deg, #fff, #f5f5fb) !important;
+  border-color: rgba(35,35,55,.12) !important;
+  box-shadow: 0 24px 65px rgba(25,25,45,.2) !important;
+}
+
+body.light #extension-panel .panel-top span,
+body.light .yx-ext-name {
+  color: #252638 !important;
+}
+
+body.light .yx-ext-install input {
+  color: #252638 !important;
+  background: #fff !important;
+  border-color: #dedee8 !important;
+}
+
+body.light .yx-ext-install input::placeholder {
+  color: #88899a;
+}
+
+body.light .yx-ext-row {
+  background: #fff !important;
+  border-color: #e8e7f0 !important;
+}
+
+body.light .yx-ext-row:hover {
+  background: #faf9ff !important;
+  border-color: #d4c7ff !important;
+}
+
+body.light .yx-ext-meta,
+body.light .yx-ext-status,
+body.light .yx-ext-empty {
+  color: #77788a !important;
+}
+
+body.light .yx-ext-del {
+  color: #68697b !important;
+  background: #f7f7fb !important;
+  border-color: #e6e5ee !important;
+}
+
+@media (max-width: 480px) {
+  #extension-panel.yxe-panel {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+    padding: 13px !important;
+  }
+
+  .yx-ext-row {
+    gap: 9px;
+    padding: 9px !important;
+  }
+
+  .yx-ext-avatar {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+
+/* Yantux Plus — gerenciador de extensões em tela cheia */
+#extension-panel.yxe-panel,
+#extension-panel {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-sizing: border-box !important;
+  z-index: 999999 !important;
+  overflow-y: auto !important;
+  padding: 28px clamp(18px, 5vw, 72px) !important;
+  background:
+    radial-gradient(ellipse at 85% 0%, rgba(138,180,248,.12), transparent 42%),
+    #202124 !important;
+  color: #e8eaed !important;
+}
+
+#extension-panel:not(.open) {
+  display: none !important;
+}
+
+#extension-panel.open {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+#extension-panel .panel-top {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 8px 0 22px !important;
+}
+
+#extension-panel .panel-top strong {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  letter-spacing: -.6px;
+}
+
+#extension-panel .panel-top span {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px !important;
+  color: #bdc1c6 !important;
+}
+
+#extension-panel .extension-actions,
+#extension-panel .yx-ext-install,
+#extension-panel .yx-ext-status,
+#extension-panel #extension-list {
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#extension-panel .extension-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#extension-panel #extension-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  align-content: start;
+  gap: 14px;
+  overflow: visible !important;
+}
+
+#extension-panel .yx-ext-row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 100px;
+  box-sizing: border-box;
+  gap: 16px;
+  padding: 20px !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  border-radius: 16px !important;
+  background: #292a2d !important;
+  transition: border-color .18s, background .18s, transform .18s;
+}
+
+#extension-panel .yx-ext-row:hover {
+  background: #303134 !important;
+  border-color: rgba(138,180,248,.5) !important;
+  transform: translateY(-2px);
+}
+
+#extension-panel .yx-ext-avatar {
+  flex: 0 0 52px;
+  width: 52px !important;
+  height: 52px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px !important;
+  font-size: 23px !important;
+  background: #3c4043 !important;
+}
+
+#extension-panel .yx-ext-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+#extension-panel .yx-ext-name {
+  font-size: 15px !important;
+  color: #f1f3f4 !important;
+}
+
+#extension-panel .yx-ext-meta {  margin-top: 5px;
+  font-size: 12px !important;
+  color: #bdc1c6 !important;
+}
+
+#extension-panel .yx-ext-del {
+  flex: 0 0 auto;
+  padding: 9px 12px !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+  border-radius: 10px !important;
+}
+
+#extension-panel .yx-ext-install input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px 15px !important;
+  border-radius: 12px !important;
+  background: #292a2d !important;
+  color: #e8eaed !important;
+}
+
+#extension-panel .yx-ext-install button,
+#extension-panel #webstore-button,
+#extension-panel #install-extension {
+  min-height: 42px;
+  padding: 10px 16px !important;
+  border-radius: 12px !important;
+}
+
+@media (max-width: 600px) {
+  #extension-panel.yxe-panel,
+  #extension-panel {
+    padding: 18px 14px !important;
+  }
+
+  #extension-panel .yx-ext-row {
+    padding: 14px !important;
+    gap: 10px;
+  }
+
+  #extension-panel .yx-ext-avatar {
+    flex-basis: 42px;
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+
+/* PY SIDEBAR: ícones no alto e alinhados à direita */
+#py-sidebar .py-sidebar-actions {
+  align-items: flex-end !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+#py-sidebar .py-sidebar-actions button {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* PYBROWSER SIDEBAR — POSIÇÃO FINAL DOS ÍCONES */
+#py-sidebar {
+  align-items: flex-end !important;
+  padding-top: 0 !important;
+  padding-right: 2px !important;
+}
+
+#py-sidebar .py-sidebar-header {
+  align-self: flex-end !important;
+}
+
+#py-sidebar .py-sidebar-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-end !important;
+  align-self: flex-end !important;
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+}
+
+#py-sidebar .py-sidebar-actions button {
+  align-self: flex-end !important;
+  margin-right: 0 !important;
+}
+
+
+/* ===== BARRA LATERAL: icones na ponta de cima + separador ===== */
+#py-sidebar { padding-top: 6px !important; }
+#py-sidebar .py-sidebar-header { display: none !important; }
+#py-sidebar .py-sidebar-actions { margin-top: 0 !important; padding-top: 0 !important; }
+
+#py-sidebar .py-sidebar-actions:not(:has(+ .py-sidebar-sep)) {
+  margin-bottom: 8px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .12) !important;
+}
+body.light #py-sidebar .py-sidebar-actions:not(:has(+ .py-sidebar-sep)) {
+  border-bottom-color: rgba(0, 0, 0, .12) !important;
+}
+
+/* ===== SEPARADOR: icones x sites fixados ===== */
+#py-sidebar .py-sidebar-sep { display: none !important; }
+
+#py-sidebar .py-sidebar-actions:not(:has(+ .py-sidebar-sep)),
+body.light #py-sidebar .py-sidebar-actions:not(:has(+ .py-sidebar-sep)) {
+  border-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#py-sidebar .py-sidebar-actions::after {
+  content: "";
+  display: block;
+  flex: 0 0 1px;
+  width: 24px;
+  height: 1px;
+  margin: 10px auto 6px;
+  background: rgba(255, 255, 255, .22);
+}
+body.light #py-sidebar .py-sidebar-actions::after {
+  background: rgba(0, 0, 0, .20);
+}
+
+/* YANTUX STUDIO — largura configurável da barra lateral */
+#browser {
+  grid-template-columns: var(--yc-sb-width, 52px) minmax(0, 1fr) !important;
+}
+
+#py-sidebar {
+  width: var(--yc-sb-width, 52px) !important;
+  min-width: var(--yc-sb-width, 52px) !important;
+  max-width: var(--yc-sb-width, 52px) !important;
+}
+
+
+
+
+/* Yantux: impedir seleção acidental na interface da Home */
+body #home,
+body #home *,
+body .home,
+body .home *,
+body #browser-home,
+body #browser-home * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+}
+
+body input,
+body textarea,
+body [contenteditable="true"],
+body .search-input {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
+/* ===== ABAS VERTICAIS (estilo Firefox) ===== */
+body {
+  --yxv-bg: #191a1c; --yxv-line: rgba(255,255,255,.09); --yxv-hover: rgba(255,255,255,.07);
+  --yxv-active: rgba(255,255,255,.12); --yxv-active-line: rgba(255,255,255,.14);
+  --yxv-text: #e8eaed; --yxv-dim: #9aa0a6;
+}
+body.light {
+  --yxv-bg: var(--l-tabs, #e1e4e9); --yxv-line: rgba(0,0,0,.10); --yxv-hover: rgba(0,0,0,.06);
+  --yxv-active: #fff; --yxv-active-line: rgba(0,0,0,.12);
+  --yxv-text: #202124; --yxv-dim: #5d606a;
+}
+
+#yx-pinned { display: none; }
+#yx-tab-resizer { display: none; }
+
+/* layout: a coluna de abas ocupa a celula das paginas (coluna 2, linha 3) */
+html body.yx-vtabs #browser { grid-template-rows: 0px 50px minmax(0, 1fr) !important; }
+html body.yx-vtabs #browser > #tabs {
+  grid-column: 2 !important; grid-row: 3 !important;
+  justify-self: start !important; align-self: stretch !important;
+  width: var(--py-tab-width, 260px) !important; height: 100% !important; min-height: 0 !important;
+  display: flex !important; flex-direction: column !important; align-items: stretch !important;
+  gap: 6px !important; padding: 8px !important; box-sizing: border-box !important;
+  position: relative !important; z-index: 3 !important; overflow: hidden !important;
+  background: var(--yxv-bg) !important; border-right: 1px solid var(--yxv-line) !important;
+}
+html body.yx-vtabs #browser > #webviews { grid-column: 2 !important; grid-row: 3 !important; }
+body.yx-vtabs #webviews { margin-left: var(--py-tab-width, 260px) !important; }
+html body:not(.yx-vtabs) #browser:has(#py-sidebar.yx-right) > #tabs { grid-column: 1 !important; }
+html body.yx-vtabs #browser:has(#py-sidebar.yx-right) > #tabs,
+html body.yx-vtabs #browser:has(#py-sidebar.yx-right) > #webviews { grid-column: 1 !important; }
+
+/* alca de redimensionar */
+body.yx-vtabs #yx-tab-resizer {
+  display: block; position: absolute; top: 0; right: 0; width: 6px; height: 100%;
+  cursor: col-resize; z-index: 6; background: transparent;
+}
+body.yx-vtabs #yx-tab-resizer::after {
+  content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 2px;
+  background: var(--accent, #8ab4f8); opacity: 0; transition: opacity .12s;
+}
+body.yx-vtabs #yx-tab-resizer:hover::after, body.yx-resizing #yx-tab-resizer::after { opacity: .9; }
+body.yx-resizing, body.yx-resizing * { user-select: none !important; cursor: col-resize !important; }
+body.yx-resizing #webviews { pointer-events: none !important; }
+
+/* botao de nova aba vira a primeira linha */
+body.yx-vtabs #new-tab {
+  order: -1; flex: 0 0 34px !important; width: 100% !important; height: 34px !important;
+  display: flex !important; align-items: center !important; justify-content: flex-start !important;
+  gap: 8px; padding: 0 10px !important; border-radius: 8px !important; color: var(--yxv-dim) !important;
+}
+body.yx-vtabs #new-tab svg { width: 16px; height: 16px; flex: 0 0 16px; }
+body.yx-vtabs #new-tab::after { content: "Nova aba"; font-size: 13px; }
+body.yx-vtabs #new-tab:hover { background: var(--yxv-hover) !important; color: var(--yxv-text) !important; }
+
+/* grade de abas fixadas */
+body.yx-vtabs #yx-pinned.has-pins {
+  display: grid; grid-template-columns: repeat(auto-fill, 38px); gap: 6px;
+  padding: 2px 0 8px; border-bottom: 1px solid var(--yxv-line); flex: 0 0 auto;
+}
+body:not(.yx-vtabs) #yx-pinned.has-pins { display: flex; gap: 3px; align-items: flex-end; height: 100%; margin-right: 6px; }
+#yx-pinned .tab {
+  width: 38px !important; min-width: 38px !important; max-width: 38px !important;
+  height: 38px !important; min-height: 38px !important; flex: 0 0 38px !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  padding: 0 !important; border-radius: 10px !important;
+}
+#yx-pinned .tab .tab-title, #yx-pinned .tab .tab-close { display: none !important; }
+#yx-pinned .tab .tab-icon { margin: 0 !important; }
+body:not(.yx-vtabs) #yx-pinned .tab { height: 32px !important; min-height: 32px !important; width: 34px !important; min-width: 34px !important; flex-basis: 34px !important; }
+
+/* lista de abas */
+body.yx-vtabs #tab-list {
+  flex: 1 1 auto !important; min-height: 0 !important; width: 100% !important; height: auto !important;
+  display: flex !important; flex-direction: column !important; align-items: stretch !important;
+  gap: 2px !important; overflow-x: hidden !important; overflow-y: auto !important; scrollbar-width: thin;
+}
+body.yx-vtabs #tab-list .tab {
+  width: 100% !important; min-width: 0 !important; max-width: none !important;
+  height: 34px !important; min-height: 34px !important; flex: 0 0 34px !important;
+  display: flex !important; align-items: center !important; gap: 9px !important;
+  padding: 0 6px 0 10px !important; box-sizing: border-box !important;
+  border-radius: 8px !important; border: 1px solid transparent !important;
+  background: transparent !important; box-shadow: none !important;
+}
+body.yx-vtabs .tab:hover { background: var(--yxv-hover) !important; }
+body.yx-vtabs .tab.active { background: var(--yxv-active) !important; border-color: var(--yxv-active-line) !important; }
+body.yx-vtabs #tab-list .tab-icon { flex: 0 0 16px; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; }
+body.yx-vtabs #tab-list .tab-title {
+  flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 13px !important; color: var(--yxv-dim) !important; text-align: left;
+}
+body.yx-vtabs #tab-list .tab.active .tab-title { color: var(--yxv-text) !important; }
+body.yx-vtabs #tab-list .tab-close { flex: 0 0 22px; opacity: 0; transition: opacity .12s; }
+body.yx-vtabs #tab-list .tab:hover .tab-close, body.yx-vtabs #tab-list .tab.active .tab-close { opacity: 1; }
+.tab.yx-hide { display: none !important; }
+body.yx-vtabs .tab.dragging { opacity: .75; box-shadow: 0 6px 18px rgba(0,0,0,.3) !important; }
+
+/* grupos */
+.yx-group {
+  display: flex; align-items: center; gap: 8px; flex: 0 0 28px; height: 28px; margin-top: 6px;
+  padding: 0 8px; border-radius: 8px; cursor: pointer; user-select: none;
+  font-size: 12px; font-weight: 600; color: var(--yxv-text);
+}
+.yx-group:hover { background: var(--yxv-hover); }
+.yx-group-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gc, #8ab4f8); flex: 0 0 10px; }
+.yx-group-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.yx-group-count { font-weight: 400; font-size: 11px; color: var(--yxv-dim); }
+.yx-group-chev { width: 14px; height: 14px; fill: none; stroke: var(--yxv-dim); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .15s; }
+.yx-group.collapsed .yx-group-chev { transform: rotate(-90deg); }
+body.yx-vtabs #tab-list .tab[data-group] { box-shadow: inset 3px 0 0 var(--gc, #8ab4f8) !important; padding-left: 12px !important; }
+body:not(.yx-vtabs) .yx-group { display: none; }
+body:not(.yx-vtabs) #tab-list .tab[data-group] { box-shadow: inset 0 2px 0 var(--gc, #8ab4f8) !important; }
+
+/* menus e dialogo */
+.yx-menu-ov, .yx-dlg-ov { position: fixed; inset: 0; z-index: 2147483000; background: transparent; }
+.yx-dlg-ov { background: rgba(0,0,0,.28); display: flex; align-items: flex-start; justify-content: center; padding-top: 18vh; }
+.yx-menu, .yx-dlg {
+  --m-bg: #202226; --m-text: #e8eaed; --m-dim: #9aa0a6; --m-line: rgba(255,255,255,.10); --m-hover: rgba(138,180,248,.18);
+  background: var(--m-bg); color: var(--m-text); border: 1px solid var(--m-line); border-radius: 12px;
+  box-shadow: 0 14px 40px rgba(0,0,0,.45); font: 13px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+body.light .yx-menu, body.light .yx-dlg {
+  --m-bg: #fff; --m-text: #202124; --m-dim: #5d606a; --m-line: #d5d7de; --m-hover: #e8eefc;
+  box-shadow: 0 10px 32px rgba(20,24,40,.18);
+}
+.yx-menu { position: fixed; min-width: 220px; max-width: 320px; padding: 6px; }
+.yx-menu-item {
+  display: flex; align-items: center; gap: 9px; width: 100%; text-align: left; padding: 8px 12px;
+  border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; cursor: pointer;
+}
+.yx-menu-item:hover:not(:disabled) { background: var(--m-hover); }
+.yx-menu-item:disabled { color: var(--m-dim); cursor: default; }
+.yx-menu-item.danger { color: #f87171; }
+body.light .yx-menu-item.danger { color: #b91c1c; }
+.yx-menu-item span:not(.yx-menu-dot) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.yx-menu-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 10px; }
+.yx-menu-sep { height: 1px; margin: 5px 6px; background: var(--m-line); }
+.yx-dlg { width: 320px; padding: 16px; }
+.yx-dlg-title { display: block; margin-bottom: 12px; font-size: 14px; }
+.yx-dlg-input {
+  width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 10px; outline: none; font: inherit;
+  border: 1px solid var(--m-line); background: rgba(127,127,127,.10); color: inherit;
+}
+.yx-dlg-input:focus { border-color: var(--accent, #8ab4f8); }
+.yx-dlg-sw { display: flex; gap: 8px; margin: 14px 0; }
+.yx-dlg-c { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; }
+.yx-dlg-c.on { border-color: var(--m-text); box-shadow: 0 0 0 2px var(--m-bg) inset; }
+.yx-dlg-act { display: flex; justify-content: flex-end; gap: 8px; }
+.yx-dlg-btn { padding: 8px 14px; border-radius: 9px; border: 1px solid var(--m-line); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.yx-dlg-btn.primary { background: var(--accent, #8ab4f8); border-color: transparent; color: #101114; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .yx-group-chev, #new-tab, #yx-tab-resizer::after { transition: none !important; } }
+
+
+/* YX: botão de alternância integrado à toolbar */
+#toolbar #yx-vtabs-toggle {
+  position: relative !important;
+  inset: auto !important;
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  min-width: 34px !important;
+  height: 34px !important;
+  margin: 0 6px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  border: 1px solid var(--yxv-line, rgba(255,255,255,.14)) !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: inherit !important;
+  font: 18px/1 system-ui, sans-serif !important;
+  cursor: pointer !important;
+  transition: background .15s, border-color .15s !important;
+}
+#toolbar #yx-vtabs-toggle:hover {
+  background: var(--yxv-hover, rgba(255,255,255,.09)) !important;
+  border-color: var(--accent, #8ab4f8) !important;
+}
+#toolbar #yx-vtabs-toggle:focus-visible {
+  outline: 2px solid var(--accent, #8ab4f8) !important;
+  outline-offset: 2px !important;
+}
+
+/* Yantux — botão de abas compacto com vidro suave */
+#toolbar #yx-vtabs-toggle {
+  position: relative !important;
+  margin-left: 4px !important;
+  margin-right: 7px !important;
+  flex: 0 0 29px !important;
+  width: 29px !important;
+  min-width: 29px !important;
+  height: 29px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 8px !important;
+  background: rgba(255,255,255,.045) !important;
+  color: inherit !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035) !important;
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  transition: background .18s ease, border-color .18s ease,
+              transform .18s ease !important;
+}
+
+#toolbar #yx-vtabs-toggle:hover {
+  background: rgba(255,255,255,.11) !important;
+  border-color: rgba(255,255,255,.22) !important;
+}
+
+#toolbar #yx-vtabs-toggle:active {
+  transform: scale(.94);
+}
+
+
+/* YANTUX — abas verticais à direita: vidro */
+html body.yx-vtabs #browser {
+  grid-template-columns: minmax(0, 1fr) 220px !important;
+  grid-template-rows: 0px 50px minmax(0, 1fr) !important;
+}
+html body.yx-vtabs #browser > #tabs {
+  grid-column: 2 !important;
+  grid-row: 3 !important;
+  width: 220px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  justify-self: stretch !important;
+  align-self: stretch !important;
+  background: rgba(28, 29, 32, .66) !important;
+  border-left: 1px solid rgba(255,255,255,.12) !important;
+  border-right: 0 !important;
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+html body.yx-vtabs #browser > #webviews {
+  grid-column: 1 !important;
+  grid-row: 3 !important;
+  min-width: 0 !important;
+}
+body.yx-vtabs #webviews {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+body.yx-vtabs #yx-tab-resizer {
+  left: 0 !important;
+  right: auto !important;
+}
+body.yx-vtabs #yx-tab-resizer::after {
+  left: 0 !important;
+  right: auto !important;
+}
+
+/* Yantux: largura das abas verticais ajustável pelo arraste */
+html body.yx-vtabs #browser {
+  grid-template-columns: minmax(0, 1fr) var(--py-tab-width, 220px) !important;
+}
+
+html body.yx-vtabs #browser > #tabs {
+  width: var(--py-tab-width, 220px) !important;
+  min-width: 140px !important;
+  max-width: 420px !important;
+}
+
+html body.yx-vtabs #browser > #webviews {
+  min-width: 0 !important;
+}
+
+body.yx-vtabs #yx-tab-resizer {
+  position: absolute !important;
+  left: 0 !important;
+  right: auto !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 8px !important;
+  height: 100% !important;
+  cursor: col-resize !important;
+  touch-action: none !important;
+  z-index: 9999 !important;
+}
+
+/* YANTUX — abas verticais bem compactas */
+html body.yx-vtabs #browser {
+  grid-template-columns: minmax(0, 1fr) var(--py-tab-width, 180px) !important;
+}
+
+html body.yx-vtabs #browser > #tabs {
+  width: var(--py-tab-width, 180px) !important;
+  min-width: 140px !important;
+  max-width: 280px !important;
+}
+
+html body.yx-vtabs #yx-tab-resizer {
+  left: 0 !important;
+  right: auto !important;
+  width: 8px !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+/* YANTUX — abas verticais bem compactas */
+html body.yx-vtabs #browser {
+  grid-template-columns: minmax(0, 1fr) var(--py-tab-width, 180px) !important;
+}
+
+html body.yx-vtabs #browser > #tabs {
+  width: var(--py-tab-width, 180px) !important;
+  min-width: 140px !important;
+  max-width: 280px !important;
+}
+
+html body.yx-vtabs #yx-tab-resizer {
+  left: 0 !important;
+  right: auto !important;
+  width: 8px !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+}
+
+/* ===== ABAS VERTICAIS v2 (lado direito, limites de largura) ===== */
+html body.yx-vtabs #browser > #tabs { max-width: 50vw !important; }
+html body.yx-vtabs.yx-tabs-right #browser > #tabs {
+  justify-self: end !important; border-right: 0 !important; border-left: 1px solid var(--yxv-line) !important;
+}
+body.yx-vtabs.yx-tabs-right #webviews { margin-left: 0 !important; margin-right: var(--py-tab-width, 260px) !important; }
+body.yx-vtabs #yx-tab-resizer.left-edge { right: auto; left: 0; }
+body.yx-vtabs #yx-tab-resizer.left-edge::after { right: auto; left: 0; }
+html body #tab-list .tab.yx-hide { display: none !important; }
+html body.yx-vtabs #tab-list .tab:hover, html body.yx-vtabs #yx-pinned .tab:hover { background: var(--yxv-hover) !important; }
+html body.yx-vtabs #tab-list .tab.active, html body.yx-vtabs #yx-pinned .tab.active {
+  background: var(--yxv-active) !important; border-color: var(--yxv-active-line) !important;
+}
+
+/* ===== ABAS VERTICAIS v3 (compacto) ===== */
+#yx-vt-toggle { display: none; }
+body.yx-vtabs #yx-vt-toggle {
+  display: flex; position: absolute; top: 8px; right: 8px; width: 28px; height: 34px; z-index: 5;
+  align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 8px;
+  background: transparent; color: var(--yxv-dim); cursor: pointer;
+}
+body.yx-vtabs #yx-vt-toggle:hover { background: var(--yxv-hover); color: var(--yxv-text); }
+#yx-vt-toggle svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .15s; }
+body.yx-vcompact #yx-vt-toggle svg { transform: rotate(180deg); }
+body.yx-tabs-right #yx-vt-toggle svg { transform: rotate(180deg); }
+body.yx-tabs-right.yx-vcompact #yx-vt-toggle svg { transform: none; }
+body.yx-vtabs #yx-vt-toggle { right: 8px; }
+body.yx-tabs-right.yx-vtabs #yx-vt-toggle { right: auto; left: 8px; }
+
+/* coluna estreita (so icones); abre por cima da pagina ao passar o mouse */
+html body.yx-vtabs.yx-vcompact #browser > #tabs {
+  width: 52px !important; padding: 8px 6px !important; transition: width .12s ease;
+}
+html body.yx-vtabs.yx-vcompact #browser > #tabs:hover,
+html body.yx-vtabs.yx-vcompact.yx-menu-open #browser > #tabs {
+  width: var(--py-tab-width, 260px) !important; padding: 8px !important;
+  transition: width .16s ease .12s; box-shadow: 8px 0 28px rgba(0,0,0,.35);
+}
+html body.yx-vtabs.yx-vcompact.yx-tabs-right #browser > #tabs:hover,
+html body.yx-vtabs.yx-vcompact.yx-tabs-right.yx-menu-open #browser > #tabs { box-shadow: -8px 0 28px rgba(0,0,0,.35); }
+html body.yx-vtabs.yx-vcompact #webviews { margin-left: 52px !important; }
+html body.yx-vtabs.yx-vcompact.yx-tabs-right #webviews { margin-left: 0 !important; margin-right: 52px !important; }
+html body.yx-vtabs.yx-vcompact #yx-tab-resizer { display: none !important; }
+
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) #tab-list .tab-title,
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) #tab-list .tab-close,
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) #new-tab::after,
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) #yx-vt-toggle,
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) .yx-group-name,
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) .yx-group-count,
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) .yx-group-chev { display: none !important; }
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) #tab-list .tab { justify-content: center !important; padding: 0 !important; gap: 0 !important; }
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) #new-tab { justify-content: center !important; padding: 0 !important; }
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) .yx-group { justify-content: center; padding: 0; }
+html body.yx-vtabs.yx-vcompact:not(.yx-menu-open) #tabs:not(:hover) #yx-pinned.has-pins { justify-content: center; }
+
+/* linhas mais finas */
+html body.yx-vtabs.yx-vdense #tab-list { gap: 1px !important; }
+html body.yx-vtabs.yx-vdense #tab-list .tab { height: 28px !important; min-height: 28px !important; flex-basis: 28px !important; }
+html body.yx-vtabs.yx-vdense #tab-list .tab-title { font-size: 12px !important; }
+html body.yx-vtabs.yx-vdense #new-tab { height: 28px !important; flex-basis: 28px !important; }
+html body.yx-vtabs.yx-vdense .yx-group { height: 24px; flex-basis: 24px; margin-top: 4px; }
+@media (prefers-reduced-motion: reduce) { html body.yx-vtabs #browser > #tabs { transition: none !important; } }
