@@ -2620,10 +2620,29 @@ addShortcut.addEventListener('click', () => {
     body.style.backgroundAttachment = settings.wallpaper ? 'fixed' : '';
 
     document.querySelectorAll('.search,.shortcut').forEach(el => {
-      el.style.backgroundColor = color(settings.card);
+      const opacity = Math.max(20, Math.min(100, Number(settings.opacity) || 100)) / 100;
+      el.style.backgroundColor = settings.glass
+        ? color(settings.card) + (opacity < 1 ? '' : '')
+        : color(settings.card);
       el.style.borderColor = color(settings.border);
       el.style.color = color(settings.text);
-      el.style.opacity = String(Math.max(20,Math.min(100,Number(settings.opacity)||100))/100);
+      el.style.opacity = String(opacity);
+      // O efeito de vidro precisa ser aplicado inline também: os estilos inline
+      // acima têm prioridade sobre a regra CSS de .yc-glass.
+      el.style.backdropFilter = settings.glass ? 'blur(16px)' : '';
+      el.style.webkitBackdropFilter = settings.glass ? 'blur(16px)' : '';
+      if (settings.glass) {
+        const rgb = hex => {
+          const value = color(hex).slice(1);
+          return [
+            parseInt(value.slice(0, 2), 16),
+            parseInt(value.slice(2, 4), 16),
+            parseInt(value.slice(4, 6), 16)
+          ].join(',');
+        };
+        el.style.backgroundColor = 'rgba(' + rgb(settings.card) + ',' + Math.min(0.82, opacity * 0.72) + ')';
+        el.style.borderColor = 'rgba(' + rgb(settings.border) + ',0.68)';
+      }
     });
 
     const search = $('search-form');
