@@ -997,7 +997,8 @@ function renderHistory() {
     const remove = document.createElement('button');
     remove.type = 'button';
     remove.className = 'library-icon-button';
-    remove.title = 'Remover do histórico';    remove.setAttribute('aria-label', 'Remover do histórico');
+    remove.title = 'Remover do histórico';
+    remove.setAttribute('aria-label', 'Remover do histórico');
     remove.textContent = '×';
     remove.addEventListener('click', event => {
       event.stopPropagation();
@@ -1401,7 +1402,14 @@ createTab();
     shortcutGap: 14,
     shortcutIconSize: 32,
     shortcutLabels: true,
-    shortcutColumns: 'auto'
+    shortcutColumns: 'auto',
+    tbHeight:48,tbPadding:10,tbGap:6,tbPosition:'normal',tbShadow:true,
+    tbAddressHeight:34,tbAddressWidth:100,tbAddressRadius:12,tbAddressMargin:4,tbAddressFont:13,
+    tbButtonSize:32,tbButtonRadius:10,tbIconSize:17,tbButtonStyle:'minimal',
+    tbBg:'#202124',tbFg:'#c4c9d2',tbAddressBg:'#303134',tbAddressFg:'#e8eaed',tbBorder:'#45474d',tbFocus:'#8ab4f8',tbHover:'#3b4049',
+    tbOpacity:92,tbAddressOpacity:94,tbBlur:16,tbBorderWidth:1,tbGlass:true,tbAddressShadow:12,tbFocusWidth:2,
+    tbHideAddress:false,tbHideMenu:false,tbHideSecurity:false,
+    toolbarBack:true,toolbarForward:true,toolbarReload:true,toolbarExtensions:true,toolbarStar:true,toolbarSidebar:true,toolbarZoom:true
   };
 
   let settings = { ...defaults };
@@ -1492,6 +1500,27 @@ if (settings.wallpaper) {
       body.style.backgroundImage = '';
       body.classList.remove('py-custom-wallpaper');
     }
+
+    // YANTUX STUDIO — personalização completa da toolbar real.
+    const safeColor = (value, fallback) => /^#[0-9a-f]{6}$/i.test(String(value || '')) ? value : fallback;
+    const num = (value, min, max, fallback) => Math.max(min, Math.min(max, Number.isFinite(Number(value)) ? Number(value) : fallback));
+    const toolbarStyleId = 'yantux-studio-toolbar-style';
+    let toolbarStyle = document.getElementById(toolbarStyleId);
+    if (!toolbarStyle) { toolbarStyle = document.createElement('style'); toolbarStyle.id = toolbarStyleId; document.head.appendChild(toolbarStyle); }
+    const tb = settings;
+    const bg = safeColor(tb.tbBg, '#202124'), fg = safeColor(tb.tbFg, '#c4c9d2');
+    const addrBg = safeColor(tb.tbAddressBg, '#303134'), addrFg = safeColor(tb.tbAddressFg, '#e8eaed');
+    const border = safeColor(tb.tbBorder, '#45474d'), focus = safeColor(tb.tbFocus, '#8ab4f8'), hover = safeColor(tb.tbHover, '#3b4049');
+    const glass = Boolean(tb.tbGlass);
+    toolbarStyle.textContent = `
+      #toolbar{height:${num(tb.tbHeight,36,76,48)}px!important;min-height:${num(tb.tbHeight,36,76,48)}px!important;padding:4px ${num(tb.tbPadding,0,28,10)}px!important;gap:${num(tb.tbGap,0,18,6)}px!important;background:rgba(${parseInt(bg.slice(1,3),16)},${parseInt(bg.slice(3,5),16)},${parseInt(bg.slice(5,7),16)},${num(tb.tbOpacity,35,100,92)/100})!important;backdrop-filter:${glass ? `blur(${num(tb.tbBlur,0,30,16)}px) saturate(140%)` : 'none'}!important;border-bottom:${num(tb.tbBorderWidth,0,3,1)}px solid ${border}!important;box-shadow:${tb.tbShadow ? '0 5px 18px rgba(0,0,0,.18)' : 'none'}!important;position:relative!important;z-index:20!important}
+      #address-container{height:${num(tb.tbAddressHeight,28,58,34)}px!important;max-width:${num(tb.tbAddressWidth,40,100,100)}%!important;margin-left:${num(tb.tbAddressMargin,0,24,4)}px!important;margin-right:${num(tb.tbAddressMargin,0,24,4)}px!important;border-radius:${num(tb.tbAddressRadius,0,30,12)}px!important;background:rgba(${parseInt(addrBg.slice(1,3),16)},${parseInt(addrBg.slice(3,5),16)},${parseInt(addrBg.slice(5,7),16)},${num(tb.tbAddressOpacity,35,100,94)/100})!important;border:${num(tb.tbBorderWidth,0,3,1)}px solid ${border}!important;box-shadow:0 ${Math.round(num(tb.tbAddressShadow,0,32,12)/3)}px ${num(tb.tbAddressShadow,0,32,12)}px rgba(0,0,0,.18)!important;backdrop-filter:${glass ? `blur(${num(tb.tbBlur,0,30,16)}px)` : 'none'}!important;${tb.tbPosition === 'center' ? 'position:absolute!important;left:50%!important;transform:translateX(-50%)!important;width:48%!important;flex:none!important;' : ''}}
+      #address{font-size:${num(tb.tbAddressFont,11,18,13)}px!important;color:${addrFg}!important}#address::placeholder{color:${fg}aa!important}#address-container:focus-within{border-color:${focus}!important;box-shadow:0 0 0 ${num(tb.tbFocusWidth,0,4,2)}px ${focus}55,0 4px ${num(tb.tbAddressShadow,0,32,12)}px rgba(0,0,0,.16)!important}
+      #toolbar .nav-buttons button,#toolbar button#menu,#toolbar #extensions,#toolbar #star,#toolbar #py-sidebar-toolbar,#toolbar #toolbar-zoom{width:${num(tb.tbButtonSize,24,48,32)}px!important;height:${num(tb.tbButtonSize,24,48,32)}px!important;min-width:${num(tb.tbButtonSize,24,48,32)}px!important;border-radius:${num(tb.tbButtonRadius,0,24,10)}px!important;color:${fg}!important;${tb.tbButtonStyle === 'filled' ? `background:${hover}!important;` : ''}${tb.tbButtonStyle === 'outlined' ? `border:1px solid ${border}!important;` : 'border:1px solid transparent!important;'}}
+      #toolbar button:hover{background:${hover}!important;color:${addrFg}!important}#toolbar button svg,#toolbar button img{width:${num(tb.tbIconSize,12,26,17)}px!important;height:${num(tb.tbIconSize,12,26,17)}px!important;max-width:${num(tb.tbIconSize,12,26,17)}px!important;max-height:${num(tb.tbIconSize,12,26,17)}px!important}
+      ${tb.tbHideAddress ? '#address-container{display:none!important}' : ''}${tb.tbHideMenu ? '#menu{display:none!important}' : ''}${tb.tbHideSecurity ? '#security{display:none!important}' : ''}
+      ${tb.toolbarBack === false ? '#back{display:none!important}' : ''}${tb.toolbarForward === false ? '#forward{display:none!important}' : ''}${tb.toolbarReload === false ? '#reload{display:none!important}' : ''}${tb.toolbarExtensions === false ? '#extensions{display:none!important}' : ''}${tb.toolbarStar === false ? '#star{display:none!important}' : ''}${tb.toolbarSidebar === false ? '#py-sidebar-toolbar{display:none!important}' : ''}${tb.toolbarZoom === false ? '#toolbar-zoom{display:none!important}' : ''}
+    `;
 
     updateControls();
 
@@ -1996,7 +2025,8 @@ function pyAskSiteUrl(callback) {
 
     if (event.key === 'Escape') {
       cancel.click();
-    }  });
+    }
+  });
 }
 
 function setupPySidebar() {
@@ -2420,5 +2450,6 @@ window.pybrowser?.onSidebarIconsTopRight?.((enabled) => {
 window.pybrowser?.onSidebarIconsTopRight?.((enabled) => {
   applySidebarIconsTopRight(Boolean(enabled));
 });
+
 
 

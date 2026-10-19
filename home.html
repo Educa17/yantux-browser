@@ -997,7 +997,8 @@ body.py-no-animations .clock {
 }
 
 #yantux-customizer hr {
-  border: 0;  border-top: 1px solid #4c566a;
+  border: 0;
+  border-top: 1px solid #4c566a;
 }
 
 @media (max-width: 480px) {
@@ -1471,6 +1472,15 @@ body.yc-drag-enabled .yc-draggable:active { cursor: grabbing; }
 </style>
 
   <link rel="icon" type="image/png" href="build/icon.png">
+
+<style id="yc-toolbar-studio-style">
+#yantux-customizer .yc-toolbar-panel{margin:14px 0 24px;padding:16px;border:1px solid var(--yc-border,#42454d);border-radius:18px;background:linear-gradient(145deg,rgba(35,39,47,.96),rgba(23,25,31,.96));box-shadow:0 18px 48px rgba(0,0,0,.18)}
+#yantux-customizer .yc-toolbar-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}#yantux-customizer .yc-toolbar-heading h3{margin:4px 0 5px;font-size:20px}#yantux-customizer .yc-toolbar-heading p{margin:0;color:#aeb6c4;font-size:12px;line-height:1.5}.yc-kicker{font-size:10px;letter-spacing:.16em;color:#9db8e8;font-weight:800}.yc-toolbar-chip{border:1px solid #527e6b;background:#1d3b30;color:#9ce0bc;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:800;letter-spacing:.12em}
+#yantux-customizer .yc-toolbar-presets{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}#yantux-customizer .yc-toolbar-presets button{border:1px solid #454b56;border-radius:10px;background:#292e37;color:#e7ebf2;padding:8px 12px;cursor:pointer}#yantux-customizer .yc-toolbar-presets button:hover{border-color:#8ab4f8;background:#303b4c}
+#yantux-customizer .yc-toolbar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#yantux-customizer .yc-toolbar-card{min-width:0;padding:13px;border:1px solid rgba(148,158,177,.17);border-radius:14px;background:rgba(14,16,21,.38)}#yantux-customizer .yc-toolbar-card h4{margin:0 0 13px;font-size:13px;color:#f0f3f8}#yantux-customizer .yc-toolbar-card label:not(.yc-check){display:flex;align-items:center;justify-content:space-between;gap:8px;margin:11px 0 5px;font-size:11px;color:#c9d0dc}#yantux-customizer .yc-toolbar-card output{color:#9db8e8;font-variant-numeric:tabular-nums;white-space:nowrap}#yantux-customizer .yc-toolbar-card input[type=range]{width:100%;accent-color:#8ab4f8;margin:0 0 5px}#yantux-customizer .yc-toolbar-card select{width:100%;padding:8px;border:1px solid #454b56;border-radius:9px;background:#20242c;color:#e8edf5}#yantux-customizer .yc-toolbar-colors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}#yantux-customizer .yc-toolbar-colors label{display:flex;flex-direction:column;align-items:flex-start!important;gap:5px!important;margin:0!important}#yantux-customizer .yc-toolbar-colors input{width:100%;height:32px;padding:2px;border:1px solid #454b56;border-radius:8px;background:#20242c}#yantux-customizer .yc-toolbar-card .yc-check{display:flex;align-items:center;gap:8px;margin:9px 0;color:#c9d0dc;font-size:11px}#yantux-customizer .yc-toolbar-card .yc-check input{accent-color:#8ab4f8}#yantux-customizer .yc-toolbar-panel>.yc-note{margin:13px 0 0;font-size:11px;color:#929baa;line-height:1.5}
+@media(max-width:620px){#yantux-customizer .yc-toolbar-grid{grid-template-columns:1fr}#yantux-customizer .yc-toolbar-panel{padding:11px}}
+</style>
+
 </head>
 
 <body>
@@ -1645,35 +1655,53 @@ body.yc-drag-enabled .yc-draggable:active { cursor: grabbing; }
   <label class="yc-check"><input id="yc-drag-mode" type="checkbox"> Permitir arrastar elementos</label>
   <button id="yc-reset-positions" type="button">Restaurar posições</button>
   
-  <h3>Toolbar</h3>
-  <label class="yc-check">
-    <input id="yc-toolbar-back" type="checkbox" checked>
-    Mostrar botão Voltar
-  </label>
-  <label class="yc-check">
-    <input id="yc-toolbar-forward" type="checkbox" checked>
-    Mostrar botão Avançar
-  </label>
-  <label class="yc-check">
-    <input id="yc-toolbar-reload" type="checkbox" checked>
-    Mostrar botão Recarregar
-  </label>
-  <label class="yc-check">
-    <input id="yc-toolbar-extensions" type="checkbox" checked>
-    Mostrar botão Extensões
-  </label>
-  <label class="yc-check">
-    <input id="yc-toolbar-star" type="checkbox" checked>
-    Mostrar botão Favoritos
-  </label>
-  <label class="yc-check">
-    <input id="yc-toolbar-sidebar" type="checkbox" checked>
-    Mostrar botão Barra lateral
-  </label>
-  <label class="yc-check">
-    <input id="yc-toolbar-zoom" type="checkbox" checked>
-    Mostrar controles de zoom
-  </label>
+  <section class="yc-toolbar-panel" aria-label="Configurações completas da Toolbar">
+    <div class="yc-toolbar-heading"><div><span class="yc-kicker">INTERFACE DO NAVEGADOR</span><h3>Toolbar · Barra do navegador</h3><p>Personalize a barra real do Yantux. As alterações são salvas automaticamente.</p></div><span class="yc-toolbar-chip">LIVE</span></div>
+    <div class="yc-toolbar-presets">
+      <button type="button" data-toolbar-preset="glass">Vidro</button><button type="button" data-toolbar-preset="compact">Compacta</button><button type="button" data-toolbar-preset="soft">Suave</button><button type="button" data-toolbar-preset="reset">Padrão</button>
+    </div>
+    <div class="yc-toolbar-grid">
+      <div class="yc-toolbar-card"><h4>Layout e dimensões</h4>
+        <label for="yc-tb-height">Altura da toolbar <output data-for="yc-tb-height">48 px</output></label><input id="yc-tb-height" type="range" min="36" max="76" value="48">
+        <label for="yc-tb-padding">Espaço nas laterais <output data-for="yc-tb-padding">10 px</output></label><input id="yc-tb-padding" type="range" min="0" max="28" value="10">
+        <label for="yc-tb-gap">Espaço entre itens <output data-for="yc-tb-gap">6 px</output></label><input id="yc-tb-gap" type="range" min="0" max="18" value="6">
+        <label for="yc-tb-position">Posição da barra</label><select id="yc-tb-position"><option value="normal">Normal</option><option value="floating">Flutuante</option><option value="center">Endereço centralizado</option></select>
+        <label class="yc-check"><input id="yc-tb-shadow" type="checkbox" checked> Sombra discreta</label>
+      </div>
+      <div class="yc-toolbar-card"><h4>Barra de endereço e pesquisa</h4>
+        <label for="yc-tb-address-height">Altura <output data-for="yc-tb-address-height">34 px</output></label><input id="yc-tb-address-height" type="range" min="28" max="58" value="34">
+        <label for="yc-tb-address-width">Largura máxima <output data-for="yc-tb-address-width">100%</output></label><input id="yc-tb-address-width" type="range" min="40" max="100" value="100">
+        <label for="yc-tb-address-radius">Arredondamento <output data-for="yc-tb-address-radius">12 px</output></label><input id="yc-tb-address-radius" type="range" min="0" max="30" value="12">
+        <label for="yc-tb-address-margin">Margem lateral <output data-for="yc-tb-address-margin">4 px</output></label><input id="yc-tb-address-margin" type="range" min="0" max="24" value="4">
+        <label for="yc-tb-address-font">Tamanho do texto <output data-for="yc-tb-address-font">13 px</output></label><input id="yc-tb-address-font" type="range" min="11" max="18" value="13">
+      </div>
+      <div class="yc-toolbar-card"><h4>Botões e ícones</h4>
+        <label for="yc-tb-button-size">Tamanho dos botões <output data-for="yc-tb-button-size">32 px</output></label><input id="yc-tb-button-size" type="range" min="24" max="48" value="32">
+        <label for="yc-tb-button-radius">Arredondamento dos botões <output data-for="yc-tb-button-radius">10 px</output></label><input id="yc-tb-button-radius" type="range" min="0" max="24" value="10">
+        <label for="yc-tb-icon-size">Tamanho dos ícones <output data-for="yc-tb-icon-size">17 px</output></label><input id="yc-tb-icon-size" type="range" min="12" max="26" value="17">
+        <label for="yc-tb-button-style">Estilo dos botões</label><select id="yc-tb-button-style"><option value="minimal">Minimalista</option><option value="filled">Preenchido</option><option value="outlined">Contorno</option></select>
+        <label class="yc-check"><input id="yc-toolbar-back" type="checkbox" checked> Mostrar Voltar</label><label class="yc-check"><input id="yc-toolbar-forward" type="checkbox" checked> Mostrar Avançar</label><label class="yc-check"><input id="yc-toolbar-reload" type="checkbox" checked> Mostrar Recarregar</label><label class="yc-check"><input id="yc-toolbar-extensions" type="checkbox" checked> Mostrar Extensões</label><label class="yc-check"><input id="yc-toolbar-star" type="checkbox" checked> Mostrar Favoritos</label><label class="yc-check"><input id="yc-toolbar-sidebar" type="checkbox" checked> Mostrar Barra lateral</label><label class="yc-check"><input id="yc-toolbar-zoom" type="checkbox" checked> Mostrar controles de zoom</label>
+      </div>
+      <div class="yc-toolbar-card"><h4>Cores da Toolbar</h4>
+        <div class="yc-toolbar-colors"><label>Fundo da barra<input id="yc-tb-bg" type="color" value="#202124"></label><label>Texto e ícones<input id="yc-tb-fg" type="color" value="#c4c9d2"></label><label>Fundo do endereço<input id="yc-tb-address-bg" type="color" value="#303134"></label><label>Texto do endereço<input id="yc-tb-address-fg" type="color" value="#e8eaed"></label><label>Borda<input id="yc-tb-border" type="color" value="#45474d"></label><label>Realce/foco<input id="yc-tb-focus" type="color" value="#8ab4f8"></label><label>Hover dos botões<input id="yc-tb-hover" type="color" value="#3b4049"></label></div>
+      </div>
+      <div class="yc-toolbar-card"><h4>Transparência e vidro</h4>
+        <label for="yc-tb-opacity">Opacidade da barra <output data-for="yc-tb-opacity">92%</output></label><input id="yc-tb-opacity" type="range" min="35" max="100" value="92">
+        <label for="yc-tb-address-opacity">Opacidade do endereço <output data-for="yc-tb-address-opacity">94%</output></label><input id="yc-tb-address-opacity" type="range" min="35" max="100" value="94">
+        <label for="yc-tb-blur">Desfoque do vidro <output data-for="yc-tb-blur">16 px</output></label><input id="yc-tb-blur" type="range" min="0" max="30" value="16">
+        <label for="yc-tb-border-width">Espessura da borda <output data-for="yc-tb-border-width">1 px</output></label><input id="yc-tb-border-width" type="range" min="0" max="3" value="1">
+        <label class="yc-check"><input id="yc-tb-glass" type="checkbox" checked> Ativar efeito de vidro</label>
+      </div>
+      <div class="yc-toolbar-card"><h4>Visibilidade e acabamento</h4>
+        <label for="yc-tb-address-shadow">Sombra do endereço <output data-for="yc-tb-address-shadow">12 px</output></label><input id="yc-tb-address-shadow" type="range" min="0" max="32" value="12">
+        <label for="yc-tb-focus-width">Espessura do foco <output data-for="yc-tb-focus-width">2 px</output></label><input id="yc-tb-focus-width" type="range" min="0" max="4" value="2">
+        <label class="yc-check"><input id="yc-tb-hide-address" type="checkbox"> Ocultar barra de endereço</label>
+        <label class="yc-check"><input id="yc-tb-hide-menu" type="checkbox"> Ocultar menu principal</label>
+        <label class="yc-check"><input id="yc-tb-hide-security" type="checkbox"> Ocultar ícone de segurança</label>
+      </div>
+    </div>
+    <p class="yc-note">A prévia da Home não representa a barra superior real. As configurações são aplicadas pelo processo do navegador e permanecem salvas após reiniciar.</p>
+  </section>
 
   <h3>Widget de música</h3>
   <label class="yc-check"><input id="yc-music-enabled" type="checkbox"> Mostrar widget de música</label>
@@ -1996,7 +2024,8 @@ function watchPyBrowserSettings() {
       body.style.backgroundImage =
         'linear-gradient(rgba(10,10,12,.38), rgba(10,10,12,.38)), url("' +
         settings.wallpaper.replace(/"/g, '\\"') +
-        '")';      body.style.backgroundSize = 'cover';
+        '")';
+      body.style.backgroundSize = 'cover';
       body.style.backgroundPosition = 'center';
       body.style.backgroundAttachment = 'fixed';
     } else {
@@ -2530,7 +2559,14 @@ addShortcut.addEventListener('click', () => {
     searchHeight:'search-height', hideSearch:'hide-search',
     shortcutSize:'shortcut-size', iconSize:'icon-size', columns:'columns',
     gap:'gap', hideShortcuts:'hide-shortcuts', glass:'glass',
-    noMotion:'no-motion', customCSS:'css'
+    noMotion:'no-motion', customCSS:'css',
+    tbHeight:'tb-height',tbPadding:'tb-padding',tbGap:'tb-gap',tbPosition:'tb-position',tbShadow:'tb-shadow',
+    tbAddressHeight:'tb-address-height',tbAddressWidth:'tb-address-width',tbAddressRadius:'tb-address-radius',tbAddressMargin:'tb-address-margin',tbAddressFont:'tb-address-font',
+    tbButtonSize:'tb-button-size',tbButtonRadius:'tb-button-radius',tbIconSize:'tb-icon-size',tbButtonStyle:'tb-button-style',
+    tbBg:'tb-bg',tbFg:'tb-fg',tbAddressBg:'tb-address-bg',tbAddressFg:'tb-address-fg',tbBorder:'tb-border',tbFocus:'tb-focus',tbHover:'tb-hover',
+    tbOpacity:'tb-opacity',tbAddressOpacity:'tb-address-opacity',tbBlur:'tb-blur',tbBorderWidth:'tb-border-width',tbGlass:'tb-glass',tbAddressShadow:'tb-address-shadow',tbFocusWidth:'tb-focus-width',
+    tbHideAddress:'tb-hide-address',tbHideMenu:'tb-hide-menu',tbHideSecurity:'tb-hide-security',
+    toolbarBack:'toolbar-back',toolbarForward:'toolbar-forward',toolbarReload:'toolbar-reload',toolbarExtensions:'toolbar-extensions',toolbarStar:'toolbar-star',toolbarSidebar:'toolbar-sidebar',toolbarZoom:'toolbar-zoom'
   };
 
   function readControls() {
@@ -2554,6 +2590,12 @@ addShortcut.addEventListener('click', () => {
   function save() {
     try { localStorage.setItem(KEY, JSON.stringify(settings)); }
     catch (e) { console.warn('Não foi possível salvar as preferências:', e); }
+    // Sincroniza com as preferências do navegador principal quando a ponte estiver disponível.
+    try {
+      if (window.pybrowser && typeof window.pybrowser.saveSettings === 'function') {
+        Promise.resolve(window.pybrowser.saveSettings(settings)).catch(() => {});
+      }
+    } catch (_) {}
   }
 
   function apply() {
@@ -2752,8 +2794,29 @@ addShortcut.addEventListener('click', () => {
     if (el) el.addEventListener('focus', () => { previous = {...settings}; }, true);
   }
 
+  // Atualiza os rótulos numéricos dos controles do Studio.
+  function updateToolbarOutputs() {
+    document.querySelectorAll('[data-for]').forEach(out => {
+      const el = $(out.dataset.for); if (!el) return;
+      const suffix = el.id.includes('opacity') ? '%' : (el.id === 'yc-tb-address-width' ? '%' : ' px');
+      out.textContent = el.value + suffix;
+    });
+  }
+  document.querySelectorAll('[data-toolbar-preset]').forEach(button => button.addEventListener('click', () => {
+    const presets = {
+      glass:{tbGlass:true,tbOpacity:78,tbAddressOpacity:72,tbBlur:22,tbAddressRadius:16,tbButtonRadius:12,tbShadow:true},
+      compact:{tbHeight:40,tbPadding:5,tbGap:3,tbAddressHeight:30,tbButtonSize:28,tbIconSize:15,tbAddressRadius:8},
+      soft:{tbHeight:50,tbPadding:12,tbGap:7,tbAddressHeight:38,tbAddressRadius:20,tbButtonRadius:16,tbAddressShadow:18},
+      reset:{tbHeight:48,tbPadding:10,tbGap:6,tbPosition:'normal',tbShadow:true,tbAddressHeight:34,tbAddressWidth:100,tbAddressRadius:12,tbAddressMargin:4,tbAddressFont:13,tbButtonSize:32,tbButtonRadius:10,tbIconSize:17,tbButtonStyle:'minimal',tbBg:'#202124',tbFg:'#c4c9d2',tbAddressBg:'#303134',tbAddressFg:'#e8eaed',tbBorder:'#45474d',tbFocus:'#8ab4f8',tbHover:'#3b4049',tbOpacity:92,tbAddressOpacity:94,tbBlur:16,tbBorderWidth:1,tbGlass:true,tbAddressShadow:12,tbFocusWidth:2,tbHideAddress:false,tbHideMenu:false,tbHideSecurity:false}
+    };
+    Object.assign(settings,presets[button.dataset.toolbarPreset]||{}); fillControls(); readControls(); apply(); save(); updateToolbarOutputs();
+  }));
+  document.querySelectorAll('.yc-toolbar-card input,.yc-toolbar-card select').forEach(el => {
+    el.addEventListener('input', updateToolbarOutputs); el.addEventListener('change', updateToolbarOutputs);
+  });
   fillControls();
   apply();
+  updateToolbarOutputs();
 })();
 </script>
 
@@ -2995,7 +3058,8 @@ addShortcut.addEventListener('click', () => {
     const el = sidebar();
     if (!el) {
       $('yc-sb-status').textContent = 'Configurações salvas; serão aplicadas à barra lateral.';
-      return;    }
+      return;
+    }
     const root = document.documentElement;
     const rgb = (v.color.match(/[a-f\d]{2}/gi) || ['17','19','23'])
       .map(x => parseInt(x, 16));
@@ -3994,7 +4058,8 @@ html body #shortcuts .shortcut.add .shortcut-icon {
   } else {
     applyBrandLogos();
   }
-})();</script>
+})();
+</script>
 
 <style id="yx-maxthon-full-square">
 html body #shortcuts {
