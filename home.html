@@ -2621,9 +2621,7 @@ addShortcut.addEventListener('click', () => {
 
     document.querySelectorAll('.search,.shortcut').forEach(el => {
       const opacity = Math.max(20, Math.min(100, Number(settings.opacity) || 100)) / 100;
-      el.style.backgroundColor = settings.glass
-        ? color(settings.card) + (opacity < 1 ? '' : '')
-        : color(settings.card);
+      el.style.backgroundColor = color(settings.card);
       el.style.borderColor = color(settings.border);
       el.style.color = color(settings.text);
       el.style.opacity = String(opacity);
