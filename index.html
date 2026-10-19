@@ -5,6 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yantux</title>
   <link rel="stylesheet" href="style.css">
+<style id="YX-MUSIC-MINIMAL-BUTTONS">
+#yx-music-card #yx-music-add,
+#yx-music-card #yx-music-play,
+#yx-music-card #yx-music-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid var(--border-color, rgba(255,255,255,.12));
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-color, inherit);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .16s ease, border-color .16s ease,
+              color .16s ease, transform .16s ease;
+}
+
+#yx-music-card #yx-music-add:hover,
+#yx-music-card #yx-music-play:hover,
+#yx-music-card #yx-music-next:hover {
+  background: rgba(127,127,127,.12);
+  border-color: rgba(127,127,127,.38);
+}
+
+#yx-music-card #yx-music-play {
+  background: rgba(127,127,127,.13);
+  border-color: rgba(127,127,127,.25);
+}
+
+#yx-music-card #yx-music-play:hover {
+  background: rgba(127,127,127,.22);
+}
+
+#yx-music-card #yx-music-add:active,
+#yx-music-card #yx-music-play:active,
+#yx-music-card #yx-music-next:active {
+  transform: scale(.97);
+}
+
+#yx-music-card #yx-music-add:focus-visible,
+#yx-music-card #yx-music-play:focus-visible,
+#yx-music-card #yx-music-next:focus-visible {
+  outline: 2px solid var(--accent-color, #8ab4f8);
+  outline-offset: 2px;
+}
+
+#yx-music-card #yx-music-volume {
+  accent-color: var(--accent-color, #8ab4f8);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #yx-music-card #yx-music-add,
+  #yx-music-card #yx-music-play,
+  #yx-music-card #yx-music-next {
+    transition: none;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -32,42 +96,32 @@
 
       <button id="py-sidebar-private" title="Guia privada" onclick="createTab(undefined, true, true)">
         <span>
-          <svg viewBox="0 0 24 24">
-            <path d="M6 10h12l-1 9H7l-1-9Z"/>
-            <path d="M9 10V7a3 3 0 0 1 6 0v3"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg>
         </span>
         <small>Privada</small>
       </button>
 
       <button id="py-sidebar-history" title="Histórico" onclick="document.querySelector('[data-action=&quot;history&quot;]')?.click()">
         <span>
-          <svg viewBox="0 0 24 24">
-            <path d="M3 12a9 9 0 1 0 3-6.7"/>
-            <path d="M3 4v6h6"/>
-            <path d="M12 7v5l3 2"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
         </span>
         <small>Histórico</small>
       </button>
 
       <button id="py-sidebar-downloads" title="Downloads" onclick="openDownloads()">
         <span>
-          <svg viewBox="0 0 24 24">
-            <path d="M12 3v12"/>
-            <path d="m7 10 5 5 5-5"/>
-            <path d="M5 21h14"/>
-          </svg>
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
         </span>
         <small>Downloads</small>
       </button>
 
-      <button id="py-sidebar-control" title="Yantux Control"><span>◴</span><small>Control</small></button>
+      <button id="py-sidebar-control" title="Yantux Control"><span><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><small>Control</small></button>
     </div>
 
+    <div class="py-sidebar-sep"></div>
     <div class="py-sidebar-title">
       <span>Sites fixados</span>
-      <button id="py-sidebar-add" title="Adicionar site" type="button">＋</button>
+      <button id="py-sidebar-add" title="Adicionar site" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
     </div>
 
     <div id="py-pinned-sites"></div>
@@ -77,8 +131,8 @@
     <span id="py-sidebar-panel-title">Site</span>
 
     <div id="py-sidebar-panel-actions">
-      <button id="py-sidebar-panel-open" title="Abrir em nova aba">↗</button>
-      <button id="py-sidebar-panel-close" title="Fechar" onclick="closePinnedSitePanel()">×</button>
+      <button id="py-sidebar-panel-open" title="Abrir em nova aba"><svg class="yx-ico" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></button>
+      <button id="py-sidebar-panel-close" title="Fechar" onclick="closePinnedSitePanel()"><svg class="yx-ico" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     </div>
   </div>
 
@@ -87,6 +141,7 @@
 
     <div class="py-sidebar-spacer"></div>
 
+    <div class="py-sidebar-sep"></div>
     <div class="py-sidebar-bottom">
 
       <button id="py-adblock-toggle" title="Bloqueador de anúncios" onclick="window.pybrowser.setAdBlocker(this.dataset.enabled !== 'true').then(() => { this.dataset.enabled = this.dataset.enabled !== 'true' ? 'true' : 'false'; this.title = this.dataset.enabled === 'true' ? 'Bloqueador de anúncios: ligado' : 'Bloqueador de anúncios: desligado'; })">
@@ -104,44 +159,7 @@
         <i class="py-status-dot"></i>
       </button>
 
-      <button id="py-youtube-adblock-toggle"
-        title="Bloqueador do YouTube: desligado"
-        data-enabled="false"
-        onclick="(async () => {
-          const btn = document.getElementById('py-youtube-adblock-toggle');
-          const enabled = btn.dataset.enabled !== 'true';
-          try {
-            const settings = await window.pybrowser.getSettings();
-            const ok = await window.pybrowser.saveSettings({
-              ...settings,
-              youtubeAdBlockerEnabled: enabled
-            });
-            if (!ok) throw new Error('Não foi possível salvar a configuração.');
-            btn.dataset.enabled = String(enabled);
-            btn.title = 'Bloqueador do YouTube: ' + (enabled ? 'ligado' : 'desligado');
-            btn.querySelector('small').textContent = enabled ? 'YouTube ✓' : 'YouTube';
-            await window.pybrowser.reloadBrowser();
-          } catch (e) {
-            console.error('[YT-BLOCKER]', e);
-            alert('Não foi possível alterar o bloqueador do YouTube.');
-          }
-        })()">
-        <span class="py-youtube-icon" aria-hidden="true">
-          <svg viewBox="0 0 28 28" width="26" height="26"
-               xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="5" width="24" height="18" rx="5" fill="#FF0033"/>
-            <path d="M10 9.5L17 14L10 18.5Z" fill="#FFFFFF"/>
-            <g transform="rotate(-35 14 14)" stroke="#AEB7C4"
-               stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="14" cy="10.5" r="3.2" fill="#AEB7C4"/>
-              <path d="M14 13.7V21M14 18H17"/>
-            </g>
-            <circle cx="14" cy="10.5" r="1.2" fill="#FF0033"/>
-          </svg>
-        </span>
-        <small>YouTube</small>
-        <i class="py-status-dot"></i>
-      </button>
+
 
       <button id="py-sidebar-toggle" title="Configurar barra lateral" onclick="document.getElementById('py-sidebar').classList.toggle('compact')">
         <span>☰</span>
@@ -155,6 +173,7 @@
   <!-- ABAS -->
 
   <div id="tabs">
+    
     <div id="tab-list"></div>
 
     <button id="new-tab" title="Nova aba">
@@ -191,12 +210,7 @@
           <path d="M20 19v-4h-4"/>
         </svg>
       </button>
-      <button id="py-tabs-toggle" type="button" title="Ativar/desativar abas verticais" aria-label="Alternar abas verticais">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="16" rx="2"/>
-          <path d="M9 4v16M13 8h4M13 12h4M13 16h4"/>
-        </svg>
-      </button>
+      
 
     </div>
 
@@ -260,7 +274,7 @@
   <div id="menu-popup">
 
     <div class="menu-header">
-      <strong>PyBrowser</strong>
+      <strong>Yantux</strong>
       <span>Navegador</span>
     </div>
 
@@ -522,7 +536,7 @@
 
         <h1>Geral</h1>
         <p class="settings-description">
-          Configure o comportamento básico do PyBrowser.
+          Configure o comportamento básico do Yantux.
         </p>
 
 
@@ -575,8 +589,24 @@
 
         <h1>Aparência</h1>
         <p class="settings-description">
-          Personalize a aparência do PyBrowser.
+
+          Personalize a aparência do Yantux.
         </p>
+
+        <div class="settings-card" id="yx-music-card">
+          <h2>Música de fundo</h2>
+          <p class="settings-description">A música continua ao trocar de site ou abrir configurações.</p>
+          <div class="settings-row" style="gap:8px;flex-wrap:wrap">
+            <button id="yx-music-add" type="button">Adicionar músicas</button>
+            <button id="yx-music-play" type="button">▶ Tocar</button>
+            <button id="yx-music-next" type="button">Próxima</button>
+          </div>
+          <p id="yx-music-status" role="status">Nenhuma música selecionada.</p>
+          <label class="settings-row" style="gap:12px">
+            <span>Volume</span>
+            <input id="yx-music-volume" type="range" min="0" max="100" value="45">
+          </label>
+        </div>
 
 
         <div class="settings-card">
@@ -628,7 +658,7 @@
       <div class="settings-card py-advanced-card">
         <h2>Personalização</h2>
         <p class="settings-description">
-          Personalize o visual do PyBrowser.
+          Personalize o visual do Yantux.
         </p>
 
         <div class="settings-row">
@@ -678,6 +708,7 @@
             <option value="minimal">Minimalista</option>
           
 <option value="vivaldi">Vivaldi Speed Dial</option>
+<option value="speeddial">Speed Dial (cartões quadrados)</option>
 </select>
         </div>
 
@@ -753,7 +784,7 @@
 
         <div class="settings-row">
           <div>
-            <strong>Idioma do PyBrowser</strong>
+            <strong>Idioma do Yantux</strong>
             <small>Escolha o idioma da interface.</small>
           </div>
 
@@ -967,7 +998,6 @@
       <!-- PESQUISA -->
 
       <section class="settings-section-page" data-section-page="search">
-
         <h1>Pesquisa</h1>
         <p class="settings-description">
           Escolha seu mecanismo de pesquisa padrão.
@@ -1077,7 +1107,7 @@
 
         <h1>Extensões</h1>
         <p class="settings-description">
-          Gerencie recursos adicionais instalados no PyBrowser.
+          Gerencie recursos adicionais instalados no Yantux.
         </p>
 
 
@@ -1134,7 +1164,7 @@
           <h2>Redefinir</h2>
 
           <p>
-            Restaurar as configurações do PyBrowser para os valores padrão.
+            Restaurar as configurações do Yantux para os valores padrão.
           </p>
 
           <button class="danger-button">
@@ -1217,7 +1247,7 @@
   let busy = false;
   let lastValue = '';
 
-  function apply(v) {
+  function applyBase(v) {
     const el = document.getElementById('py-sidebar');
     const browser = document.getElementById('browser');
     if (!el || !browser || !v) return;
@@ -1231,19 +1261,20 @@
     const iconSize = Math.max(12, Math.min(36, Number(v.iconSize) || 20));
     const rgb = (String(v.color || '#171923').match(/[a-f\d]{2}/gi) || ['17','19','23'])
       .map(x => parseInt(x, 16));
-    const iconColor = String(v.iconColor || '#dce1f2');
+    const isLight = document.body.classList.contains('light'); /* yx-light-sidebar */
+    const iconColor = isLight ? '#4d5561' : String(v.iconColor || '#dce1f2');
 
     el.style.setProperty('width', width + 'px', 'important');
     el.style.setProperty('min-width', width + 'px', 'important');
     el.style.setProperty('max-width', width + 'px', 'important');
     el.style.setProperty('height', height + 'vh', 'important');
-    el.style.setProperty('background-color', `rgba(${rgb.join(',')},${opacity / 100})`, 'important');
+    el.style.setProperty('background-color', `rgba(${(isLight ? [231, 233, 237] : rgb).join(',')},${opacity / 100})`, 'important');
     el.style.setProperty('backdrop-filter', `blur(${blur}px)`, 'important');
     el.style.setProperty('-webkit-backdrop-filter', `blur(${blur}px)`, 'important');
     el.style.setProperty('border-radius', radius + 'px', 'important');
     el.style.setProperty('color', iconColor, 'important');
     el.style.setProperty('gap', gap + 'px', 'important');
-    el.style.setProperty('border', v.border ? '1px solid #ffffff25' : 'none', 'important');
+    el.style.setProperty('border', v.border ? (isLight ? '1px solid #00000020' : '1px solid #ffffff25') : 'none', 'important');
     el.style.setProperty('box-shadow', v.shadow ? '0 8px 28px #0004' : 'none', 'important');
     browser.style.setProperty('grid-template-columns', `${width}px minmax(0, 1fr)`, 'important');
 
@@ -1267,6 +1298,206 @@
       document.head.appendChild(style);
     }
   }
+
+  /* yx-sidebar-adv: opcoes avancadas do Studio */
+  const YX_ADV = {
+    side: 'left', floating: false, marginTop: 0, marginSide: 0,
+    activeColor: '#8ab4f8', borderColor: '#ffffff', shadowStrength: 40, saturate: 140,
+    stroke: 0, labels: 'auto', iconShape: 'none', hoverAnim: 'scale',
+    autoHide: false, expandHover: false, hoverDelay: 80, closeDelay: 300
+  };
+  let yxOpts = Object.assign({}, YX_ADV);
+  let yxLastV = null;
+  let yxBaseW = 48;
+  let yxHover = false;
+  let yxPinned = false;
+  let yxTimerOpen = null;
+  let yxTimerClose = null;
+  let yxWired = null;
+
+  const YX_CSS = [
+    '#py-sidebar { transition: width .18s ease; }',
+    '#py-sidebar button, #py-sidebar a { transition: transform .15s, filter .15s, background-color .15s; }',
+    '#py-sidebar.yx-collapsed:not(.sidebar-panel-open) { overflow: hidden !important; }',
+    '#py-sidebar.yx-collapsed:not(.sidebar-panel-open) > * { opacity: 0 !important; pointer-events: none !important; }',
+    '#py-sidebar.yx-expanded .py-sidebar-actions button { flex-direction: row !important; justify-content: flex-start !important; align-items: center !important; gap: 10px !important; width: 100% !important; padding-inline: 10px !important; white-space: nowrap !important; }',
+    '#py-sidebar.yx-expanded small, #py-sidebar.yx-labels-show small { display: block !important; }',
+    '#py-sidebar.yx-labels-hide:not(.yx-expanded) small { display: none !important; }',
+    '#py-sidebar.yx-expanded .py-pinned-site { justify-content: flex-start !important; padding-inline: 10px !important; width: 100% !important; }',
+    '#py-sidebar.yx-expanded .py-pinned-site[title]::after { content: attr(title); margin-left: 10px; font-size: 12px; white-space: nowrap; }',
+    '#py-sidebar.yx-stroke svg, #py-sidebar.yx-stroke svg * { stroke-width: var(--yx-sb-stroke) !important; }',
+    '#py-sidebar.yx-shape-circle .py-sidebar-actions button > span:first-child, #py-sidebar.yx-shape-circle .py-pinned-site { border-radius: 50% !important; background: var(--yx-sb-shape-bg) !important; }',
+    '#py-sidebar.yx-shape-rounded .py-sidebar-actions button > span:first-child, #py-sidebar.yx-shape-rounded .py-pinned-site { border-radius: 10px !important; background: var(--yx-sb-shape-bg) !important; }',
+    '#py-sidebar.yx-shape-circle .py-sidebar-actions button > span:first-child, #py-sidebar.yx-shape-rounded .py-sidebar-actions button > span:first-child { display: inline-flex !important; align-items: center; justify-content: center; padding: 6px; box-sizing: content-box; }',
+    '#py-sidebar button:hover:not(:disabled), #py-sidebar a:hover, #py-sidebar .py-pinned-site:hover { background: color-mix(in srgb, var(--yx-sb-active, #8ab4f8) 24%, transparent) !important; }',
+    '#py-sidebar .py-pinned-site.active, #py-sidebar .py-pinned-site[aria-current="true"], #py-sidebar button.active { background: color-mix(in srgb, var(--yx-sb-active, #8ab4f8) 34%, transparent) !important; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--yx-sb-active, #8ab4f8) 60%, transparent) !important; }',
+    '#py-sidebar.yx-anim-none button:hover, #py-sidebar.yx-anim-none a:hover { transform: none !important; filter: none !important; }',
+    '#py-sidebar.yx-anim-scale button:hover, #py-sidebar.yx-anim-scale a:hover { transform: scale(1.08) !important; }',
+    '#py-sidebar.yx-anim-glow button:hover, #py-sidebar.yx-anim-glow a:hover { transform: none !important; filter: drop-shadow(0 0 6px var(--yx-sb-active, #8ab4f8)) !important; }',
+    '#py-sidebar.yx-anim-lift button:hover, #py-sidebar.yx-anim-lift a:hover { transform: translateY(-2px) !important; filter: none !important; }',
+    '#py-sidebar.yx-right #py-sidebar-panel { left: auto !important; right: 100% !important; }',
+    '@media (prefers-reduced-motion: reduce) { #py-sidebar, #py-sidebar button, #py-sidebar a { transition: none !important; } }'
+  ].join('\n');
+
+  function yxNum(x, d, a, b) {
+    x = Number(x);
+    return Number.isFinite(x) ? Math.max(a, Math.min(b, x)) : d;
+  }
+
+  function yxRefresh() {
+    const el = document.getElementById('py-sidebar');
+    if (!el) return;
+    const pinned = el.classList.contains('sidebar-panel-open');
+    const collapsedW = 8;
+    const expandedW = Math.max(yxBaseW, 220);
+    const isCol = !!yxOpts.autoHide && !(yxHover || pinned);
+    const isExp = !!yxOpts.expandHover && yxHover;
+    const w = isCol ? collapsedW : (isExp ? expandedW : yxBaseW);
+    ['width', 'min-width', 'max-width'].forEach(p => el.style.setProperty(p, w + 'px', 'important'));
+    if (el.classList.contains('yx-collapsed') !== isCol) el.classList.toggle('yx-collapsed', isCol);
+    if (el.classList.contains('yx-expanded') !== isExp) el.classList.toggle('yx-expanded', isExp);
+  }
+
+  function yxWire(el) {
+    if (yxWired === el) return;
+    yxWired = el;
+    el.addEventListener('mouseenter', () => {
+      clearTimeout(yxTimerClose);
+      clearTimeout(yxTimerOpen);
+      if (!(yxOpts.autoHide || yxOpts.expandHover)) return;
+      yxTimerOpen = setTimeout(() => { yxHover = true; yxRefresh(); }, yxNum(yxOpts.hoverDelay, 80, 0, 1000));
+    });
+    el.addEventListener('mouseleave', () => {
+      clearTimeout(yxTimerOpen);
+      clearTimeout(yxTimerClose);
+      yxTimerClose = setTimeout(() => { yxHover = false; yxRefresh(); }, yxNum(yxOpts.closeDelay, 300, 0, 3000));
+    });
+    new MutationObserver(() => {
+      const p = el.classList.contains('sidebar-panel-open');
+      if (p !== yxPinned) { yxPinned = p; yxRefresh(); }
+    }).observe(el, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  function applyAdvanced(v) {
+    const el = document.getElementById('py-sidebar');
+    const browser = document.getElementById('browser');
+    if (!el || !browser || !v) return;
+    yxLastV = v;
+
+    const o = Object.assign({}, YX_ADV);
+    for (const k of Object.keys(YX_ADV)) {
+      if (v[k] !== undefined && v[k] !== null) o[k] = v[k];
+    }
+    yxOpts = o;
+    if (!(o.autoHide || o.expandHover)) yxHover = false;
+
+    if (!document.getElementById('yx-sb-adv-style')) {
+      const st = document.createElement('style');
+      st.id = 'yx-sb-adv-style';
+      st.textContent = YX_CSS;
+      document.head.appendChild(st);
+    }
+
+    const isLight = document.body.classList.contains('light');
+    const baseW = yxNum(v.width, 48, 32, 120);
+    const baseH = yxNum(v.height, 100, 50, 100);
+    const blur = yxNum(v.blur, 16, 0, 40);
+    const mt = yxNum(o.marginTop, 0, 0, 80);
+    const ms = yxNum(o.marginSide, 0, 0, 60);
+    const right = o.side === 'right';
+    const floating = !!o.floating;
+    const stroke = yxNum(o.stroke, 0, 0, 3);
+    yxBaseW = baseW;
+
+    const root = document.documentElement;
+    root.style.setProperty('--yx-sb-active', String(o.activeColor || '#8ab4f8'));
+    root.style.setProperty('--yx-sb-shape-bg', isLight ? 'rgba(0,0,0,.06)' : 'rgba(255,255,255,.08)');
+    if (stroke > 0) root.style.setProperty('--yx-sb-stroke', String(stroke));
+
+    const setOne = (prefix, value, all) => all.forEach(x => {
+      const c = prefix + x;
+      const on = x === value;
+      if (el.classList.contains(c) !== on) el.classList.toggle(c, on);
+    });
+    const flag = (c, on) => { if (el.classList.contains(c) !== !!on) el.classList.toggle(c, !!on); };
+    setOne('yx-shape-', o.iconShape, ['none', 'circle', 'rounded']);
+    setOne('yx-anim-', v.hover === false ? 'none' : o.hoverAnim, ['none', 'scale', 'glow', 'lift']);
+    setOne('yx-labels-', o.labels, ['auto', 'show', 'hide']);
+    flag('yx-right', right);
+    flag('yx-stroke', stroke > 0);
+
+    const bf = 'blur(' + blur + 'px) saturate(' + yxNum(o.saturate, 140, 100, 250) + '%)';
+    el.style.setProperty('backdrop-filter', bf, 'important');
+    el.style.setProperty('-webkit-backdrop-filter', bf, 'important');
+    if (v.shadow) {
+      const a = (yxNum(o.shadowStrength, 40, 0, 100) / 100 * 0.7).toFixed(2);
+      el.style.setProperty('box-shadow', '0 8px 28px rgba(0,0,0,' + a + ')', 'important');
+    }
+    if (v.border) {
+      const custom = String(o.borderColor || '').toLowerCase();
+      const auto = !custom || custom === '#ffffff';
+      const c = auto ? (isLight ? 'rgba(0,0,0,.125)' : 'rgba(255,255,255,.145)')
+                     : 'color-mix(in srgb, ' + o.borderColor + ' 60%, transparent)';
+      el.style.setProperty('border', '1px solid ' + c, 'important');
+    }
+
+    const colW = o.autoHide ? 8 : baseW;
+    if (floating) {
+      const area = browser.getBoundingClientRect();
+      const h = Math.max(120, Math.round(area.height * baseH / 100 - mt * 2));
+      el.dataset.yxFloat = '1';
+      delete el.dataset.yxRel;
+      el.style.setProperty('position', 'fixed', 'important');
+      el.style.setProperty('top', Math.round(area.top + mt) + 'px', 'important');
+      el.style.setProperty(right ? 'right' : 'left', ms + 'px', 'important');
+      el.style.setProperty(right ? 'left' : 'right', 'auto', 'important');
+      el.style.setProperty('z-index', '80', 'important');
+      el.style.setProperty('margin', '0', 'important');
+      el.style.setProperty('height', h + 'px', 'important');
+      el.style.removeProperty('grid-column');
+      el.style.removeProperty('grid-row');
+      browser.style.setProperty('grid-template-columns', 'minmax(0, 1fr)', 'important');
+    } else {
+      if (el.dataset.yxFloat === '1') {
+        ['position', 'top', 'left', 'right', 'z-index'].forEach(p => el.style.removeProperty(p));
+        delete el.dataset.yxFloat;
+      }
+      el.style.setProperty('margin', mt + 'px ' + ms + 'px', 'important');
+      el.style.setProperty('height', 'calc(' + baseH + 'vh - ' + (mt * 2) + 'px)', 'important');
+      const track = colW + ms * 2;
+      browser.style.setProperty('grid-template-columns',
+        right ? 'minmax(0, 1fr) ' + track + 'px' : track + 'px minmax(0, 1fr)', 'important');
+      if (right) {
+        el.style.setProperty('grid-column', '2', 'important');
+        el.style.setProperty('grid-row', '1', 'important');
+      } else {
+        el.style.removeProperty('grid-column');
+        el.style.removeProperty('grid-row');
+      }
+      if (o.autoHide || o.expandHover) {
+        el.dataset.yxRel = '1';
+        el.style.setProperty('position', 'relative', 'important');
+        el.style.setProperty('z-index', '70', 'important');
+      } else if (el.dataset.yxRel === '1') {
+        delete el.dataset.yxRel;
+        el.style.removeProperty('position');
+        el.style.removeProperty('z-index');
+      }
+    }
+
+    yxWire(el);
+    yxPinned = el.classList.contains('sidebar-panel-open');
+    yxRefresh();
+  }
+
+  function apply(v) {
+    applyBase(v);
+    try { applyAdvanced(v); } catch (error) { console.warn('[YX SIDEBAR ADV]', error); }
+  }
+
+  window.addEventListener('resize', () => {
+    if (yxOpts.floating && yxLastV) { try { applyAdvanced(yxLastV); } catch (_) {} }
+  });
 
   async function readStudioSettings() {
     if (busy) return;
@@ -1307,6 +1538,8 @@
     }
   }
 
+  new MutationObserver(() => { lastValue = ''; readStudioSettings(); })
+    .observe(document.body, { attributes: true, attributeFilter: ['class'] });
   readStudioSettings();
   setInterval(readStudioSettings, 1000);
   window.addEventListener('storage', event => {
@@ -1316,6 +1549,10 @@
 </script>
 
 <script src="browser.js"></script>
+<script src="extensions-ui.js"></script>
+<script src="vtabs.js"></script>
+<script src="wallpaper-ui.js"></script>
+<script src="diag-claro.js"></script>
 
 
   <script>
@@ -1329,6 +1566,327 @@
     }).catch(err => console.error('[YT-BLOCKER] Configuração:', err));
   </script>
 
+
+<script id="YX-MUSIC-GLOBAL">
+(() => {
+  const audio = document.createElement('audio');
+  audio.id = 'yx-background-audio';
+  audio.preload = 'auto';
+  audio.volume = 0.45;
+  document.body.appendChild(audio);
+
+  let tracks = [];
+  let current = 0;
+  const $ = id => document.getElementById(id);
+  const status = text => { if ($('yx-music-status')) $('yx-music-status').textContent = text; };
+
+  function loadTrack(index, autoplay = false) {
+    if (!tracks.length) { status('Adicione arquivos de áudio para começar.'); return; }
+    current = (index + tracks.length) % tracks.length;
+    audio.src = tracks[current].url;
+    status((current + 1) + '/' + tracks.length + ' — ' + tracks[current].name);
+    if (autoplay) audio.play().then(updateButton).catch(() => {
+      status('Clique em Tocar para iniciar: ' + tracks[current].name);
+    });
+  }
+
+  function updateButton() {
+    if ($('yx-music-play')) $('yx-music-play').textContent = audio.paused ? '▶ Tocar' : '⏸ Pausar';
+  }
+
+  $('yx-music-add')?.addEventListener('click', async () => {
+    try {
+      tracks = await window.pybrowser.musicChoose();
+      if (tracks.length) loadTrack(0, false);
+      else status('Nenhuma música selecionada.');
+    } catch (e) { status('Erro ao abrir músicas: ' + e.message); }
+  });
+
+  $('yx-music-play')?.addEventListener('click', async () => {
+    if (!tracks.length) {
+      try { tracks = await window.pybrowser.musicGet(); } catch {}
+      if (!tracks.length) {
+        status('Use Adicionar músicas primeiro.');
+        return;
+      }
+      loadTrack(0, false);
+    }
+    if (audio.paused) {
+      try { await audio.play(); } catch (e) { status('Não foi possível tocar: ' + e.message); }
+    } else audio.pause();
+    updateButton();
+  });
+
+  $('yx-music-next')?.addEventListener('click', () => loadTrack(current + 1, true));
+  $('yx-music-volume')?.addEventListener('input', e => {
+    audio.volume = Number(e.target.value) / 100;
+  });
+  audio.addEventListener('ended', () => loadTrack(current + 1, true));
+  audio.addEventListener('play', updateButton);
+  audio.addEventListener('pause', updateButton);
+
+  window.pybrowser?.musicGet?.().then(list => {
+    tracks = list || [];
+    if (tracks.length) loadTrack(0, false);
+  }).catch(e => console.warn('[YX-MUSIC]', e));
+})();
+</script>
+
+<!-- YX-MUSIC-MINIPLAYER -->
+<style id="yx-music-miniplayer-style">
+#py-sidebar #yx-music-sidebar-toggle {
+  display:flex; align-items:center; justify-content:center;
+  width:100%; min-height:38px; padding:7px 0; margin:2px 0;
+  border:0; border-radius:8px; background:transparent;
+  color:inherit; font-size:23px; line-height:1; cursor:pointer;
+  transition:background .16s ease, transform .16s ease;
+}
+#py-sidebar #yx-music-sidebar-toggle:hover,
+#py-sidebar #yx-music-sidebar-toggle[aria-expanded="true"] {
+  background:rgba(127,127,127,.16);
+}
+#py-sidebar #yx-music-sidebar-toggle:active { transform:scale(.94); }
+#yx-music-mini {
+  position:fixed; z-index:99999; left:62px; top:50%;
+  transform:translateY(-50%); width:250px; box-sizing:border-box;
+  padding:15px; border:1px solid var(--border-color, #ffffff24);
+  border-radius:12px; background:var(--settings-card-bg, #202127);
+  color:var(--text-color, #eeeeee);
+  box-shadow:0 12px 36px #0005; backdrop-filter:blur(18px);
+  font:inherit;
+}
+#yx-music-mini[hidden] { display:none !important; }
+#yx-music-mini .yx-mini-head {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:8px; margin-bottom:12px;
+}
+#yx-music-mini .yx-mini-title { font-size:13px; font-weight:600; }
+#yx-music-mini button {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:32px; min-height:32px; padding:5px 9px;
+  border:1px solid #8883; border-radius:7px;
+  background:transparent; color:inherit; font:inherit; cursor:pointer;
+  transition:background .15s ease, transform .15s ease;
+}
+#yx-music-mini button:hover { background:#8882; }
+#yx-music-mini button:active { transform:scale(.96); }
+#yx-music-mini .yx-mini-track {
+  overflow:hidden; margin:0 0 12px; font-size:12px; opacity:.8;
+  text-overflow:ellipsis; white-space:nowrap;
+}
+#yx-music-mini .yx-mini-controls {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+#yx-music-mini #yx-mini-play { flex:1; }
+#yx-music-mini .yx-mini-volume {
+  display:flex; align-items:center; gap:8px; margin-top:13px;
+  font-size:12px; opacity:.85;
+}
+#yx-music-mini input[type="range"] { width:100%; min-width:0; accent-color:var(--accent-color, #8ab4f8); }
+#yx-music-mini button:focus-visible { outline:2px solid var(--accent-color, #8ab4f8); outline-offset:2px; }
+@media (max-width:420px) {
+  #yx-music-mini { left:56px; width:min(250px, calc(100vw - 68px)); }
+}
+</style>
+<div id="yx-music-mini" hidden role="dialog" aria-label="Mini player de música">
+  <div class="yx-mini-head">
+    <span class="yx-mini-title">♫ Música</span>
+    <button id="yx-mini-close" type="button" aria-label="Fechar mini player">×</button>
+  </div>
+  <p id="yx-mini-track" class="yx-mini-track">Nenhuma música selecionada</p>
+  <div class="yx-mini-controls">
+    <button id="yx-mini-play" type="button">▶ Tocar</button>
+    <button id="yx-mini-next" type="button" aria-label="Próxima música" title="Próxima música">⏭</button>
+  </div>
+  <label class="yx-mini-volume">
+    <span>♫</span>
+    <input id="yx-mini-volume" type="range" min="0" max="100" value="45" aria-label="Volume da música">
+  </label>
+  <button id="yx-mini-add" type="button" style="width:100%;margin-top:10px">＋ Adicionar músicas</button>
+<!-- YX-STREAMING-SERVICES -->
+<style id="yx-streaming-services-style">
+#yx-music-mini .yx-streaming-title {
+  margin: 15px 0 8px;
+  padding-top: 11px;
+  border-top: 1px solid #8883;
+  font-size: 11px;
+  opacity: .65;
+}
+#yx-music-mini .yx-streaming-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+#yx-music-mini .yx-streaming-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 35px;
+  box-sizing: border-box;
+  padding: 6px 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+#yx-music-mini .yx-streaming-link:hover {
+  background: #8882;
+  border-color: #8883;
+}
+#yx-music-mini .yx-streaming-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+#yx-music-mini .yx-streaming-link[data-service="spotify"] .yx-streaming-mark {
+  color: #1ed760;
+}
+#yx-music-mini .yx-streaming-link[data-service="youtube"] .yx-streaming-mark {
+  color: #ff4545;
+}
+#yx-music-mini .yx-streaming-link[data-service="deezer"] .yx-streaming-mark {
+  color: #c49bff;
+}
+</style>
+<div id="yx-streaming-services">
+  <div class="yx-streaming-title">SERVIÇOS DE MÚSICA</div>
+  <div class="yx-streaming-list">
+    <button class="yx-streaming-link" data-service="spotify" type="button">
+      <span class="yx-streaming-mark">●</span>
+      <span>Spotify</span>
+      <span style="margin-left:auto;opacity:.5">↗</span>
+    </button>
+    <button class="yx-streaming-link" data-service="youtube" type="button">
+      <span class="yx-streaming-mark">▶</span>
+      <span>YouTube Music</span>
+      <span style="margin-left:auto;opacity:.5">↗</span>
+    </button>
+    <button class="yx-streaming-link" data-service="deezer" type="button">
+      <span class="yx-streaming-mark">▥</span>
+      <span>Deezer</span>
+      <span style="margin-left:auto;opacity:.5">↗</span>
+    </button>
+  </div>
+</div>
+<script id="yx-streaming-services-script">
+(() => {
+  const urls = {
+    spotify: 'https://open.spotify.com/',
+    youtube: 'https://music.youtube.com/',
+    deezer: 'https://www.deezer.com/'
+  };
+
+  document.querySelectorAll('#yx-music-mini [data-service]').forEach(button => {
+    button.addEventListener('click', () => {
+      const url = urls[button.dataset.service];
+      if (!url) return;
+
+      // Abre o serviço numa nova aba do navegador, sem substituir o site atual.
+      const newTab = document.getElementById('new-tab');
+      if (newTab) {
+        newTab.click();
+        setTimeout(() => {
+          const address = document.getElementById('url-input');
+          if (address) {
+            address.value = url;
+            address.dispatchEvent(new KeyboardEvent('keydown', {
+              key: 'Enter', code: 'Enter', bubbles: true
+            }));
+          } else {
+            window.open(url, '_blank');
+          }
+        }, 250);
+      } else {
+        window.open(url, '_blank', 'noopener');
+      }
+    });
+  });
+})();
+</script>
+<!-- /YX-STREAMING-SERVICES -->
+</div>
+<script id="yx-music-miniplayer-script">
+(() => {
+  const $ = id => document.getElementById(id);
+  const sidebar = $('py-sidebar');
+  const mini = $('yx-music-mini');
+  if (!sidebar || !mini || $('yx-music-sidebar-toggle')) return;
+
+  const toggle = document.createElement('button');
+  toggle.id = 'yx-music-sidebar-toggle';
+  toggle.type = 'button';
+  toggle.textContent = '♫';
+  toggle.title = 'Mini player de música';
+  toggle.setAttribute('aria-label', 'Abrir mini player de música');
+  toggle.setAttribute('aria-expanded', 'false');
+
+  const target = sidebar.querySelector('.py-sidebar-bottom, .py-sidebar-actions') || sidebar;
+  target.appendChild(toggle);
+
+  function sync() {
+    const status = $('yx-music-status');
+    const play = $('yx-music-play');
+    const volume = $('yx-music-volume');
+    $('yx-mini-track').textContent = status?.textContent?.trim() || 'Adicione músicas nas configurações';
+    $('yx-mini-play').textContent = play?.textContent?.includes('Pausar') ? '⏸ Pausar' : '▶ Tocar';
+    if (volume && $('yx-mini-volume') !== document.activeElement)
+      $('yx-mini-volume').value = volume.value;
+  }
+
+  toggle.addEventListener('click', () => {
+    mini.hidden = !mini.hidden;
+    toggle.setAttribute('aria-expanded', String(!mini.hidden));
+    if (!mini.hidden) sync();
+  });
+
+  $('yx-mini-close').addEventListener('click', () => {
+    mini.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+
+  $('yx-mini-play').addEventListener('click', () => {
+    $('yx-music-play')?.click();
+    setTimeout(sync, 100);
+  });
+
+  $('yx-mini-next').addEventListener('click', () => {
+    $('yx-music-next')?.click();
+    setTimeout(sync, 250);
+  });
+
+  $('yx-mini-add').addEventListener('click', () => {
+    $('yx-music-add')?.click();
+    setTimeout(sync, 500);
+  });
+
+  $('yx-mini-volume').addEventListener('input', e => {
+    const volume = $('yx-music-volume');
+    if (volume) {
+      volume.value = e.target.value;
+      volume.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+
+  const status = $('yx-music-status');
+  const play = $('yx-music-play');
+  if (status) new MutationObserver(sync).observe(status, { childList:true, subtree:true, characterData:true });
+  if (play) new MutationObserver(sync).observe(play, { childList:true, subtree:true, characterData:true });
+  sync();
+})();
+</script>
+<!-- /YX-MUSIC-MINIPLAYER -->
 </body>
 </html>
 
